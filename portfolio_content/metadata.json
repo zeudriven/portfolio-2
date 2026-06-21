@@ -1,0 +1,22 @@
+{
+  "group_id": null,
+  "objects": [
+    {
+      "id": "f0052e70-b55b-48af-91b3-99246c06dd08",
+      "name": null,
+      "prompt": "Create a pixel art cozy bedroom door for a personal portfolio website. The door should be warm wood with small pixel stickers of a laptop, badminton racket, coffee cup, headphones, and stars. Add a soft light under the door and a friendly welcoming feeling. Use 16-bit pixel art style, front-facing view, transparent background, crisp pixel edges, limited warm color palette, no characters, no text.",
+      "size": {
+        "width": 48,
+        "height": 48
+      },
+      "directions": 1,
+      "view": "low top-down",
+      "rotations": {
+        "unknown": "rotations/unknown.png"
+      },
+      "animations": {}
+    }
+  ],
+  "export_version": "1.0",
+  "export_date": "2026-06-21T21:16:05.203330"
+}

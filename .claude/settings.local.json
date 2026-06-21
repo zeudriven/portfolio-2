@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp \"portfolio_content/Create_a_pixel_art_cozy_bedroom_door_for/rotations/unknown.png\" public/assets/door.png)",
+      "Bash(cp \"portfolio_content/Create_a_pixel_art_corporate_v/Create_a_pixel_art_corporate_vault_door/rotations/unknown.png\" public/assets/vault.png)",
+      "Bash(cp \"portfolio_content/Create_a_pixel_art_retro_arcad/Create_a_pixel_art_retro_arcade_machine/rotations/unknown.png\" public/assets/arcade.png)",
+      "Bash(cp \"portfolio_content/portal/portal/rotations/unknown.png\" public/assets/portal.png)",
+      "Bash(cp \"portfolio_content/computer_desk_with_blank_scre/computer_desk_with_blank_screen_so_i_fi/rotations/unknown.png\" public/assets/desk.png)",
+      "Bash(cp public/assets/_mailbox_tmp/unknown.png public/assets/mailbox.png)",
+      "Bash(rm -rf public/assets/_mailbox_tmp)",
+      "Bash(cp \"portfolio_content/Create_a_pixel_art_retro_arcad/Create_a_pixel_art_retro_arcade_machine/animations/Prompt_Create_a_smooth_pixel-art_animation_of/unknown/frame_000.png\" public/assets/arcade_f0.png)",
+      "Bash(npm install *)",
+      "Bash(> dev.log)",
+      "Bash(curl -s -o /dev/null \"http://localhost:3000/\")",
+      "Bash(curl -s localhost:3000/)",
+      "Bash(curl -s localhost:3000/skills)",
+      "Bash(curl -s localhost:3000/contact)"
+    ]
+  }
+}

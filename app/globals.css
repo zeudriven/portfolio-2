@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background:
+    radial-gradient(140% 90% at 50% -10%, #2a1f52 0%, #160f30 45%, #0e0b1c 100%);
+  color: #f4f2ff;
+  min-height: 100%;
+}
+
+/* crisp pixel art everywhere */
+img,
+canvas {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+@layer components {
+  /* chunky pixel panel */
+  .pixel-panel {
+    @apply bg-panel border-[4px] border-ink shadow-blocky;
+    border-radius: 0;
+  }
+  .pixel-panel-2 {
+    @apply bg-[#150f2e]/85 border-[4px] border-ink shadow-blocky;
+    border-radius: 0;
+  }
+  .pixel-titlebar {
+    @apply font-pixel text-green flex items-center gap-2 px-3 py-2 border-b-[4px] border-ink bg-[#0f0a22];
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+  /* interactive hover: lift + brighten border + glow + reveal sparkles */
+  .pixel-interactive {
+    @apply relative transition-[transform,box-shadow,border-color] duration-150 will-change-transform;
+  }
+  .pixel-interactive:hover {
+    transform: translate(-2px, -3px);
+    border-color: #9be34a;
+    box-shadow: 9px 11px 0 0 #000, 0 0 22px rgba(155, 227, 74, 0.35);
+  }
+  .pixel-interactive .sparkle {
+    @apply pointer-events-none absolute text-green opacity-0;
+    text-shadow: 0 0 6px rgba(155, 227, 74, 0.9);
+  }
+  .pixel-interactive:hover .sparkle {
+    @apply opacity-100 animate-twinkle;
+  }
+
+  /* lightweight hover for inner cells/cards (lift + glow, no sparkles) */
+  .pixel-hoverable {
+    @apply transition-[transform,box-shadow,border-color] duration-150 will-change-transform cursor-pointer;
+  }
+  .pixel-hoverable:hover {
+    transform: translate(-2px, -2px);
+    border-color: #9be34a;
+    box-shadow: 6px 8px 0 0 #000, 0 0 16px rgba(155, 227, 74, 0.3);
+  }
+
+  /* glowing neon outline used on highlighted panels */
+  .neon-green {
+    box-shadow: 0 0 0 0 #000, 6px 6px 0 0 #000, 0 0 14px rgba(155, 227, 74, 0.35);
+  }
+  .neon-purple {
+    box-shadow: 6px 6px 0 0 #000, 0 0 14px rgba(160, 107, 255, 0.4);
+  }
+}
+
+@layer utilities {
+  .text-shadow-blocky {
+    text-shadow: 4px 4px 0 #000;
+  }
+  .text-shadow-blocky-sm {
+    text-shadow: 3px 3px 0 #000;
+  }
+  .scanlines::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0) 0,
+      rgba(0, 0, 0, 0) 2px,
+      rgba(0, 0, 0, 0.12) 3px
+    );
+    mix-blend-mode: multiply;
+  }
+}
+
+/* thin pixel scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+::-webkit-scrollbar-track {
+  background: #0e0b1c;
+}
+::-webkit-scrollbar-thumb {
+  background: #3a2f63;
+  border: 2px solid #0e0b1c;
+}

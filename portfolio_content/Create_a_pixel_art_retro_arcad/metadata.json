@@ -1,0 +1,41 @@
+{
+  "group_id": null,
+  "objects": [
+    {
+      "id": "b1b05039-e32e-49b2-b0d1-ef918b5aee85",
+      "name": null,
+      "prompt": "Create a pixel art retro arcade machine portal for the projects section of a gamified portfolio website. The arcade cabinet should have a glowing screen that acts as an entrance, joystick, colorful buttons, neon trim, small pixel sparks, and futuristic retro details. 16-bit pixel art, front-facing game asset, transparent background, crisp edges, no text.",
+      "size": {
+        "width": 48,
+        "height": 48
+      },
+      "directions": 1,
+      "view": "low top-down",
+      "rotations": {
+        "unknown": "rotations/unknown.png"
+      },
+      "animations": {
+        "Prompt_Create_a_smooth_pixel-art_animation_of": {
+          "directions": {
+            "unknown": {
+              "frames": [
+                "animations/Prompt_Create_a_smooth_pixel-art_animation_of/unknown/frame_000.png",
+                "animations/Prompt_Create_a_smooth_pixel-art_animation_of/unknown/frame_001.png",
+                "animations/Prompt_Create_a_smooth_pixel-art_animation_of/unknown/frame_002.png",
+                "animations/Prompt_Create_a_smooth_pixel-art_animation_of/unknown/frame_003.png",
+                "animations/Prompt_Create_a_smooth_pixel-art_animation_of/unknown/frame_004.png",
+                "animations/Prompt_Create_a_smooth_pixel-art_animation_of/unknown/frame_005.png",
+                "animations/Prompt_Create_a_smooth_pixel-art_animation_of/unknown/frame_006.png",
+                "animations/Prompt_Create_a_smooth_pixel-art_animation_of/unknown/frame_007.png",
+                "animations/Prompt_Create_a_smooth_pixel-art_animation_of/unknown/frame_008.png"
+              ],
+              "frame_count": 9
+            }
+          }
+        }
+      }
+    }
+  ],
+  "export_version": "1.0",
+  "export_date": "2026-06-21T21:15:38.973665"
+}
