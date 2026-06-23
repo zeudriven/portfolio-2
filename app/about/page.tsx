@@ -1,6 +1,7 @@
 import PageChrome from "@/components/PageChrome";
 import PixelPanel from "@/components/pixel/PixelPanel";
 import PixelButton from "@/components/pixel/PixelButton";
+import Reveal from "@/components/Reveal";
 
 const journeyStats = [
   { v: "10+", l: "Projects Completed", tone: "text-green" },
@@ -27,9 +28,9 @@ export default function About() {
   return (
     <PageChrome>
       {/* title */}
-      <div className="text-center mt-6">
-        <h1 className="font-pixel text-green text-[34px] md:text-[52px] leading-none text-shadow-blocky">
-          <span className="text-gold">✦</span> ABOUT ME <span className="text-gold">✦</span>
+      <Reveal className="text-center mt-6">
+        <h1 className="font-pixel text-cyan text-[34px] md:text-[52px] leading-none text-shadow-blocky">
+          <span className="text-orange">✦</span> ABOUT ME <span className="text-orange">✦</span>
         </h1>
         <p className="font-body text-[20px] text-muted mt-4">
           Get to know the player behind the code.
@@ -37,9 +38,9 @@ export default function About() {
         <div className="mt-5">
           <PixelButton href="/" variant="outline">↔ BACK TO WORLD</PixelButton>
         </div>
-      </div>
+      </Reveal>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-8">
+      <Reveal delay={0.1} className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-8">
         {/* left column */}
         <div className="space-y-5 lg:col-span-1">
           <PixelPanel title="WHO I AM" accent="green" icon={<span>👤</span>} glowing bodyClassName="space-y-4">
@@ -113,7 +114,7 @@ export default function About() {
             ))}
           </PixelPanel>
         </div>
-      </div>
+      </Reveal>
     </PageChrome>
   );
 }

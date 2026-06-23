@@ -1,6 +1,7 @@
 import PageChrome from "@/components/PageChrome";
 import PixelPanel from "@/components/pixel/PixelPanel";
 import PixelProgressBar from "@/components/pixel/PixelProgressBar";
+import Reveal from "@/components/Reveal";
 
 const languages = [
   { l: "Python", v: 90 }, { l: "C++", v: 85 }, { l: "JavaScript", v: 80 },
@@ -34,14 +35,14 @@ const cabinets = ["PYTHON", "CPP", "JS", "REACT", "NODE", "SQL"];
 export default function Skills() {
   return (
     <PageChrome footer="">
-      <div className="text-center mt-6">
-        <h1 className="font-pixel text-green text-[30px] md:text-[48px] leading-none text-shadow-blocky">
-          <span className="text-purple">✦</span> SKILLS &amp; EXPERIENCE <span className="text-purple">✦</span>
+      <Reveal className="text-center mt-6">
+        <h1 className="font-pixel text-cyan text-[30px] md:text-[48px] leading-none text-shadow-blocky">
+          <span className="text-orange">✦</span> SKILLS &amp; EXPERIENCE <span className="text-orange">✦</span>
         </h1>
         <p className="font-body text-[20px] text-muted mt-4">
-          <span className="text-purple">❖</span> LEVEL UP. BUILD. IMPACT. <span className="text-purple">❖</span>
+          <span className="text-orange">❖</span> LEVEL UP. BUILD. IMPACT. <span className="text-orange">❖</span>
         </p>
-      </div>
+      </Reveal>
 
       {/* status + arcade + highscore row */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-5 mt-7">

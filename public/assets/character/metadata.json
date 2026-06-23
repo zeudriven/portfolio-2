@@ -1,0 +1,32 @@
+{
+  "group_id": null,
+  "states": [
+    {
+      "character": {
+        "id": "37fde6ec-7d3a-4e3e-b1f8-932b48a0dd34",
+        "name": "Stylish young software developer, slim build, cyan-blue hoodie (#56c7f5) with green drawstrings and a small green logo, tousled dark brown hair, slim dark navy jeans, white high-top sneakers, friendly confident look, high quality detailed pixel art game character, crisp clean shading, cohesive limited palette, transparent background, no text",
+        "prompt": "Stylish young software developer, slim build, cyan-blue hoodie (#56c7f5) with green drawstrings and a small green logo, tousled dark brown hair, slim dark navy jeans, white high-top sneakers, friendly confident look, high quality detailed pixel art game character, crisp clean shading, cohesive limited palette, transparent background, no text",
+        "size": {
+          "width": 136,
+          "height": 136
+        },
+        "template_id": "mannequin",
+        "directions": 4,
+        "view": "low top-down",
+        "created_at": "2026-06-23T17:57:37.017082+00:00"
+      },
+      "folder": "Stylish_young_software_developer_slim_build_cyan-b",
+      "frames": {
+        "rotations": {
+          "south": "Stylish_young_software_developer_slim_build_cyan-b/rotations/south.png",
+          "west": "Stylish_young_software_developer_slim_build_cyan-b/rotations/west.png",
+          "east": "Stylish_young_software_developer_slim_build_cyan-b/rotations/east.png",
+          "north": "Stylish_young_software_developer_slim_build_cyan-b/rotations/north.png"
+        },
+        "animations": {}
+      }
+    }
+  ],
+  "export_version": "3.0",
+  "export_date": "2026-06-23T17:59:22.599784"
+}

@@ -1,0 +1,143 @@
+%-------------------------
+% Resume in Latex
+% Jake-style tailored resume
+%-------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.62in}
+\addtolength{\textheight}{1.24in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{
+  \vspace{-6pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-6pt}]
+
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-3pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item\small{#1 #2}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[itemsep=0pt, topsep=1pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+\begin{document}
+
+\begin{center}
+    \textbf{\Huge \scshape Varun Manojkumar Patel} \\ \vspace{1pt}
+    \small Vaughan, ON $|$ (647) 706-4399 $|$
+    \href{mailto:varun05@my.yorku.ca}{\underline{varun05@my.yorku.ca}} $|$
+    \href{https://linkedin.com/in/student-cc-yorku-varun-patel}{\underline{linkedin.com/in/student-cc-yorku-varun-patel}} $|$
+    \href{https://github.com/zeudriven}{\underline{github.com/zeudriven}}
+\end{center}
+
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {York University}{Toronto, ON}
+      {Bachelor of Science (Honours) in Computer Science}{Present}
+      \resumeItemListStart
+        \resumeItem{Relevant Coursework: Data Structures \& Algorithms, Object-Oriented Programming, Operating Systems}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Programming Languages}{: Java, Python, JavaScript, TypeScript, SQL, C\#, HTML5, CSS3} \\
+     \textbf{Web Technologies}{: React.js, Next.js, FastAPI, HTML5, CSS3, Tailwind CSS, Phaser 3} \\
+     \textbf{Databases}{: MySQL, SQLite, Database Design, Data Modeling, Relational Databases, Database Normalization (3NF)} \\
+     \textbf{Software Development}{: RESTful APIs, CRUD Operations, API Integration, SQLAlchemy, MVC Architecture, Object-Oriented Programming (OOP), Data Structures \& Algorithms, Responsive Web Design} \\
+     \textbf{Tools \& Platforms}{: Git, GitHub, Node.js, npm, Visual Studio, Agile/Scrum}
+    }}
+ \end{itemize}
+
+\section{Projects}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{Interactive Developer Portfolio} $|$ \emph{Next.js, React, TypeScript, Tailwind CSS, Phaser 3, Node.js/npm}}{}
+          \resumeItemListStart
+            \resumeItem{Built a game-inspired developer portfolio with Next.js App Router, React components, TypeScript typing, and reusable pixel-art UI elements across 5 production-style routes}
+            \resumeItem{Implemented keyboard-driven navigation with React state/effects and a client-rendered Phaser scene, creating an interactive portfolio experience for project discovery and resume access}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{Scotia FutureFlex: Micro-Investment \& Trading Engagement Platform} $|$ \emph{Python, FastAPI, SQLAlchemy, SQLite, HTML, CSS, JavaScript}}{}
+          \resumeItemListStart
+            \resumeItem{Won Best UI/UX Design at a Scotiabank hackathon by engineering a deployed mobile-first investment app with QR code access, real-time portfolio flows, and 50+ demo users}
+            \resumeItem{Developed 12+ REST API endpoints using FastAPI and SQLAlchemy, enabling real-time portfolio tracking, transaction management, and financial data retrieval}
+            \resumeItem{Designed and implemented a mobile-first JavaScript frontend serving 50+ users during live product demonstrations, improving usability and navigation efficiency}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{FoodLoop: AI Logistics \& Food Resource Optimization Platform} $|$ \emph{Java, Python, MySQL}}{}
+          \resumeItemListStart
+            \resumeItem{Won 3rd place among 100+ participants by building a platform for surplus food routing, inventory visibility, dynamic pricing, and resource allocation}
+            \resumeItem{Architected a 3NF MySQL database for real-time inventory tracking, multi-zone delivery workflows, and scalable supply-chain data relationships}
+            \resumeItem{Built a RESTful Java service layer exposing logistics APIs for integration across inventory, pricing, and delivery stakeholders}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+\section{Leadership Experience}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Director of Student Life}{September 2025 -- Present}
+      {Enactus York}{}
+      \resumeItemListStart
+        \resumeItem{Led 8+ members to Enactus Canada Regionals and won 3/3 challenge categories, earning approximately \$2,500 in prizes from TD Bank, Enactus, and Canadian Tire}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {VP Officer, Community}{January 2025 -- Present}
+      {Lassonde Student Council}{}
+      \resumeItemListStart
+        \resumeItem{Coordinated planning, outreach, and execution for student initiatives with council members across Lassonde}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+\section{Achievements}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Team Lead, COIE Climathon}{: Led a multidisciplinary team to design an IoT-based management system and placed 3rd among 100+ participants by delivering a high-impact prototype and pitch under strict deadlines}
+    }}
+ \end{itemize}
+
+\end{document}

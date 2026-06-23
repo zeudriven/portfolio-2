@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Press_Start_2P, VT323 } from "next/font/google";
 import "./globals.css";
+// NES.css imported AFTER globals/Tailwind so its pixel components survive preflight.
+// Accent colors are overridden to the V2 palette in globals.css.
+import "nes.css/css/nes.min.css";
 
 const press = Press_Start_2P({
   weight: "400",

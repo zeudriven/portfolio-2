@@ -1,3 +1,7 @@
+/**
+ * Form fields built on NES.css `.nes-input` / `.nes-textarea`, recolored to
+ * the V2 palette in globals.css. Same API as before so call sites are stable.
+ */
 export function PixelField({
   label,
   placeholder,
@@ -11,19 +15,24 @@ export function PixelField({
   name?: string;
   required?: boolean;
 }) {
+  const id = name || label.toLowerCase();
   return (
-    <label className="block">
-      <span className="block font-pixel text-[10px] text-muted mb-2 tracking-wide">
+    <div className="nes-field">
+      <label
+        htmlFor={id}
+        className="block font-pixel text-[10px] text-muted mb-2 tracking-wide"
+      >
         {label}
-      </span>
+      </label>
       <input
+        id={id}
         type={type}
         name={name}
         required={required}
         placeholder={placeholder}
-        className="w-full bg-[#0f0a22] border-[4px] border-ink px-3 py-3 text-[18px] text-text placeholder:text-muted/60 outline-none transition-colors focus:border-green/60"
+        className="nes-input font-body text-[18px]"
       />
-    </label>
+    </div>
   );
 }
 
@@ -40,18 +49,23 @@ export function PixelTextarea({
   name?: string;
   required?: boolean;
 }) {
+  const id = name || label.toLowerCase();
   return (
-    <label className="block">
-      <span className="block font-pixel text-[10px] text-muted mb-2 tracking-wide">
+    <div className="nes-field">
+      <label
+        htmlFor={id}
+        className="block font-pixel text-[10px] text-muted mb-2 tracking-wide"
+      >
         {label}
-      </span>
+      </label>
       <textarea
+        id={id}
         rows={rows}
         name={name}
         required={required}
         placeholder={placeholder}
-        className="w-full resize-none bg-[#0f0a22] border-[4px] border-ink px-3 py-3 text-[18px] text-text placeholder:text-muted/60 outline-none transition-colors focus:border-green/60"
+        className="nes-textarea font-body text-[18px] resize-none"
       />
-    </label>
+    </div>
   );
 }

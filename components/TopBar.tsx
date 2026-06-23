@@ -12,7 +12,7 @@ function MiniAvatar() {
       <B t={11} l={13} w={3} h={4} c="#15101f" />
       <B t={11} l={20} w={3} h={4} c="#15101f" />
       <B t={18} l={6} w={24} h={18} c="#2f2b47" />
-      <B t={18} l={16} w={3} h={18} c="#9be34a" />
+      <B t={18} l={16} w={3} h={18} c="#56c7f5" />
       <B t={22} l={2} w={5} h={12} c="#2f2b47" />
       <B t={22} l={29} w={5} h={12} c="#2f2b47" />
     </div>
@@ -40,13 +40,13 @@ export default function TopBar() {
               {Array.from({ length: xpBlocks }).map((_, i) => (
                 <span
                   key={i}
-                  className={`flex-1 ${i < filled ? "bg-green" : "bg-[#241c44]"}`}
+                  className={`flex-1 ${i < filled ? "bg-cyan" : "bg-[#241c44]"}`}
                 />
               ))}
             </div>
             <span className="absolute top-0 left-0 h-full w-6 bg-white/40 blur-[2px] animate-xp-shine" />
           </div>
-          <span className="font-pixel text-[9px] text-green">100/100</span>
+          <span className="font-pixel text-[9px] text-cyan">100/100</span>
         </div>
       </div>
     </div>

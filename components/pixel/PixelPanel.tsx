@@ -14,7 +14,7 @@ const titleColor: Record<Accent, string> = {
 const glow: Record<Accent, string> = {
   green: "neon-green",
   purple: "neon-purple",
-  cyan: "",
+  cyan: "neon-cyan",
   gold: "",
   none: "",
 };

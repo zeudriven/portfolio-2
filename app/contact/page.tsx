@@ -3,6 +3,7 @@ import PixelPanel from "@/components/pixel/PixelPanel";
 import PixelButton from "@/components/pixel/PixelButton";
 import ArtSlot from "@/components/pixel/ArtSlot";
 import ContactForm from "./ContactForm";
+import Reveal from "@/components/Reveal";
 import { profile } from "@/lib/profile";
 
 const contacts = [
@@ -16,14 +17,14 @@ const contacts = [
 export default function Contact() {
   return (
     <PageChrome>
-      <div className="text-center mt-6">
-        <h1 className="font-pixel text-green text-[30px] md:text-[48px] leading-none text-shadow-blocky">
+      <Reveal className="text-center mt-6">
+        <h1 className="font-pixel text-cyan text-[30px] md:text-[48px] leading-none text-shadow-blocky">
           CONTACT / RESUME
         </h1>
         <p className="font-body text-[20px] text-muted mt-4">
-          <span className="text-green">❖</span> Let&apos;s Connect &amp; Build Something Amazing! <span className="text-green">❖</span>
+          <span className="text-orange">❖</span> Let&apos;s Connect &amp; Build Something Amazing! <span className="text-orange">❖</span>
         </p>
-      </div>
+      </Reveal>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-8">
         {/* get in touch */}

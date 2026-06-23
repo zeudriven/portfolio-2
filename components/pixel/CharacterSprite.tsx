@@ -18,13 +18,14 @@ export default function CharacterSprite({
     />
   );
 
-  const skin = "#f0c09a";
+  // V2 character — cyan hoodie (mirrors the sprite in v2-preview.html)
+  const skin = "#e8b483";
   const skinShade = "#d89e74";
-  const hair = "#241a12";
-  const hoodie = "#2f2b47";
-  const hoodieShade = "#26223a";
-  const trim = "#9be34a";
-  const pants = "#1d1a30";
+  const hair = "#2a1c12";
+  const hoodie = "#56c7f5";
+  const hoodieShade = "#2e6f8c";
+  const trim = "#2e6f8c";
+  const pants = "#2a2540";
   const shoe = "#e8e6f5";
 
   return (

@@ -9,10 +9,11 @@ replaceable `ArtSlot`s / `<img>` tags).
 ## Character (highest priority)
 **Walk sprite — Home world + TopBar avatar**
 > 16-bit pixel-art character sprite for a developer's interactive portfolio world. Friendly
-> young developer in a casual dark hoodie, front-facing idle pose, readable at 48×48,
-> transparent background, crisp pixel edges, palette tuned to a dark navy/purple night world
-> with green (#9be34a) and purple (#a06bff) accents, game-asset style, no text. Provide
-> 4-direction walk frames (down/up/left/right), 4 frames each.
+> young developer in a casual cyan hoodie, front-facing idle pose, readable at 48×48,
+> transparent background, crisp pixel edges, palette tuned to the V2 dark arcade-cozy world
+> (base #13111d / #181527) with cyan (#56c7f5) primary plus orange (#ff9b42) and green
+> (#7bd88f) accents, game-asset style, no text. Provide 4-direction walk frames
+> (down/up/left/right), 4 frames each.
 
 Swap into: `components/pixel/CharacterSprite.tsx` (replace CSS sprite with the sheet) and
 `components/TopBar.tsx` avatar.
@@ -43,15 +44,15 @@ Each: 16-bit pixel art, wide 16:9, crisp edges, limited palette on a dark night 
 ## Object refinements (optional)
 Re-generate the existing objects at higher resolution to match a unified palette:
 arcade machine, corporate vault door, cozy bedroom door, portal, computer desk, mailbox —
-all "16-bit, transparent background, front-facing game asset, green/purple/cyan accents,
-crisp edges, no text."
+all "16-bit, transparent background, front-facing game asset, V2 palette: cyan (#56c7f5)
+primary with orange (#ff9b42) and green (#7bd88f) accents on a dark base, crisp edges, no text."
 
 ## Where assets map in code
 | Asset | File in `public/assets/` | Used by |
 |---|---|---|
 | About door | `door.png` | Home destination |
-| Vault | `vault.png` | Home (Projects) destination |
-| Arcade | `arcade.png` | Home (Skills) destination |
+| Arcade | `arcade.png` | Home (Projects) destination |
+| Vault | `vault.png` | Home (Skills) destination |
 | Portal | `portal.png` | Home destination, Contact page |
 | Desk | `desk.png` | (available for About) |
 | Mailbox | `mailbox.png` | (available for Contact) |

@@ -2,52 +2,170 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================
+   V2 palette — single source of truth (mirrors v2-preview.html)
+   ============================================================ */
 :root {
   color-scheme: dark;
+  --bg: #050816; /* deep navy base */
+  --bg2: #130b2d; /* midnight purple */
+  --surface: #160f33;
+  --surface2: #1f1545;
+  --border: #000000;
+  --line: #0a0820;
+  --green: #b7ff45; /* PRIMARY (neon green) */
+  --green-dim: #7fae2e;
+  --cyan: #4cc9ff; /* secondary (electric blue) */
+  --cyan-dim: #1f6f99;
+  --violet: #b83cff; /* portal violet */
+  --gold: #ffd76a; /* lantern gold */
+  --orange: #ffd76a; /* kept name; maps to gold */
+  --text: #f4f2ff;
+  --muted: #8f8ab6;
 }
 
 html,
 body {
   background:
-    radial-gradient(140% 90% at 50% -10%, #2a1f52 0%, #160f30 45%, #0e0b1c 100%);
-  color: #f4f2ff;
+    radial-gradient(135% 95% at 50% -10%, #1a0f3a 0%, #0a0720 52%, var(--bg) 100%);
+  color: var(--text);
   min-height: 100%;
 }
 
-/* crisp pixel art everywhere */
+/* Square corners only — hard rule. Pixel art stays crisp. */
+* {
+  border-radius: 0 !important;
+}
 img,
 canvas {
   image-rendering: pixelated;
   image-rendering: crisp-edges;
 }
 
+/* ============================================================
+   NES.css accent overrides → V2 palette
+   (loaded after Tailwind + nes.min.css in layout.tsx)
+   ============================================================ */
+.nes-btn {
+  background-color: var(--surface2);
+  color: var(--text);
+  border-image-repeat: stretch;
+}
+.nes-btn::after {
+  box-shadow: inset -4px -4px var(--border) !important;
+}
+.nes-btn:hover {
+  background-color: var(--orange) !important;
+  color: #2a1d05 !important;
+}
+.nes-btn.is-primary {
+  background-color: var(--green);
+  color: #0b1206;
+}
+.nes-btn.is-success {
+  background-color: var(--green);
+  color: #10210a;
+}
+.nes-btn.is-warning {
+  background-color: var(--orange);
+  color: #2a1d05;
+}
+.nes-btn.is-disabled {
+  background-color: var(--surface);
+  color: var(--muted);
+}
+
+/* NES inputs/textarea → dark V2 surfaces */
+.nes-input,
+.nes-textarea {
+  background-color: #0f0a22;
+  color: var(--text);
+  box-shadow: inset 4px 4px var(--border), inset -4px -4px var(--border);
+  border-color: var(--border);
+}
+.nes-input::placeholder,
+.nes-textarea::placeholder {
+  color: rgba(155, 148, 189, 0.6);
+}
+.nes-input:focus,
+.nes-textarea:focus {
+  box-shadow: inset 4px 4px var(--cyan), inset -4px -4px var(--cyan);
+}
+
+/* NES progress → V2 fills, chunky black frame */
+.nes-progress {
+  background-color: #0f0a22;
+  box-shadow: inset 2px 2px var(--border), inset -2px -2px var(--border);
+  height: 22px;
+}
+.nes-progress::-webkit-progress-value {
+  background-color: var(--green);
+}
+.nes-progress::-moz-progress-bar {
+  background-color: var(--green);
+}
+.nes-progress.is-success::-webkit-progress-value {
+  background-color: var(--green);
+}
+.nes-progress.is-success::-moz-progress-bar {
+  background-color: var(--green);
+}
+.nes-progress.is-warning::-webkit-progress-value {
+  background-color: var(--orange);
+}
+.nes-progress.is-warning::-moz-progress-bar {
+  background-color: var(--orange);
+}
+
+/* NES container → V2 dark surface with chunky black frame + blocky shadow */
+.nes-container {
+  background-color: var(--surface);
+  color: var(--text);
+  border-color: var(--border);
+  box-shadow: 9px 9px 0 0 var(--border);
+}
+.nes-container.is-dark {
+  background-color: var(--bg2);
+  color: var(--text);
+}
+.nes-container.with-title > .title {
+  background-color: var(--surface);
+  color: var(--green);
+  font-family: var(--font-press), monospace;
+}
+
+/* ============================================================
+   RPGUI is vendored to /public/rpgui (loaded on demand, scoped
+   inside a `.rpgui-content` wrapper so its global body theming
+   does not fight NES.css / the V2 look). NES.css is the primary
+   component system; RPGUI is opt-in for framed window sections.
+   ============================================================ */
+
 @layer components {
   /* chunky pixel panel */
   .pixel-panel {
     @apply bg-panel border-[4px] border-ink shadow-blocky;
-    border-radius: 0;
   }
   .pixel-panel-2 {
     @apply bg-[#150f2e]/85 border-[4px] border-ink shadow-blocky;
-    border-radius: 0;
   }
   .pixel-titlebar {
-    @apply font-pixel text-green flex items-center gap-2 px-3 py-2 border-b-[4px] border-ink bg-[#0f0a22];
+    @apply font-pixel text-cyan flex items-center gap-2 px-3 py-2 border-b-[4px] border-ink bg-[#0f0a22];
     font-size: 12px;
     letter-spacing: 0.5px;
   }
-  /* interactive hover: lift + brighten border + glow + reveal sparkles */
+  /* interactive hover: lift + cyan border + glow + reveal sparkles */
   .pixel-interactive {
     @apply relative transition-[transform,box-shadow,border-color] duration-150 will-change-transform;
   }
   .pixel-interactive:hover {
     transform: translate(-2px, -3px);
-    border-color: #9be34a;
-    box-shadow: 9px 11px 0 0 #000, 0 0 22px rgba(155, 227, 74, 0.35);
+    border-color: #b7ff45;
+    box-shadow: 9px 11px 0 0 #000, 0 0 22px rgba(183, 255, 69, 0.4);
   }
   .pixel-interactive .sparkle {
     @apply pointer-events-none absolute text-green opacity-0;
-    text-shadow: 0 0 6px rgba(155, 227, 74, 0.9);
+    text-shadow: 0 0 6px rgba(183, 255, 69, 0.9);
   }
   .pixel-interactive:hover .sparkle {
     @apply opacity-100 animate-twinkle;
@@ -59,16 +177,19 @@ canvas {
   }
   .pixel-hoverable:hover {
     transform: translate(-2px, -2px);
-    border-color: #9be34a;
-    box-shadow: 6px 8px 0 0 #000, 0 0 16px rgba(155, 227, 74, 0.3);
+    border-color: #b7ff45;
+    box-shadow: 6px 8px 0 0 #000, 0 0 16px rgba(183, 255, 69, 0.35);
   }
 
-  /* glowing neon outline used on highlighted panels */
+  /* glowing neon outlines used on highlighted panels */
+  .neon-cyan {
+    box-shadow: 0 0 0 0 #000, 6px 6px 0 0 #000, 0 0 14px rgba(76, 201, 255, 0.4);
+  }
   .neon-green {
-    box-shadow: 0 0 0 0 #000, 6px 6px 0 0 #000, 0 0 14px rgba(155, 227, 74, 0.35);
+    box-shadow: 0 0 0 0 #000, 6px 6px 0 0 #000, 0 0 16px rgba(183, 255, 69, 0.45);
   }
   .neon-purple {
-    box-shadow: 6px 6px 0 0 #000, 0 0 14px rgba(160, 107, 255, 0.4);
+    box-shadow: 6px 6px 0 0 #000, 0 0 14px rgba(184, 60, 255, 0.45);
   }
 }
 
@@ -100,9 +221,9 @@ canvas {
   height: 12px;
 }
 ::-webkit-scrollbar-track {
-  background: #0e0b1c;
+  background: var(--bg);
 }
 ::-webkit-scrollbar-thumb {
   background: #3a2f63;
-  border: 2px solid #0e0b1c;
+  border: 2px solid var(--bg);
 }

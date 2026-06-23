@@ -3,6 +3,7 @@ import PixelPanel from "@/components/pixel/PixelPanel";
 import PixelButton from "@/components/pixel/PixelButton";
 import PixelBadge from "@/components/pixel/PixelBadge";
 import Sparkles from "@/components/pixel/Sparkles";
+import Reveal from "@/components/Reveal";
 
 const filters = ["▦ ALL", "🌐 WEB", "🧠 AI", "📊 DATA", "⚙ SYSTEMS"];
 
@@ -50,17 +51,17 @@ const achievements = [
 export default function Projects() {
   return (
     <PageChrome footer="Every project is a step forward. Keep building.">
-      <div className="text-center mt-6">
+      <Reveal className="text-center mt-6">
         <p className="font-pixel text-[11px] text-muted mb-3">
-          <span className="text-green">HOME</span> &gt; PROJECTS
+          <span className="text-cyan">HOME</span> &gt; PROJECTS
         </p>
-        <h1 className="font-pixel text-green text-[34px] md:text-[52px] leading-none text-shadow-blocky">
-          <span className="text-purple">❖</span> PROJECTS <span className="text-purple">❖</span>
+        <h1 className="font-pixel text-cyan text-[34px] md:text-[52px] leading-none text-shadow-blocky">
+          <span className="text-orange">❖</span> PROJECTS <span className="text-orange">❖</span>
         </h1>
         <p className="font-body text-[20px] text-muted mt-4">
-          <span className="text-green">❖</span> A collection of builds, experiments, and real-world solutions. <span className="text-green">❖</span>
+          <span className="text-cyan">❖</span> A collection of builds, experiments, and real-world solutions. <span className="text-cyan">❖</span>
         </p>
-      </div>
+      </Reveal>
 
       {/* filters */}
       <div className="flex flex-wrap justify-center gap-3 mt-6">

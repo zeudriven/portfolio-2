@@ -1,70 +1,101 @@
 /* eslint-disable @next/next/no-img-element */
+"use client";
+
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 type Tone = "green" | "purple" | "cyan" | "gold";
-const labelTone: Record<Tone, string> = {
-  green: "text-green border-green/60",
-  purple: "text-purple border-purple/60",
-  cyan: "text-cyan border-cyan/60",
-  gold: "text-gold border-gold/60",
+
+const badgeTone: Record<Tone, string> = {
+  cyan: "text-cyan border-cyan/50",
+  green: "text-green border-green/50",
+  purple: "text-purple border-purple/50",
+  gold: "text-gold border-gold/50",
 };
-const glowTone: Record<Tone, string> = {
-  green: "rgba(155,227,74,0.45)",
-  purple: "rgba(160,107,255,0.5)",
-  cyan: "rgba(86,199,245,0.5)",
-  gold: "rgba(255,207,92,0.5)",
+const cornerTone: Record<Tone, string> = {
+  cyan: "border-cyan",
+  green: "border-green",
+  purple: "border-purple",
+  gold: "border-gold",
+};
+const outlineTone: Record<Tone, string> = {
+  cyan: "outline-cyan",
+  green: "outline-green",
+  purple: "outline-purple",
+  gold: "outline-gold",
 };
 
+/**
+ * V2 destination card — an image slot (replaceable pixel-art) with corner
+ * ticks, an AREA badge, title, blurb and an ENTER button. Framer Motion lifts
+ * the card on hover; the parent grid staggers entrance.
+ */
 export default function DestinationDoor({
   index,
   label,
+  desc,
   href,
   art,
-  tone = "green",
-  size = 192,
-  delay = 0,
+  tone = "cyan",
+  selected = false,
+  onSelect,
 }: {
   index: number;
   label: string;
+  desc: string;
   href: string;
   art: string;
   tone?: Tone;
-  size?: number;
-  delay?: number;
+  selected?: boolean;
+  onSelect?: () => void;
 }) {
+  const area = String(index).padStart(2, "0");
   return (
-    <Link
-      href={href}
-      className="group flex flex-col items-center gap-3 w-[200px]"
+    <motion.article
+      onMouseEnter={onSelect}
+      variants={{
+        hidden: { opacity: 0, y: 24 },
+        show: { opacity: 1, y: 0 },
+      }}
+      whileHover={{ x: -2, y: -2 }}
+      transition={{ type: "tween", duration: 0.12 }}
+      className={`flex flex-col bg-panel border-[5px] border-ink shadow-blocky-lg transition-[outline-color] duration-150 outline outline-[4px] outline-offset-[3px] ${
+        selected ? outlineTone[tone] : "outline-transparent"
+      }`}
     >
-      <div
-        className={`font-pixel text-[12px] text-center leading-snug px-3 py-2 bg-[#0f0a22]/90 border-[3px] ${labelTone[tone]} shadow-blocky-sm transition-transform duration-150 group-hover:-translate-y-1`}
-      >
-        {index}. {label}
-      </div>
-
-      <div className="relative flex flex-col items-center">
-        {/* floating art */}
-        <div
-          className="animate-float transition-transform duration-150 group-hover:scale-110"
-          style={{ animationDelay: `${delay}s` }}
-        >
-          <img
-            src={art}
-            alt={label}
-            width={size}
-            height={size}
-            style={{ width: size, height: size }}
-            className="object-contain transition-[filter] duration-150"
-            // glow brightens on hover
-          />
-        </div>
-        {/* glow pad under the art that intensifies on hover */}
-        <span
-          className="pointer-events-none absolute -bottom-1 h-3 w-28 rounded-full blur-[3px] opacity-50 group-hover:opacity-100 transition-opacity"
-          style={{ background: glowTone[tone] }}
+      {/* image slot */}
+      <div className="relative h-[172px] flex items-center justify-center border-b-[5px] border-ink bg-[repeating-linear-gradient(45deg,#241f38_0_10px,#211c33_10px_20px)]">
+        <span className={`absolute top-2 left-2 w-3 h-3 border-t-[3px] border-l-[3px] ${cornerTone[tone]}`} />
+        <span className={`absolute top-2 right-2 w-3 h-3 border-t-[3px] border-r-[3px] ${cornerTone[tone]}`} />
+        <span className={`absolute bottom-2 left-2 w-3 h-3 border-b-[3px] border-l-[3px] ${cornerTone[tone]}`} />
+        <span className={`absolute bottom-2 right-2 w-3 h-3 border-b-[3px] border-r-[3px] ${cornerTone[tone]}`} />
+        <motion.img
+          src={art}
+          alt={label}
+          width={128}
+          height={128}
+          className="w-32 h-32 object-contain drop-shadow-[0_6px_0_rgba(0,0,0,0.35)]"
+          animate={{ y: [0, -6, 0] }}
+          transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut", delay: index * 0.3 }}
         />
       </div>
-    </Link>
+
+      {/* body */}
+      <div className="flex flex-col gap-3 p-[18px] flex-1">
+        <span
+          className={`self-start font-pixel text-[9px] leading-none px-2 py-[6px] bg-panel-2 border-[3px] ${badgeTone[tone]}`}
+        >
+          AREA {area}
+        </span>
+        <h3 className="font-pixel text-[14px] text-text leading-[1.4]">{label}</h3>
+        <p className="font-body text-[18px] text-muted leading-[1.35] flex-1">{desc}</p>
+        <Link
+          href={href}
+          className={`nes-btn is-primary font-pixel text-[11px] text-center ${selected ? "animate-pulse" : ""}`}
+        >
+          {selected ? "▶ ENTER" : "ENTER"}
+        </Link>
+      </div>
+    </motion.article>
   );
 }
