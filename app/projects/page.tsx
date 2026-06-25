@@ -7,6 +7,7 @@ import Sparkles from "@/components/pixel/Sparkles";
 import Reveal from "@/components/Reveal";
 import ScrollReveal from "@/components/ScrollReveal";
 import Parallax from "@/components/Parallax";
+import SectionProgress from "@/components/SectionProgress";
 import { profile } from "@/lib/profile";
 
 type Tone = "cyan" | "purple" | "green" | "gold";
@@ -53,6 +54,11 @@ export default function Projects() {
   const featured = projects[0];
   return (
     <PageChrome footer="Every project is a step forward. Keep building.">
+      <SectionProgress sections={[
+        { id: "pr-projects", label: "Projects" },
+        { id: "pr-featured", label: "Featured" },
+        { id: "pr-awards", label: "Achievements" },
+      ]} />
       <Reveal className="text-center mt-6">
         <p className="font-pixel text-[11px] text-muted mb-3"><span className="text-cyan">HOME</span> &gt; PROJECTS</p>
         <h1 className="font-pixel text-cyan text-[34px] md:text-[52px] leading-none text-shadow-blocky">
@@ -65,7 +71,7 @@ export default function Projects() {
         </div>
       </Reveal>
 
-      <div className="relative grid grid-cols-1 lg:grid-cols-3 gap-5 mt-8">
+      <div id="pr-projects" className="relative grid grid-cols-1 lg:grid-cols-3 gap-5 mt-8">
         <Parallax speed={0.5} className="pointer-events-none absolute -z-10 -top-6 right-10 w-72 h-72 blur-3xl opacity-30">
           <div className="w-full h-full" style={{ background: "radial-gradient(closest-side,rgba(183,255,69,.4),transparent)" }} />
         </Parallax>
@@ -99,6 +105,7 @@ export default function Projects() {
         </div>
 
         <div className="space-y-5">
+          <div id="pr-featured" className="scroll-mt-24" />
           <ScrollReveal delay={0.1}>
             <PixelPanel title="FEATURED BUILD" accent="gold" icon={<span>✦</span>} glowing bodyClassName="space-y-3">
               <div className="h-32 bg-panel-2 border-[3px] border-ink overflow-hidden grid place-items-center">
@@ -110,6 +117,7 @@ export default function Projects() {
             </PixelPanel>
           </ScrollReveal>
 
+          <div id="pr-awards" className="scroll-mt-24" />
           <ScrollReveal delay={0.18}>
             <PixelPanel title="ACHIEVEMENTS" accent="gold" icon={<span>🏅</span>} bodyClassName="space-y-3">
               {achievements.map((a) => (

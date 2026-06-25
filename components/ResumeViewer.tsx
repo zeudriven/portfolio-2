@@ -4,10 +4,8 @@ import { useState, useEffect } from "react";
 import PixelButton from "./pixel/PixelButton";
 
 const RESUMES = [
-  { label: "ATS", file: "/resumes/varun_version_a_ats.pdf" },
-  { label: "Recruiter", file: "/resumes/varun_version_b_recruiter.pdf" },
-  { label: "FAANG / SWE", file: "/resumes/varun_version_c_faang.pdf" },
-  { label: "Canadian", file: "/resumes/varun_version_d_canadian.pdf" },
+  { label: "Résumé", file: "/resumes/varun_version_c_faang.pdf" },
+  { label: "Cover Letter", file: "/resumes/varun_coverletter_faang.pdf" },
 ];
 
 /** Multi-resume viewer: tabs + prev/next, and ← → arrows while hovered (flag lets the

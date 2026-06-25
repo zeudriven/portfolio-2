@@ -71,9 +71,8 @@ export default function WorldHome() {
   activeRef.current = active;
 
   // deterministic stars
-  const stars = useRef(Array.from({ length: 95 }, (_, i) => ({ left: (i * 53 + 7) % 100, top: (i * 37 + 5) % 94, big: i % 8 === 0, delay: (i % 9) * 0.27 })));
 
-  const CW = 92; // character display size
+  const CW = 140; // character display size
 
   useEffect(() => {
     // preload frames
@@ -126,7 +125,7 @@ export default function WorldHome() {
       const img = charRef.current;
       if ((dx || dy) && img) {
         p.x = Math.min(Math.max(p.x + dx, 6), p.w - CW - 6);
-        const minY = p.h * 0.38, maxY = p.h - CW - 30;
+        const minY = p.h * 0.12, maxY = p.h - CW - 30;
         p.y = Math.min(Math.max(p.y + dy, minY), maxY);
         if (dx < 0) p.dir = "west"; else if (dx > 0) p.dir = "east"; else if (dy < 0) p.dir = "north"; else if (dy > 0) p.dir = "south";
         p.acc += dt;
@@ -166,13 +165,8 @@ export default function WorldHome() {
       ref={sceneRef}
       id="world"
       className="relative w-full h-[80vh] min-h-[560px] overflow-hidden"
-      style={{ background: "linear-gradient(180deg,#0a0720 0%,#160a34 28%,#27145a 52%,#3d2272 72%,#241048 100%)" }}
     >
-      {/* sky — the only moon is the page-level pixel moon behind the social icons */}
-      {stars.current.map((s, i) => (
-        <span key={i} className="absolute bg-[#e3e7ff] animate-twinkle" style={{ left: `${s.left}%`, top: `${s.top}%`, width: s.big ? 6 : 4, height: s.big ? 6 : 4, animationDelay: `${s.delay}s` }} />
-      ))}
-      {/* no ground — the moonlit sky fills the whole scene */}
+      {/* transparent — the page-wide StarField sits behind (no seam with the dashboard) */}
 
       {/* doors */}
       {DOORS.map((d) => (

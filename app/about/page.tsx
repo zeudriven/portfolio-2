@@ -6,6 +6,7 @@ import Reveal from "@/components/Reveal";
 import ScrollReveal from "@/components/ScrollReveal";
 import Parallax from "@/components/Parallax";
 import RotatingCharacter from "@/components/RotatingCharacter";
+import SectionProgress from "@/components/SectionProgress";
 
 const journeyStats = [
   { v: "5+", l: "Major Projects", tone: "text-green" },
@@ -33,6 +34,11 @@ const values = [
 export default function About() {
   return (
     <PageChrome>
+      <SectionProgress sections={[
+        { id: "about-intro", label: "Who I Am · Education" },
+        { id: "about-build", label: "Building · Journey" },
+        { id: "about-values", label: "Core Values" },
+      ]} />
       <Reveal className="text-center mt-6">
         <h1 className="font-pixel text-cyan text-[34px] md:text-[56px] leading-none text-shadow-blocky">
           <span className="text-gold">✦</span> ABOUT ME <span className="text-gold">✦</span>
@@ -51,7 +57,7 @@ export default function About() {
 
         <div className="space-y-12">
           {/* Row 1: Who I Am (left) + Education (right) */}
-          <div className="grid lg:grid-cols-2 gap-6 items-stretch">
+          <div id="about-intro" className="grid lg:grid-cols-2 gap-6 items-stretch [&>*]:h-full">
             <ScrollReveal>
               <PixelPanel title="WHO I AM" accent="green" icon={<span>👤</span>} glowing bodyClassName="">
                 <div className="flex flex-col sm:flex-row items-center gap-6">
@@ -89,7 +95,7 @@ export default function About() {
           </div>
 
           {/* Row 2: What I Enjoy Building (left) + Journey So Far (right) */}
-          <div className="grid lg:grid-cols-2 gap-6 items-start">
+          <div id="about-build" className="grid lg:grid-cols-2 gap-6 items-stretch [&>*]:h-full">
             <ScrollReveal>
               <PixelPanel title="WHAT I ENJOY BUILDING" accent="purple" icon={<span>{"</>"}</span>} bodyClassName="space-y-4">
                 {enjoy.map((e, i) => (
@@ -105,7 +111,7 @@ export default function About() {
             </ScrollReveal>
 
             <ScrollReveal delay={0.1}>
-              <PixelPanel title="JOURNEY SO FAR" accent="green" icon={<span>📈</span>} glowing bodyClassName="">
+              <PixelPanel title="JOURNEY SO FAR" accent="purple" icon={<span>📈</span>} glowing className="neon-purple border-purple/60" bodyClassName="">
                 <div className="grid grid-cols-2 gap-4">
                   {journeyStats.map((s) => (
                     <div key={s.l} className="bg-[#0f0a22] border-[3px] border-ink p-4 text-center pixel-hoverable">
@@ -130,6 +136,7 @@ export default function About() {
           </div>
 
           {/* Core Values (full width, bigger) */}
+          <div id="about-values" className="scroll-mt-24" />
           <ScrollReveal>
             <PixelPanel title="CORE VALUES" accent="gold" icon={<span>❤</span>} bodyClassName="">
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">

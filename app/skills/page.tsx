@@ -4,6 +4,7 @@ import PixelProgressBar from "@/components/pixel/PixelProgressBar";
 import Reveal from "@/components/Reveal";
 import ScrollReveal from "@/components/ScrollReveal";
 import Parallax from "@/components/Parallax";
+import SectionProgress from "@/components/SectionProgress";
 
 const languages = [
   { l: "Python", v: 95 }, { l: "JavaScript", v: 85 }, { l: "TypeScript", v: 80 },
@@ -26,30 +27,30 @@ const experience = [
   { icon: "👑", role: "DIRECTOR OF STUDENT LIFE", org: "Enactus York · Toronto · Sep 2025 – Present", tone: "text-purple", d: "Grew the org from 5 to 8+ members and led teams to 3 regional award wins and $6,000 in funding." },
   { icon: "🏆", role: "HACKATHONS & AWARDS", org: "2025 – 2026", tone: "text-gold", d: "3rd @ COIE Climathon ($500) · 3rd @ Hult Prize ($300) · Head Delegate @ CUSEC Canada 2025." },
 ];
-const missionLog = [
-  { d: "2026 – Present", t: "AI Data Engineer @ Ayvelis AI — privacy-preserving analytics & agentic AI pipelines." },
-  { d: "2026", t: "Shipped FinTech & AI builds — Scotia FutureFlex, ComparaVision." },
-  { d: "2025 – Present", t: "Director of Student Life @ Enactus York — 3 awards, $6K funding." },
-  { d: "2023", t: "Started BSc Computer Science at York University (Lassonde)." },
-];
 const awards = [
   { r: "🥉", n: "COIE Climathon", p: "$500" },
   { r: "🥉", n: "Hult Prize", p: "$300" },
   { r: "🏅", n: "Enactus York — 3 Regional", p: "$6,000" },
   { r: "🎤", n: "Head Delegate — CUSEC", p: "2025" },
 ];
-const cabinets = [
-  { l: "PYTHON", icon: "🐍", hex: "#b7ff45" },
-  { l: "C++", icon: "⚙", hex: "#4cc9ff" },
-  { l: "JS", icon: "🟨", hex: "#ffd76a" },
-  { l: "REACT", icon: "⚛", hex: "#4cc9ff" },
-  { l: "NODE", icon: "🟩", hex: "#b7ff45" },
-  { l: "SQL", icon: "🗄", hex: "#b83cff" },
+const techStack = [
+  { l: "Python", logo: "/assets/logos/python.svg" },
+  { l: "C++", logo: "/assets/logos/cpp.svg" },
+  { l: "JavaScript", logo: "/assets/logos/js.svg" },
+  { l: "React", logo: "/assets/logos/react.svg" },
+  { l: "Node.js", logo: "/assets/logos/node.svg" },
+  { l: "MySQL", logo: "/assets/logos/sql.svg" },
 ];
 
 export default function Skills() {
   return (
     <PageChrome footer="Press ESC to return home.">
+      <SectionProgress sections={[
+        { id: "sk-exp", label: "Experience" },
+        { id: "sk-course", label: "Coursework" },
+        { id: "sk-tech", label: "Tech Stack" },
+        { id: "sk-awards", label: "Awards" },
+      ]} />
       <Reveal className="text-center mt-6">
         <h1 className="font-pixel text-cyan text-[30px] md:text-[48px] leading-none text-shadow-blocky">
           <span className="text-gold">✦</span> SKILLS &amp; EXPERIENCE <span className="text-gold">✦</span>
@@ -68,7 +69,7 @@ export default function Skills() {
         </Parallax>
 
         {/* ===== EXPERIENCE (big, first) + skill bars on the right ===== */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 mt-14 items-start">
+        <div id="sk-exp" className="grid grid-cols-1 lg:grid-cols-5 gap-6 mt-14 items-start">
           <ScrollReveal className="lg:col-span-3">
             <PixelPanel title="EXPERIENCE HIGHLIGHTS" accent="green" icon={<span>💼</span>} glowing bodyClassName="space-y-5">
               {experience.map((e, i) => (
@@ -99,28 +100,41 @@ export default function Skills() {
           </div>
         </div>
 
-        {/* ===== arcade band: cabinets + status/highscore/coursework ===== */}
-        <ScrollReveal className="mt-16">
-          <div className="flex items-end justify-center gap-2 sm:gap-3 flex-wrap mb-8">
-            {cabinets.map((c) => (
-              <div key={c.l} className="pixel-hoverable flex flex-col items-center gap-2">
-                <div className="relative w-[64px] h-[94px] bg-[#140f2c] border-[4px] border-ink flex flex-col items-center pt-[7px]">
-                  <span className="absolute -top-[3px] left-1 right-1 h-[5px]" style={{ background: c.hex, boxShadow: `0 0 8px ${c.hex}` }} />
-                  <div className="w-[44px] h-[34px] grid place-items-center text-[18px] border-[3px] border-ink" style={{ background: "#0a1230", boxShadow: `inset 0 0 10px ${c.hex}` }}>{c.icon}</div>
-                  <span className="inline-block mt-[10px] w-[10px] h-[10px]" style={{ background: "#e6483f", border: "2px solid #000" }} />
-                  <span className="mt-[5px] flex gap-[3px]"><i className="inline-block w-[6px] h-[6px]" style={{ background: c.hex }} /><i className="inline-block w-[6px] h-[6px]" style={{ background: "#e8e6f5" }} /></span>
+        {/* ===== COURSEWORK — right below experience ===== */}
+        <div id="sk-course" className="scroll-mt-24" />
+        <ScrollReveal className="mt-6">
+          <PixelPanel title="COURSEWORK HIGHLIGHTS" accent="gold" bodyClassName="">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {coursework.map((c) => (
+                <div key={c} className="flex items-start gap-2 font-body text-[17px] text-text/90 bg-[#0f0a22] border-[3px] border-ink p-3"><span className="text-gold">★</span>{c}</div>
+              ))}
+            </div>
+          </PixelPanel>
+        </ScrollReveal>
+
+        {/* ===== TECH STACK (real logos) — continuous right-to-left marquee ===== */}
+        <div id="sk-tech" className="scroll-mt-24" />
+        <ScrollReveal className="mt-12">
+          <div className="font-pixel text-[14px] text-cyan text-center mb-5">⚙ TECH STACK</div>
+          <div className="overflow-hidden border-y-[3px] border-ink py-4 bg-[#0f0a22]/40">
+            <div className="flex w-max gap-12 animate-marquee">
+              {[...techStack, ...techStack].map((t, idx) => (
+                <div key={idx} className="flex items-center gap-3 shrink-0">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={t.logo} alt={t.l} className="w-12 h-12 shrink-0" style={{ imageRendering: "auto" }} />
+                  <span className="font-body text-[26px] text-text leading-none">{t.l}</span>
                 </div>
-                <span className="font-pixel text-[9px]" style={{ color: c.hex }}>{c.l}</span>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        </ScrollReveal>
+
+        {/* ===== status / high score ===== */}
+        <ScrollReveal className="mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <PixelPanel title="STATUS" accent="purple" glowing bodyClassName="space-y-3">
               <div className="flex items-center gap-3 font-pixel text-[13px]"><span>❤</span><span className="text-rose">100/100 HP</span></div>
               <div className="flex items-center gap-3 font-pixel text-[13px]"><span>⭐</span><span className="text-gold">EXP 250/500</span></div>
-            </PixelPanel>
-            <PixelPanel title="COURSEWORK HIGHLIGHTS" accent="gold" bodyClassName="space-y-2">
-              {coursework.map((c) => (<div key={c} className="flex items-start gap-2 font-body text-[17px] text-text/90"><span className="text-gold">★</span>{c}</div>))}
             </PixelPanel>
             <PixelPanel title="HIGH SCORE" accent="gold" glowing bodyClassName="space-y-2">
               <div className="flex items-center gap-3 font-pixel text-[16px] text-gold"><span>🏆</span>1250 PTS</div>
@@ -129,40 +143,26 @@ export default function Skills() {
           </div>
         </ScrollReveal>
 
-        {/* ===== bottom reveal: MISSION LOG + leaderboard ===== */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-16 mb-2">
-          <ScrollReveal className="lg:col-span-2">
-            <PixelPanel title="MISSION LOG" accent="green" icon={<span>🗒</span>} glowing bodyClassName="space-y-4">
-              {missionLog.map((m, i) => (
-                <ScrollReveal key={m.d} delay={i * 0.12} className="flex gap-4">
-                  <span className="text-green mt-1 text-[18px]">◉</span>
-                  <div>
-                    <div className="font-pixel text-[12px] text-gold">{m.d}</div>
-                    <div className="font-body text-[18px] text-muted leading-snug">{m.t}</div>
-                  </div>
-                </ScrollReveal>
-              ))}
-            </PixelPanel>
-          </ScrollReveal>
-
-          <ScrollReveal delay={0.15} className="space-y-6">
-            <PixelPanel title="AWARDS & HONORS" accent="gold" icon={<span>🏆</span>} bodyClassName="space-y-2">
+        {/* ===== AWARDS & HONORS (full width) ===== */}
+        <div id="sk-awards" className="scroll-mt-24" />
+        <ScrollReveal className="mt-16 mb-2">
+          <PixelPanel title="AWARDS & HONORS" accent="gold" icon={<span>🏆</span>} glowing bodyClassName="">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-1">
               {awards.map((p) => (
-                <div key={p.n} className="flex items-center justify-between gap-3 font-body text-[16px] text-text/90"><span className="text-muted flex items-center gap-2"><span>{p.r}</span>{p.n}</span><span className="text-green shrink-0">{p.p}</span></div>
+                <div key={p.n} className="flex items-center justify-between gap-3 font-body text-[17px] text-text/90 border-b-2 border-ink/40 py-2"><span className="text-muted flex items-center gap-2"><span>{p.r}</span>{p.n}</span><span className="text-green shrink-0">{p.p}</span></div>
               ))}
-              <div className="flex items-center justify-between font-body text-[16px] border-t-[3px] border-ink pt-2 mt-2"><span className="text-green">Total won</span><span className="text-green">$6,800+</span></div>
-            </PixelPanel>
-            <div className="grid grid-cols-3 gap-3">
+            </div>
+            <div className="grid grid-cols-3 gap-4 mt-6">
               {[["🏅", "HACKATHONS", "04"], ["👑", "LEADERSHIP", "02"], ["💰", "WON", "$6.8K"]].map(([i, t, v]) => (
-                <div key={t} className="pixel-panel-2 p-3 text-center">
-                  <div className="text-[20px]">{i}</div>
-                  <div className="font-body text-[14px] text-muted leading-tight mt-1">{t}</div>
-                  <div className="font-pixel text-[14px] text-gold mt-1">{v}</div>
+                <div key={t} className="pixel-panel-2 p-4 text-center">
+                  <div className="text-[24px]">{i}</div>
+                  <div className="font-body text-[15px] text-muted leading-tight mt-1">{t}</div>
+                  <div className="font-pixel text-[15px] text-gold mt-1">{v}</div>
                 </div>
               ))}
             </div>
-          </ScrollReveal>
-        </div>
+          </PixelPanel>
+        </ScrollReveal>
       </div>
     </PageChrome>
   );

@@ -5,6 +5,7 @@ import SiteHeader from "@/components/SiteHeader";
 import HeroBanner from "@/components/HeroBanner";
 import StatCards from "@/components/StatCards";
 import WorldHome from "@/components/WorldHome";
+import StarField from "@/components/StarField";
 
 const rise = (delay: number) => ({
   initial: { opacity: 0, y: 22 },
@@ -15,15 +16,18 @@ const rise = (delay: number) => ({
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
-      {/* big glowing pixel moon, top-right corner, behind the social icons */}
+      {/* page-wide night sky + stars behind everything (no seam under the dashboard) */}
+      <StarField />
+
+      {/* glowing pixel moon, fully in the top-right corner, behind the social icons */}
       <motion.div
         aria-hidden
         initial={{ opacity: 0, scale: 0.85 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.9, ease: "easeOut" }}
-        className="pointer-events-none fixed -top-14 -right-10 w-[clamp(140px,16vw,260px)] aspect-square z-0 opacity-90"
+        className="pointer-events-none fixed top-1 right-2 w-[clamp(96px,11vw,168px)] aspect-square z-0 opacity-90"
       >
-        <img src="/assets/moon.png" alt="" className="w-full h-full object-contain" style={{ imageRendering: "pixelated", filter: "drop-shadow(0 0 40px rgba(243,231,166,.28))" }} />
+        <img src="/assets/moon.png" alt="" className="w-full h-full object-contain" style={{ imageRendering: "pixelated", filter: "drop-shadow(0 0 34px rgba(243,231,166,.25))" }} />
       </motion.div>
 
       {/* ============ TOP BAR (shared, identical on every page) ============ */}
