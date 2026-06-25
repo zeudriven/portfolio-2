@@ -1,8 +1,13 @@
+# dependencies / build output
 node_modules/
 .next/
 out/
-dev.log
-.DS_Store
+.vercel
 *.tsbuildinfo
 next-env.d.ts
-.vercel
+
+# logs & scratch
+*.log
+tmp/
+.DS_Store
+*.code-workspace

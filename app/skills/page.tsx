@@ -112,17 +112,23 @@ export default function Skills() {
           </PixelPanel>
         </ScrollReveal>
 
-        {/* ===== TECH STACK (real logos) — continuous right-to-left marquee ===== */}
+        {/* ===== TECH STACK (real logos) — clean continuous right-to-left scroll ===== */}
         <div id="sk-tech" className="scroll-mt-24" />
-        <ScrollReveal className="mt-12">
-          <div className="font-pixel text-[14px] text-cyan text-center mb-5">⚙ TECH STACK</div>
-          <div className="overflow-hidden border-y-[3px] border-ink py-4 bg-[#0f0a22]/40">
-            <div className="flex w-max gap-12 animate-marquee">
+        <ScrollReveal className="mt-14">
+          <div className="font-pixel text-[14px] text-cyan text-center mb-6">⚙ TECH STACK</div>
+          <div
+            className="overflow-hidden"
+            style={{
+              maskImage: "linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent)",
+              WebkitMaskImage: "linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent)",
+            }}
+          >
+            <div className="flex w-max gap-16 animate-marquee">
               {[...techStack, ...techStack].map((t, idx) => (
                 <div key={idx} className="flex items-center gap-3 shrink-0">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={t.logo} alt={t.l} className="w-12 h-12 shrink-0" style={{ imageRendering: "auto" }} />
-                  <span className="font-body text-[26px] text-text leading-none">{t.l}</span>
+                  <img src={t.logo} alt={t.l} className="w-11 h-11 shrink-0" style={{ imageRendering: "auto" }} />
+                  <span className="font-body text-[24px] text-text leading-none">{t.l}</span>
                 </div>
               ))}
             </div>
