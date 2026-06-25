@@ -1,0 +1,84 @@
+{
+ "id": "6edecc8c-8c60-45ad-9b04-c544dddaeea9",
+ "name": null,
+ "prompt": "chunky retro 16-bit pixel art swirling magic portal ring in a stone arch, violet and blue energy, bold black outline, flat shading, limited palette, transparent background, no text",
+ "size": {
+  "width": 128,
+  "height": 128
+ },
+ "directions": 1,
+ "created_at": "2026-06-24T15:30:45.914474+00:00",
+ "view": "low top-down",
+ "rotation_urls": {
+  "south": null,
+  "west": null,
+  "east": null,
+  "north": null,
+  "south-east": null,
+  "south-west": null,
+  "north-east": null,
+  "north-west": null
+ },
+ "storage_urls": {
+  "unknown": "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/6edecc8c-8c60-45ad-9b04-c544dddaeea9/rotations/unknown.png"
+ },
+ "frame_urls": null,
+ "style_settings": null,
+ "tags": [],
+ "status": "completed",
+ "group_id": null,
+ "progress_percent": null,
+ "eta_seconds": null,
+ "animations": [
+  {
+   "animation_group_id": "ba0f62e9-3b9b-485e-98ac-53282dff978b",
+   "display_name": "open",
+   "description": "the portal pool swirls and glows with blue energy",
+   "frame_count": 9,
+   "directions": [
+    {
+     "direction": "unknown",
+     "storage_urls": {
+      "frames": [
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/6edecc8c-8c60-45ad-9b04-c544dddaeea9/animations/4c15e9b9-cc80-499a-b459-c172b30a2775/unknown/0.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/6edecc8c-8c60-45ad-9b04-c544dddaeea9/animations/4c15e9b9-cc80-499a-b459-c172b30a2775/unknown/1.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/6edecc8c-8c60-45ad-9b04-c544dddaeea9/animations/4c15e9b9-cc80-499a-b459-c172b30a2775/unknown/2.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/6edecc8c-8c60-45ad-9b04-c544dddaeea9/animations/4c15e9b9-cc80-499a-b459-c172b30a2775/unknown/3.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/6edecc8c-8c60-45ad-9b04-c544dddaeea9/animations/4c15e9b9-cc80-499a-b459-c172b30a2775/unknown/4.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/6edecc8c-8c60-45ad-9b04-c544dddaeea9/animations/4c15e9b9-cc80-499a-b459-c172b30a2775/unknown/5.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/6edecc8c-8c60-45ad-9b04-c544dddaeea9/animations/4c15e9b9-cc80-499a-b459-c172b30a2775/unknown/6.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/6edecc8c-8c60-45ad-9b04-c544dddaeea9/animations/4c15e9b9-cc80-499a-b459-c172b30a2775/unknown/7.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/6edecc8c-8c60-45ad-9b04-c544dddaeea9/animations/4c15e9b9-cc80-499a-b459-c172b30a2775/unknown/8.png"
+      ]
+     },
+     "created_at": "2026-06-24T15:50:22.480471+00:00"
+    }
+   ]
+  },
+  {
+   "animation_group_id": "6cc4f362-1a54-4cbe-b4f4-6272a6c9c780",
+   "display_name": "open",
+   "description": "the portal ring swirls and pulses with energy",
+   "frame_count": 9,
+   "directions": [
+    {
+     "direction": "unknown",
+     "storage_urls": {
+      "frames": [
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/6edecc8c-8c60-45ad-9b04-c544dddaeea9/animations/6ef2d816-5e00-431f-9647-f78dc945d29a/unknown/0.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/6edecc8c-8c60-45ad-9b04-c544dddaeea9/animations/6ef2d816-5e00-431f-9647-f78dc945d29a/unknown/1.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/6edecc8c-8c60-45ad-9b04-c544dddaeea9/animations/6ef2d816-5e00-431f-9647-f78dc945d29a/unknown/2.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/6edecc8c-8c60-45ad-9b04-c544dddaeea9/animations/6ef2d816-5e00-431f-9647-f78dc945d29a/unknown/3.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/6edecc8c-8c60-45ad-9b04-c544dddaeea9/animations/6ef2d816-5e00-431f-9647-f78dc945d29a/unknown/4.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/6edecc8c-8c60-45ad-9b04-c544dddaeea9/animations/6ef2d816-5e00-431f-9647-f78dc945d29a/unknown/5.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/6edecc8c-8c60-45ad-9b04-c544dddaeea9/animations/6ef2d816-5e00-431f-9647-f78dc945d29a/unknown/6.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/6edecc8c-8c60-45ad-9b04-c544dddaeea9/animations/6ef2d816-5e00-431f-9647-f78dc945d29a/unknown/7.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/6edecc8c-8c60-45ad-9b04-c544dddaeea9/animations/6ef2d816-5e00-431f-9647-f78dc945d29a/unknown/8.png"
+      ]
+     },
+     "created_at": "2026-06-24T15:46:32.200493+00:00"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,84 @@
+{
+ "id": "9a35fd19-2c06-4502-ad21-f6ed19a64534",
+ "name": null,
+ "prompt": "chunky retro 16-bit pixel art round steel vault door with bolts and small green lights, bold black outline, flat shading, limited palette, transparent background, no text",
+ "size": {
+  "width": 128,
+  "height": 128
+ },
+ "directions": 1,
+ "created_at": "2026-06-24T15:30:44.478506+00:00",
+ "view": "low top-down",
+ "rotation_urls": {
+  "south": null,
+  "west": null,
+  "east": null,
+  "north": null,
+  "south-east": null,
+  "south-west": null,
+  "north-east": null,
+  "north-west": null
+ },
+ "storage_urls": {
+  "unknown": "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/9a35fd19-2c06-4502-ad21-f6ed19a64534/rotations/unknown.png"
+ },
+ "frame_urls": null,
+ "style_settings": null,
+ "tags": [],
+ "status": "completed",
+ "group_id": null,
+ "progress_percent": null,
+ "eta_seconds": null,
+ "animations": [
+  {
+   "animation_group_id": "54a4744b-39bf-441b-9c20-d02fc731f509",
+   "display_name": "open",
+   "description": "the round vault door spins and opens revealing green light",
+   "frame_count": 9,
+   "directions": [
+    {
+     "direction": "unknown",
+     "storage_urls": {
+      "frames": [
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/9a35fd19-2c06-4502-ad21-f6ed19a64534/animations/fde3f984-c517-4ce3-9aba-be923cc404a6/unknown/0.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/9a35fd19-2c06-4502-ad21-f6ed19a64534/animations/fde3f984-c517-4ce3-9aba-be923cc404a6/unknown/1.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/9a35fd19-2c06-4502-ad21-f6ed19a64534/animations/fde3f984-c517-4ce3-9aba-be923cc404a6/unknown/2.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/9a35fd19-2c06-4502-ad21-f6ed19a64534/animations/fde3f984-c517-4ce3-9aba-be923cc404a6/unknown/3.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/9a35fd19-2c06-4502-ad21-f6ed19a64534/animations/fde3f984-c517-4ce3-9aba-be923cc404a6/unknown/4.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/9a35fd19-2c06-4502-ad21-f6ed19a64534/animations/fde3f984-c517-4ce3-9aba-be923cc404a6/unknown/5.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/9a35fd19-2c06-4502-ad21-f6ed19a64534/animations/fde3f984-c517-4ce3-9aba-be923cc404a6/unknown/6.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/9a35fd19-2c06-4502-ad21-f6ed19a64534/animations/fde3f984-c517-4ce3-9aba-be923cc404a6/unknown/7.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/9a35fd19-2c06-4502-ad21-f6ed19a64534/animations/fde3f984-c517-4ce3-9aba-be923cc404a6/unknown/8.png"
+      ]
+     },
+     "created_at": "2026-06-24T15:49:13.476071+00:00"
+    }
+   ]
+  },
+  {
+   "animation_group_id": "d0dfcb02-268b-490b-abf4-85eff63f39fd",
+   "display_name": "open",
+   "description": "the round vault door spins and opens revealing green light",
+   "frame_count": 9,
+   "directions": [
+    {
+     "direction": "unknown",
+     "storage_urls": {
+      "frames": [
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/9a35fd19-2c06-4502-ad21-f6ed19a64534/animations/6a4f2ba1-8039-4b4f-92de-1109c055667c/unknown/0.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/9a35fd19-2c06-4502-ad21-f6ed19a64534/animations/6a4f2ba1-8039-4b4f-92de-1109c055667c/unknown/1.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/9a35fd19-2c06-4502-ad21-f6ed19a64534/animations/6a4f2ba1-8039-4b4f-92de-1109c055667c/unknown/2.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/9a35fd19-2c06-4502-ad21-f6ed19a64534/animations/6a4f2ba1-8039-4b4f-92de-1109c055667c/unknown/3.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/9a35fd19-2c06-4502-ad21-f6ed19a64534/animations/6a4f2ba1-8039-4b4f-92de-1109c055667c/unknown/4.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/9a35fd19-2c06-4502-ad21-f6ed19a64534/animations/6a4f2ba1-8039-4b4f-92de-1109c055667c/unknown/5.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/9a35fd19-2c06-4502-ad21-f6ed19a64534/animations/6a4f2ba1-8039-4b4f-92de-1109c055667c/unknown/6.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/9a35fd19-2c06-4502-ad21-f6ed19a64534/animations/6a4f2ba1-8039-4b4f-92de-1109c055667c/unknown/7.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/9a35fd19-2c06-4502-ad21-f6ed19a64534/animations/6a4f2ba1-8039-4b4f-92de-1109c055667c/unknown/8.png"
+      ]
+     },
+     "created_at": "2026-06-24T15:43:43.510962+00:00"
+    }
+   ]
+  }
+ ]
+}

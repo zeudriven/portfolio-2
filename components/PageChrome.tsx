@@ -1,13 +1,13 @@
 import { ReactNode } from "react";
-import TopBar from "./TopBar";
-import NavBar from "./NavBar";
+import SiteHeader from "./SiteHeader";
 import FooterTicker from "./FooterTicker";
+import SectionArrowNav from "./SectionArrowNav";
 
-/** Shared shell: top status bar + nav, content, footer ticker. */
+/** Shared shell: unified top bar (HUD + nav + social) — identical to the home — content, footer. */
 export default function PageChrome({
   children,
   footer,
-  max = "max-w-[1200px]",
+  max = "max-w-[1280px]",
 }: {
   children: ReactNode;
   footer?: string;
@@ -15,12 +15,8 @@ export default function PageChrome({
 }) {
   return (
     <div className="min-h-screen flex flex-col">
-      <div className={`w-full ${max} mx-auto px-5 pt-5`}>
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-          <TopBar />
-          <NavBar />
-        </div>
-      </div>
+      <SectionArrowNav />
+      <SiteHeader />
 
       <main className={`w-full ${max} mx-auto px-5 flex-1`}>{children}</main>
 

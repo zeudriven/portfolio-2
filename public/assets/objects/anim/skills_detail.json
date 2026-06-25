@@ -1,0 +1,84 @@
+{
+ "id": "e553c2d9-bf2a-4454-9ca5-a31fbebcc4d2",
+ "name": null,
+ "prompt": "chunky retro 16-bit pixel art arcade cabinet with a glowing blue screen, red joystick and buttons, bold black outline, flat shading, limited palette, transparent background, no text, no letters",
+ "size": {
+  "width": 128,
+  "height": 128
+ },
+ "directions": 1,
+ "created_at": "2026-06-24T15:30:45.443964+00:00",
+ "view": "low top-down",
+ "rotation_urls": {
+  "south": null,
+  "west": null,
+  "east": null,
+  "north": null,
+  "south-east": null,
+  "south-west": null,
+  "north-east": null,
+  "north-west": null
+ },
+ "storage_urls": {
+  "unknown": "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/e553c2d9-bf2a-4454-9ca5-a31fbebcc4d2/rotations/unknown.png"
+ },
+ "frame_urls": null,
+ "style_settings": null,
+ "tags": [],
+ "status": "completed",
+ "group_id": null,
+ "progress_percent": null,
+ "eta_seconds": null,
+ "animations": [
+  {
+   "animation_group_id": "dd21cf6a-1fc0-4fdf-9e2b-7b5da067457b",
+   "display_name": "open",
+   "description": "the arcade screen flickers and plays a colorful game",
+   "frame_count": 9,
+   "directions": [
+    {
+     "direction": "unknown",
+     "storage_urls": {
+      "frames": [
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/e553c2d9-bf2a-4454-9ca5-a31fbebcc4d2/animations/8190cc46-08d6-4839-ba61-fc265e3c97ef/unknown/0.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/e553c2d9-bf2a-4454-9ca5-a31fbebcc4d2/animations/8190cc46-08d6-4839-ba61-fc265e3c97ef/unknown/1.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/e553c2d9-bf2a-4454-9ca5-a31fbebcc4d2/animations/8190cc46-08d6-4839-ba61-fc265e3c97ef/unknown/2.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/e553c2d9-bf2a-4454-9ca5-a31fbebcc4d2/animations/8190cc46-08d6-4839-ba61-fc265e3c97ef/unknown/3.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/e553c2d9-bf2a-4454-9ca5-a31fbebcc4d2/animations/8190cc46-08d6-4839-ba61-fc265e3c97ef/unknown/4.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/e553c2d9-bf2a-4454-9ca5-a31fbebcc4d2/animations/8190cc46-08d6-4839-ba61-fc265e3c97ef/unknown/5.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/e553c2d9-bf2a-4454-9ca5-a31fbebcc4d2/animations/8190cc46-08d6-4839-ba61-fc265e3c97ef/unknown/6.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/e553c2d9-bf2a-4454-9ca5-a31fbebcc4d2/animations/8190cc46-08d6-4839-ba61-fc265e3c97ef/unknown/7.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/e553c2d9-bf2a-4454-9ca5-a31fbebcc4d2/animations/8190cc46-08d6-4839-ba61-fc265e3c97ef/unknown/8.png"
+      ]
+     },
+     "created_at": "2026-06-24T15:49:51.184334+00:00"
+    }
+   ]
+  },
+  {
+   "animation_group_id": "cd0dfaaa-63f9-4b99-8964-be4d6ce867c7",
+   "display_name": "open",
+   "description": "the arcade screen flickers and plays a colorful game",
+   "frame_count": 9,
+   "directions": [
+    {
+     "direction": "unknown",
+     "storage_urls": {
+      "frames": [
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/e553c2d9-bf2a-4454-9ca5-a31fbebcc4d2/animations/d50f97f0-e871-4f8c-b7bd-bf9f376cefc1/unknown/0.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/e553c2d9-bf2a-4454-9ca5-a31fbebcc4d2/animations/d50f97f0-e871-4f8c-b7bd-bf9f376cefc1/unknown/1.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/e553c2d9-bf2a-4454-9ca5-a31fbebcc4d2/animations/d50f97f0-e871-4f8c-b7bd-bf9f376cefc1/unknown/2.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/e553c2d9-bf2a-4454-9ca5-a31fbebcc4d2/animations/d50f97f0-e871-4f8c-b7bd-bf9f376cefc1/unknown/3.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/e553c2d9-bf2a-4454-9ca5-a31fbebcc4d2/animations/d50f97f0-e871-4f8c-b7bd-bf9f376cefc1/unknown/4.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/e553c2d9-bf2a-4454-9ca5-a31fbebcc4d2/animations/d50f97f0-e871-4f8c-b7bd-bf9f376cefc1/unknown/5.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/e553c2d9-bf2a-4454-9ca5-a31fbebcc4d2/animations/d50f97f0-e871-4f8c-b7bd-bf9f376cefc1/unknown/6.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/e553c2d9-bf2a-4454-9ca5-a31fbebcc4d2/animations/d50f97f0-e871-4f8c-b7bd-bf9f376cefc1/unknown/7.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/e553c2d9-bf2a-4454-9ca5-a31fbebcc4d2/animations/d50f97f0-e871-4f8c-b7bd-bf9f376cefc1/unknown/8.png"
+      ]
+     },
+     "created_at": "2026-06-24T15:40:04.046901+00:00"
+    }
+   ]
+  }
+ ]
+}

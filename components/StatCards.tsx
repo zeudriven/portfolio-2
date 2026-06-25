@@ -5,10 +5,10 @@
 type Card = { icon: string; title: string; tone: string; l1: string; l2: string };
 
 const cards: Card[] = [
-  { icon: "🎓", title: "CS STUDENT", tone: "text-green", l1: "York University", l2: "Passionate Builder" },
-  { icon: "💻", title: "PROJECTS", tone: "text-cyan", l1: "10+ Completed", l2: "Real-World Applications" },
-  { icon: "💼", title: "EXPERIENCE", tone: "text-purple", l1: "Internships · Leadership", l2: "Hackathons" },
-  { icon: "📬", title: "CONTACT", tone: "text-gold", l1: "Open to Opportunities", l2: "Let's Build Something Great" },
+  { icon: "🎓", title: "CS STUDENT", tone: "text-green", l1: "York University · Lassonde", l2: "BSc Computer Science '27" },
+  { icon: "💼", title: "EXPERIENCE", tone: "text-cyan", l1: "AI Data Engineer @ Ayvelis AI", l2: "Director @ Enactus York" },
+  { icon: "💻", title: "PROJECTS", tone: "text-purple", l1: "AI workflow engines · FinTech", l2: "FastAPI · React · LLMs" },
+  { icon: "🏆", title: "ACHIEVEMENTS", tone: "text-gold", l1: "5+ awards · $6.8K+ won", l2: "Climathon · Hult · Enactus" },
 ];
 
 export default function StatCards() {

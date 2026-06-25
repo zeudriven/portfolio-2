@@ -1,142 +1,129 @@
+/* eslint-disable @next/next/no-img-element */
 import PageChrome from "@/components/PageChrome";
 import PixelPanel from "@/components/pixel/PixelPanel";
 import PixelButton from "@/components/pixel/PixelButton";
 import PixelBadge from "@/components/pixel/PixelBadge";
 import Sparkles from "@/components/pixel/Sparkles";
 import Reveal from "@/components/Reveal";
+import ScrollReveal from "@/components/ScrollReveal";
+import Parallax from "@/components/Parallax";
+import { profile } from "@/lib/profile";
 
-const filters = ["▦ ALL", "🌐 WEB", "🧠 AI", "📊 DATA", "⚙ SYSTEMS"];
+type Tone = "cyan" | "purple" | "green" | "gold";
+type Project = { icon: string; title: string; year: string; tone: Tone; img?: string; link: string; linkLabel: string; desc: string; stack: string[] };
 
-const projects = [
+const projects: Project[] = [
   {
-    icon: "🌐",
-    title: "Project One",
-    tag: "WEB",
-    tone: "cyan" as const,
-    desc: "Personal portfolio built with pixel-perfect UI/UX and a gamified experience.",
-    stack: ["Next.js", "Tailwind", "TypeScript"],
+    icon: "💸", title: "Scotia FutureFlex — FinTech Platform", year: "2026", tone: "gold",
+    img: "/assets/projects/scotia.png", link: "https://devpost.com/software/scotiabank-futureflex", linkLabel: "DEVPOST",
+    desc: "A mobile-first investment platform with goal-based onboarding, a REST API backend and recommendation retrieval for Gen-Z financial engagement — shipped in a 24-hour build.",
+    stack: ["Python", "FastAPI", "JavaScript", "REST API"],
   },
   {
-    icon: "🤖",
-    title: "Project Two",
-    tag: "AI",
-    tone: "purple" as const,
-    desc: "AI-powered assistant to summarize, explain and quiz any topic.",
-    stack: ["Python", "LangChain", "OpenAI"],
+    icon: "🔭", title: "ComparaVision", year: "2025", tone: "cyan",
+    img: "/assets/projects/comparavision.png", link: "https://devpost.com/software/comparavision", linkLabel: "DEVPOST",
+    desc: "A real-time model-comparison analytics dashboard with live system metrics and sustainability insights.",
+    stack: ["TypeScript", "React", "Analytics"],
   },
   {
-    icon: "📊",
-    title: "Project Three",
-    tag: "DATA",
-    tone: "green" as const,
-    desc: "Interactive analytics dashboard with real-time visualizations.",
-    stack: ["Python", "Pandas", "Plotly", "SQL"],
+    icon: "🤖", title: "AdminSync AI — LLM Workflow Engine", year: "2025", tone: "purple", link: profile.github, linkLabel: "GITHUB",
+    desc: "An LLM-powered task-automation engine that parses natural language into structured execution plans, audit logs and checkpoint workflows — cutting coordination overhead by 60%.",
+    stack: ["Python", "FastAPI", "SQLAlchemy", "OpenAI API", "N8N"],
   },
   {
-    icon: "🗄",
-    title: "Project Four",
-    tag: "SYSTEMS",
-    tone: "gold" as const,
-    desc: "Automation scripts and tools to streamline dev workflows.",
-    stack: ["Bash", "Docker", "GitHub Actions"],
+    icon: "🧪", title: "Requirements Traceability & Test Validation Tool", year: "2025", tone: "green", link: profile.github, linkLabel: "GITHUB",
+    desc: "An enterprise QA traceability platform (inspired by DOORS & Polarion) linking requirements, test cases and verification states with full revision history and SDLC audit trails.",
+    stack: ["Python", "FastAPI", "SQLAlchemy", "OOP"],
+  },
+  {
+    icon: "📈", title: "CivicFlow Analytics", year: "2025", tone: "purple", link: profile.github, linkLabel: "GITHUB",
+    desc: "A full-stack analytics system with PostgreSQL pipelines, automated SQL validation and Power BI-style KPI dashboards — simulating production-scale government reporting.",
+    stack: ["Python", "PostgreSQL", "SQL", "Power BI"],
   },
 ];
 
 const achievements = [
-  { icon: "🏆", t: "First Deploy", d: "Deployed your first project", xp: "+100 XP" },
-  { icon: "</>", t: "Code Explorer", d: "Completed 10 projects", xp: "+250 XP" },
-  { icon: "⭐", t: "Problem Solver", d: "Solved 25 real-world problems", xp: "+500 XP" },
+  { icon: "🥉", t: "3rd Place — $500", d: "COIE Climathon" },
+  { icon: "🥉", t: "3rd Place — $300", d: "Hult Prize" },
+  { icon: "🏅", t: "3 Regional Awards — $6,000", d: "Enactus York" },
+  { icon: "🎤", t: "Head Delegate", d: "CUSEC Canada 2025" },
 ];
 
 export default function Projects() {
+  const featured = projects[0];
   return (
     <PageChrome footer="Every project is a step forward. Keep building.">
       <Reveal className="text-center mt-6">
-        <p className="font-pixel text-[11px] text-muted mb-3">
-          <span className="text-cyan">HOME</span> &gt; PROJECTS
-        </p>
+        <p className="font-pixel text-[11px] text-muted mb-3"><span className="text-cyan">HOME</span> &gt; PROJECTS</p>
         <h1 className="font-pixel text-cyan text-[34px] md:text-[52px] leading-none text-shadow-blocky">
-          <span className="text-orange">❖</span> PROJECTS <span className="text-orange">❖</span>
+          <span className="text-gold">❖</span> PROJECTS <span className="text-gold">❖</span>
         </h1>
-        <p className="font-body text-[20px] text-muted mt-4">
-          <span className="text-cyan">❖</span> A collection of builds, experiments, and real-world solutions. <span className="text-cyan">❖</span>
-        </p>
+        <p className="font-body text-[20px] text-muted mt-4">AI workflow engines, FinTech platforms, and real-world tooling.</p>
+        <div className="flex flex-wrap justify-center gap-3 mt-4">
+          <a href={profile.github} target="_blank" rel="noreferrer"><PixelButton variant="outline">⛓ GITHUB →</PixelButton></a>
+          <a href={profile.devpost} target="_blank" rel="noreferrer"><PixelButton variant="outline">◆ DEVPOST →</PixelButton></a>
+        </div>
       </Reveal>
 
-      {/* filters */}
-      <div className="flex flex-wrap justify-center gap-3 mt-6">
-        {filters.map((f, i) => (
-          <span
-            key={f}
-            className={`font-pixel text-[11px] px-3 py-3 border-[3px] cursor-pointer bg-[#0f0a22] ${
-              i === 0 ? "text-gold border-gold/60" : "text-muted border-ink hover:text-text"
-            }`}
-          >
-            {f}
-          </span>
-        ))}
-      </div>
+      <div className="relative grid grid-cols-1 lg:grid-cols-3 gap-5 mt-8">
+        <Parallax speed={0.5} className="pointer-events-none absolute -z-10 -top-6 right-10 w-72 h-72 blur-3xl opacity-30">
+          <div className="w-full h-full" style={{ background: "radial-gradient(closest-side,rgba(183,255,69,.4),transparent)" }} />
+        </Parallax>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-7">
-        {/* project grid */}
         <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-5">
-          {projects.map((p) => (
-            <article key={p.title} className="pixel-panel pixel-interactive group p-4 flex flex-col gap-3">
-              <Sparkles />
-              <div className="flex items-start gap-3">
-                <div className="grid place-items-center w-16 h-16 bg-panel-2 border-[3px] border-ink text-[28px] shrink-0">
-                  {p.icon}
+          {projects.map((p, i) => (
+            <ScrollReveal key={p.title} delay={i * 0.08}>
+              <article className="pixel-panel pixel-interactive group p-4 flex flex-col gap-3 h-full">
+                <Sparkles />
+                {/* project image / icon */}
+                <div className="relative h-32 bg-panel-2 border-[3px] border-ink overflow-hidden grid place-items-center">
+                  {p.img ? (
+                    <img src={p.img} alt={p.title} className="w-full h-full object-contain" style={{ imageRendering: "auto" }} />
+                  ) : (
+                    <span className="text-[44px]">{p.icon}</span>
+                  )}
+                  <span className="absolute top-1 right-1"><PixelBadge tone={p.tone}>{p.year}</PixelBadge></span>
                 </div>
-                <div className="flex-1">
-                  <h3 className="font-pixel text-[15px] text-text leading-snug">{p.title}</h3>
-                  <PixelBadge tone={p.tone} className="mt-2">{p.tag}</PixelBadge>
+                <h3 className="font-pixel text-[13px] text-text leading-snug">{p.title}</h3>
+                <p className="font-body text-[18px] text-muted leading-snug flex-1">{p.desc}</p>
+                <div className="flex flex-wrap gap-2">
+                  {p.stack.map((s) => (<span key={s} className="font-body text-[14px] text-purple px-2 py-1 bg-[#0f0a22] border-2 border-purple/40">{s}</span>))}
                 </div>
-              </div>
-              <p className="font-body text-[18px] text-muted leading-snug flex-1">{p.desc}</p>
-              <div className="flex flex-wrap gap-2">
-                {p.stack.map((s) => (
-                  <span key={s} className="font-body text-[15px] text-purple px-2 py-1 bg-[#0f0a22] border-2 border-purple/40">{s}</span>
-                ))}
-              </div>
-              <div className="flex items-center justify-between pt-2 border-t-[3px] border-ink">
-                <span className="font-pixel text-[11px] text-green">VIEW PROJECT →</span>
-                <span className="text-gold text-[18px]">☆</span>
-              </div>
-            </article>
+                <div className="flex items-center justify-between pt-2 border-t-[3px] border-ink">
+                  <a href={p.link} target="_blank" rel="noreferrer" className="font-pixel text-[11px] text-green hover:text-gold transition-colors">{p.linkLabel === "DEVPOST" ? "◆" : "⛓"} {p.linkLabel} →</a>
+                  <span className="text-gold text-[18px]">★</span>
+                </div>
+              </article>
+            </ScrollReveal>
           ))}
-          <div className="md:col-span-2 flex justify-center mt-1">
-            <PixelButton variant="outline">LOAD MORE PROJECTS ↓</PixelButton>
-          </div>
         </div>
 
-        {/* side rail */}
         <div className="space-y-5">
-          <PixelPanel title="FEATURED BUILD" accent="purple" icon={<span>✦</span>} glowing bodyClassName="space-y-3">
-            <div className="h-32 bg-panel-2 border-[3px] border-ink grid place-items-center text-muted font-body text-[16px]">
-              [ artwork slot ]
-            </div>
-            <h3 className="font-pixel text-[14px] text-text">Project One</h3>
-            <PixelBadge tone="cyan">WEB</PixelBadge>
-            <p className="font-body text-[17px] text-muted">
-              A unique portfolio experience with retro vibes and modern tech.
-            </p>
-            <PixelButton variant="outline" className="w-full">VIEW FEATURED →</PixelButton>
-          </PixelPanel>
-
-          <PixelPanel title="ACHIEVEMENTS" accent="gold" icon={<span>🏅</span>} bodyClassName="space-y-3">
-            {achievements.map((a) => (
-              <div key={a.t} className="flex items-start gap-3 bg-[#0f0a22] border-[3px] border-ink p-3">
-                <span className="text-[20px]">{a.icon}</span>
-                <div className="flex-1">
-                  <div className="font-pixel text-[12px] text-text">{a.t}</div>
-                  <div className="font-body text-[15px] text-muted">{a.d}</div>
-                  <div className="font-body text-[15px] text-green">{a.xp}</div>
-                </div>
-                <span className="text-green">✔</span>
+          <ScrollReveal delay={0.1}>
+            <PixelPanel title="FEATURED BUILD" accent="gold" icon={<span>✦</span>} glowing bodyClassName="space-y-3">
+              <div className="h-32 bg-panel-2 border-[3px] border-ink overflow-hidden grid place-items-center">
+                {featured.img ? <img src={featured.img} alt={featured.title} className="w-full h-full object-contain" /> : <span className="text-[44px]">{featured.icon}</span>}
               </div>
-            ))}
-            <PixelButton variant="outline" className="w-full">VIEW ALL ACHIEVEMENTS →</PixelButton>
-          </PixelPanel>
+              <h3 className="font-pixel text-[13px] text-text leading-snug">{featured.title}</h3>
+              <p className="font-body text-[17px] text-muted">{featured.desc}</p>
+              <a href={featured.link} target="_blank" rel="noreferrer"><PixelButton variant="outline" className="w-full">◆ VIEW ON DEVPOST →</PixelButton></a>
+            </PixelPanel>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.18}>
+            <PixelPanel title="ACHIEVEMENTS" accent="gold" icon={<span>🏅</span>} bodyClassName="space-y-3">
+              {achievements.map((a) => (
+                <div key={a.t} className="flex items-start gap-3 bg-[#0f0a22] border-[3px] border-ink p-3">
+                  <span className="text-[20px]">{a.icon}</span>
+                  <div className="flex-1">
+                    <div className="font-pixel text-[11px] text-text">{a.t}</div>
+                    <div className="font-body text-[15px] text-muted">{a.d}</div>
+                  </div>
+                  <span className="text-green">✔</span>
+                </div>
+              ))}
+            </PixelPanel>
+          </ScrollReveal>
         </div>
       </div>
     </PageChrome>

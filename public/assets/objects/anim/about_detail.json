@@ -1,0 +1,84 @@
+{
+ "id": "7a7e1d64-a3a8-43af-bfd9-9d1ec940066f",
+ "name": null,
+ "prompt": "chunky retro 16-bit pixel art wooden double door in a stone arch with a small glowing lantern and vines, bold black outline, flat shading, limited palette, transparent background, no text",
+ "size": {
+  "width": 128,
+  "height": 128
+ },
+ "directions": 1,
+ "created_at": "2026-06-24T15:30:43.716180+00:00",
+ "view": "low top-down",
+ "rotation_urls": {
+  "south": null,
+  "west": null,
+  "east": null,
+  "north": null,
+  "south-east": null,
+  "south-west": null,
+  "north-east": null,
+  "north-west": null
+ },
+ "storage_urls": {
+  "unknown": "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/7a7e1d64-a3a8-43af-bfd9-9d1ec940066f/rotations/unknown.png"
+ },
+ "frame_urls": null,
+ "style_settings": null,
+ "tags": [],
+ "status": "completed",
+ "group_id": null,
+ "progress_percent": null,
+ "eta_seconds": null,
+ "animations": [
+  {
+   "animation_group_id": "284f3411-8aff-4170-a2ea-448377664082",
+   "display_name": "open",
+   "description": "the wooden double doors swing open revealing warm light",
+   "frame_count": 9,
+   "directions": [
+    {
+     "direction": "unknown",
+     "storage_urls": {
+      "frames": [
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/7a7e1d64-a3a8-43af-bfd9-9d1ec940066f/animations/0726870e-0ee2-4df8-9bc2-60d3f0f3bfe7/unknown/0.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/7a7e1d64-a3a8-43af-bfd9-9d1ec940066f/animations/0726870e-0ee2-4df8-9bc2-60d3f0f3bfe7/unknown/1.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/7a7e1d64-a3a8-43af-bfd9-9d1ec940066f/animations/0726870e-0ee2-4df8-9bc2-60d3f0f3bfe7/unknown/2.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/7a7e1d64-a3a8-43af-bfd9-9d1ec940066f/animations/0726870e-0ee2-4df8-9bc2-60d3f0f3bfe7/unknown/3.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/7a7e1d64-a3a8-43af-bfd9-9d1ec940066f/animations/0726870e-0ee2-4df8-9bc2-60d3f0f3bfe7/unknown/4.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/7a7e1d64-a3a8-43af-bfd9-9d1ec940066f/animations/0726870e-0ee2-4df8-9bc2-60d3f0f3bfe7/unknown/5.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/7a7e1d64-a3a8-43af-bfd9-9d1ec940066f/animations/0726870e-0ee2-4df8-9bc2-60d3f0f3bfe7/unknown/6.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/7a7e1d64-a3a8-43af-bfd9-9d1ec940066f/animations/0726870e-0ee2-4df8-9bc2-60d3f0f3bfe7/unknown/7.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/7a7e1d64-a3a8-43af-bfd9-9d1ec940066f/animations/0726870e-0ee2-4df8-9bc2-60d3f0f3bfe7/unknown/8.png"
+      ]
+     },
+     "created_at": "2026-06-24T15:46:31.947646+00:00"
+    }
+   ]
+  },
+  {
+   "animation_group_id": "e898af47-6f99-4eeb-8f24-9b6c854da5fa",
+   "display_name": "open",
+   "description": "the wooden double doors swing open revealing warm light",
+   "frame_count": 9,
+   "directions": [
+    {
+     "direction": "unknown",
+     "storage_urls": {
+      "frames": [
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/7a7e1d64-a3a8-43af-bfd9-9d1ec940066f/animations/97d4e352-06c4-4fca-ac41-3405a262e196/unknown/0.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/7a7e1d64-a3a8-43af-bfd9-9d1ec940066f/animations/97d4e352-06c4-4fca-ac41-3405a262e196/unknown/1.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/7a7e1d64-a3a8-43af-bfd9-9d1ec940066f/animations/97d4e352-06c4-4fca-ac41-3405a262e196/unknown/2.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/7a7e1d64-a3a8-43af-bfd9-9d1ec940066f/animations/97d4e352-06c4-4fca-ac41-3405a262e196/unknown/3.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/7a7e1d64-a3a8-43af-bfd9-9d1ec940066f/animations/97d4e352-06c4-4fca-ac41-3405a262e196/unknown/4.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/7a7e1d64-a3a8-43af-bfd9-9d1ec940066f/animations/97d4e352-06c4-4fca-ac41-3405a262e196/unknown/5.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/7a7e1d64-a3a8-43af-bfd9-9d1ec940066f/animations/97d4e352-06c4-4fca-ac41-3405a262e196/unknown/6.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/7a7e1d64-a3a8-43af-bfd9-9d1ec940066f/animations/97d4e352-06c4-4fca-ac41-3405a262e196/unknown/7.png",
+       "https://backblaze.pixellab.ai/file/pixellab-characters/objects/df1ce38a-c1b9-4bea-8b4e-7954e34edcf9/7a7e1d64-a3a8-43af-bfd9-9d1ec940066f/animations/97d4e352-06c4-4fca-ac41-3405a262e196/unknown/8.png"
+      ]
+     },
+     "created_at": "2026-06-24T15:38:41.517882+00:00"
+    }
+   ]
+  }
+ ]
+}

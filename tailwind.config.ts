@@ -52,6 +52,7 @@ const config: Config = {
           "50%": { boxShadow: "0 0 22px 2px rgba(183,255,69,0.55), 4px 4px 0 0 #000" },
         },
         "soft-float": { "0%,100%": { transform: "translateY(0)" }, "50%": { transform: "translateY(-4px)" } },
+        "cell-pulse": { "0%,100%": { filter: "brightness(1)" }, "50%": { filter: "brightness(1.5)" } },
       },
       animation: {
         bob: "bob 1.4s steps(2,end) infinite",
@@ -61,6 +62,7 @@ const config: Config = {
         caret: "caret 1s steps(1) infinite",
         "glow-pulse": "glow-pulse 1.8s ease-in-out infinite",
         "soft-float": "soft-float 3s ease-in-out infinite",
+        "cell-pulse": "cell-pulse 1.5s ease-in-out infinite",
       },
     },
   },

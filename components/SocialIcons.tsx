@@ -1,11 +1,15 @@
+import { profile } from "@/lib/profile";
+
 /**
  * Top-right pixel-framed social buttons. Hover = neon-green lift + glow.
- * TODO: replace href placeholders with Varun's real GitHub / LinkedIn / email.
+ * Links come from the central lib/profile.ts config.
  */
 const links = [
-  { label: "GitHub", href: "https://github.com/", icon: "GH" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/", icon: "in" },
-  { label: "Email", href: "mailto:varun05@my.yorku.ca", icon: "@" },
+  { label: "GitHub", href: profile.github, icon: "GH" },
+  { label: "LinkedIn", href: profile.linkedin, icon: "in" },
+  { label: "Instagram", href: profile.instagram, icon: "IG" },
+  { label: "Devpost", href: profile.devpost, icon: "DP" },
+  { label: "Email", href: `mailto:${profile.email}`, icon: "@" },
 ];
 
 export default function SocialIcons() {

@@ -1,34 +1,56 @@
 type Tone = "green" | "purple" | "cyan" | "gold";
 
-/** NES.css progress bar (`.nes-progress`) recolored to the V2 palette. */
-const toneClass: Record<Tone, string> = {
-  green: "is-success",
-  cyan: "is-primary",
-  purple: "is-primary",
-  gold: "is-warning",
+const toneHex: Record<Tone, string> = {
+  green: "#b7ff45",
+  cyan: "#4cc9ff",
+  purple: "#b83cff",
+  gold: "#ffd76a",
 };
 
+/**
+ * Battery-style skill bar — segmented cells that fill to `value`, always glowing
+ * with a continuous brightness pulse + a shine sweep. Includes a battery terminal nub.
+ */
 export default function PixelProgressBar({
   label,
   value,
   tone = "green",
+  segments = 8,
 }: {
   label: string;
   value: number; // 0-100
   tone?: Tone;
   segments?: number;
 }) {
+  const hex = toneHex[tone];
+  const filled = Math.round((value / 100) * segments);
+
   return (
     <div className="flex items-center gap-3">
-      <span className="w-24 shrink-0 text-text/90 text-[18px]">{label}</span>
-      <progress
-        className={`nes-progress ${toneClass[tone]} flex-1`}
-        value={value}
-        max={100}
-      />
-      <span className="w-9 text-right font-pixel text-[10px] text-text/80">
-        {value}
-      </span>
+      <span className="w-28 shrink-0 text-text/90 text-[19px] leading-tight">{label}</span>
+
+      <div className="flex-1 flex items-center">
+        {/* battery body — flat chunky pixel cells */}
+        <div className="relative flex-1 flex gap-[4px] p-[5px] h-[30px] bg-[#0a0f06] border-[3px] border-ink overflow-hidden" style={{ imageRendering: "pixelated" }}>
+          {Array.from({ length: segments }).map((_, i) => (
+            <span
+              key={i}
+              className={`flex-1 h-full ${i < filled ? "animate-cell-pulse" : ""}`}
+              style={
+                i < filled
+                  ? { background: hex, boxShadow: `0 0 6px ${hex}`, animationDelay: `${i * 0.08}s` }
+                  : { background: "#15210b" }
+              }
+            />
+          ))}
+          {/* continuous shine sweep */}
+          <span className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-white/35 blur-[2px] animate-xp-shine" />
+        </div>
+        {/* battery terminal nub */}
+        <span className="block w-[6px] h-[15px] bg-ink ml-[2px]" />
+      </div>
+
+      <span className="w-10 text-right font-pixel text-[11px]" style={{ color: hex }}>{value}</span>
     </div>
   );
 }
