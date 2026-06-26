@@ -24,7 +24,7 @@ export default function TopBar() {
   const filled = 12; // 100%
   return (
     <div className="pixel-panel-2 pixel-interactive group flex items-center gap-4 px-4 py-3">
-      <div className="grid place-items-center w-12 h-12 shrink-0 border-[3px] border-ink bg-gradient-to-b from-[#1a1338] to-[#0f0a22] overflow-hidden">
+      <div className="grid place-items-center w-12 h-12 shrink-0 border-[2px] border-ink bg-gradient-to-b from-[#1a1338] to-[#0f0a22] overflow-hidden">
         <MiniAvatar />
       </div>
 
@@ -35,7 +35,7 @@ export default function TopBar() {
         <div className="flex items-center gap-3">
           <span className="font-pixel text-[10px] text-gold">Lv. 01</span>
           {/* segmented XP track with moving shine */}
-          <div className="relative h-4 w-40 bg-[#0f0a22] border-[3px] border-ink overflow-hidden">
+          <div className="relative h-4 w-40 bg-inset border-[2px] border-ink overflow-hidden">
             <div className="absolute inset-0 flex gap-[2px] p-[2px]">
               {Array.from({ length: xpBlocks }).map((_, i) => (
                 <span

@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import SiteHeader from "@/components/SiteHeader";
 import HeroBanner from "@/components/HeroBanner";
-import StatCards from "@/components/StatCards";
 import WorldHome from "@/components/WorldHome";
 import StarField from "@/components/StarField";
 
@@ -25,7 +24,7 @@ export default function Home() {
         initial={{ opacity: 0, scale: 0.85 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.9, ease: "easeOut" }}
-        className="pointer-events-none fixed top-1 right-2 w-[clamp(96px,11vw,168px)] aspect-square z-0 opacity-90"
+        className="night-only pointer-events-none fixed top-1 right-2 w-[clamp(96px,11vw,168px)] aspect-square z-0 opacity-90"
       >
         <img src="/assets/moon.png" alt="" className="w-full h-full object-contain" style={{ imageRendering: "pixelated", filter: "drop-shadow(0 0 34px rgba(243,231,166,.25))" }} />
       </motion.div>
@@ -45,12 +44,7 @@ export default function Home() {
         </div>
       </motion.div>
 
-      {/* ============ STAT CARDS ============ */}
-      <motion.div {...rise(0.65)} className="w-full max-w-[1600px] mx-auto px-4 my-8">
-        <StatCards />
-      </motion.div>
-
-      <motion.footer {...rise(0.8)} className="text-center pb-6 font-body text-[16px] text-muted">
+      <motion.footer {...rise(0.65)} className="text-center pb-6 pt-4 font-body text-[16px] text-muted">
         <span className="text-green">◆</span> Crafting digital experiences, one pixel at a time. <span className="text-green">◆</span>
       </motion.footer>
     </div>

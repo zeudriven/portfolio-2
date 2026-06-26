@@ -55,8 +55,8 @@ export default function Contact() {
                 </div>
                 {contacts.map((c) => (
                   <a key={c.t} href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer"
-                     className="flex items-center gap-3 bg-[#0f0a22] border-[3px] border-ink p-3 pixel-hoverable">
-                    <span className="grid place-items-center w-10 h-10 bg-panel-2 border-[3px] border-ink font-pixel text-[11px] shrink-0">{c.icon}</span>
+                     className="flex items-center gap-3 bg-inset border-[2px] border-ink p-3 pixel-hoverable">
+                    <span className="grid place-items-center w-10 h-10 bg-panel-2 border-[2px] border-ink font-pixel text-[11px] shrink-0">{c.icon}</span>
                     <div className="min-w-0">
                       <div className={`font-pixel text-[11px] ${c.tone}`}>{c.t}</div>
                       <div className="font-body text-[16px] text-muted truncate">{c.d}</div>

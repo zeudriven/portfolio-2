@@ -17,7 +17,7 @@ export default function StatCards() {
       {cards.map((c) => (
         <div
           key={c.title}
-          className="pixel-hoverable flex items-start gap-3 bg-panel/90 border-[4px] border-ink shadow-blocky p-4"
+          className="pixel-hoverable flex items-start gap-3 bg-panel/90 border-[2px] border-ink shadow-blocky p-4"
         >
           <span className="text-[26px] leading-none">{c.icon}</span>
           <div className="leading-tight">

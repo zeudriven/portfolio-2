@@ -1,20 +1,14 @@
-/* eslint-disable @next/next/no-img-element */
+import HudAvatar from "./HudAvatar";
+
 /**
  * Top-left RPG player HUD — pixel avatar + name + level + XP bar.
  * Mirrors the reference: avatar frame, "VARUN PATEL", "Lv. 01", segmented XP, "100/100 XP".
  */
 export default function PlayerHUD() {
   return (
-    <div className="inline-flex items-center gap-3 bg-panel/90 border-[4px] border-green/70 shadow-blocky px-3 py-2 neon-green">
-      {/* avatar */}
-      <div className="relative w-12 h-12 bg-night-deep border-[3px] border-ink overflow-hidden shrink-0">
-        <img
-          src="/assets/character/south.png"
-          alt="Varun avatar"
-          className="absolute -top-1 left-1/2 -translate-x-1/2 w-[56px] max-w-none"
-          style={{ imageRendering: "pixelated" }}
-        />
-      </div>
+    <div className="inline-flex items-center gap-3 bg-panel/90 border-[2px] border-green/70 shadow-blocky px-3 py-2 neon-green">
+      {/* avatar — spins through all directions on hover */}
+      <HudAvatar />
       {/* stats */}
       <div className="leading-none">
         <div className="font-pixel text-[12px] text-text tracking-wide">VARUN PATEL</div>

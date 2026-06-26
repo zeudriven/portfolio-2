@@ -9,34 +9,35 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // V3 cyber-fantasy palette — single source of truth.
-        // Token names are preserved so existing class usages keep working;
-        // only the hexes are re-pointed. Neon green is the new PRIMARY.
-        night: "#130b2d", // bg2 (midnight purple, raised world)
-        "night-deep": "#050816", // base background (deep navy)
-        panel: "#160f33", // surface (dark purple)
-        "panel-2": "#1f1545", // surface2 (raised)
-        ink: "#000000", // chunky borders / blocky shadows
-        line: "#0a0820", // hairlines / grid
+        // V3 palette — now CSS-variable driven (rgb channels) so the whole site
+        // can switch between night (default) and day themes. Token names preserved.
+        // Channel values live in app/globals.css (:root = night, [data-theme="day"] = day).
+        night: "rgb(var(--c-night) / <alpha-value>)",
+        "night-deep": "rgb(var(--c-night-deep) / <alpha-value>)",
+        panel: "rgb(var(--c-panel) / <alpha-value>)",
+        "panel-2": "rgb(var(--c-panel-2) / <alpha-value>)",
+        ink: "rgb(var(--c-ink) / <alpha-value>)",
+        line: "rgb(var(--c-line) / <alpha-value>)",
+        inset: "rgb(var(--c-inset) / <alpha-value>)", // inner card bg (was #0f0a22)
         // accents
-        cyan: "#4cc9ff", // electric blue (secondary)
-        green: "#b7ff45", // neon green (PRIMARY)
-        "green-dim": "#7fae2e",
-        orange: "#ffd76a", // warm lantern gold (kept name for compatibility)
-        purple: "#b83cff", // portal violet
-        gold: "#ffd76a", // lantern gold
-        rose: "#ff6b8b",
-        text: "#f4f2ff",
-        muted: "#8f8ab6",
+        cyan: "rgb(var(--c-cyan) / <alpha-value>)",
+        green: "rgb(var(--c-green) / <alpha-value>)",
+        "green-dim": "rgb(var(--c-green-dim) / <alpha-value>)",
+        orange: "rgb(var(--c-gold) / <alpha-value>)", // kept name; maps to gold
+        purple: "rgb(var(--c-purple) / <alpha-value>)",
+        gold: "rgb(var(--c-gold) / <alpha-value>)",
+        rose: "rgb(var(--c-rose) / <alpha-value>)",
+        text: "rgb(var(--c-text) / <alpha-value>)",
+        muted: "rgb(var(--c-muted) / <alpha-value>)",
       },
       fontFamily: {
         pixel: ["var(--font-press)", "monospace"],
         body: ["var(--font-vt)", "monospace"],
       },
       boxShadow: {
-        blocky: "6px 6px 0 0 #000000",
-        "blocky-sm": "4px 4px 0 0 #000000",
-        "blocky-lg": "9px 9px 0 0 #000000",
+        blocky: "4px 4px 0 0 rgb(var(--c-ink))",
+        "blocky-sm": "3px 3px 0 0 rgb(var(--c-ink))",
+        "blocky-lg": "6px 6px 0 0 rgb(var(--c-ink))",
       },
       keyframes: {
         bob: { "0%,100%": { transform: "translateY(0)" }, "50%": { transform: "translateY(-6px)" } },

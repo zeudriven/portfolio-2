@@ -65,10 +65,10 @@ export default function DestinationDoor({
     >
       {/* image slot */}
       <div className="relative h-[172px] flex items-center justify-center border-b-[5px] border-ink bg-[repeating-linear-gradient(45deg,#241f38_0_10px,#211c33_10px_20px)]">
-        <span className={`absolute top-2 left-2 w-3 h-3 border-t-[3px] border-l-[3px] ${cornerTone[tone]}`} />
-        <span className={`absolute top-2 right-2 w-3 h-3 border-t-[3px] border-r-[3px] ${cornerTone[tone]}`} />
-        <span className={`absolute bottom-2 left-2 w-3 h-3 border-b-[3px] border-l-[3px] ${cornerTone[tone]}`} />
-        <span className={`absolute bottom-2 right-2 w-3 h-3 border-b-[3px] border-r-[3px] ${cornerTone[tone]}`} />
+        <span className={`absolute top-2 left-2 w-3 h-3 border-t-[2px] border-l-[2px] ${cornerTone[tone]}`} />
+        <span className={`absolute top-2 right-2 w-3 h-3 border-t-[2px] border-r-[2px] ${cornerTone[tone]}`} />
+        <span className={`absolute bottom-2 left-2 w-3 h-3 border-b-[2px] border-l-[2px] ${cornerTone[tone]}`} />
+        <span className={`absolute bottom-2 right-2 w-3 h-3 border-b-[2px] border-r-[2px] ${cornerTone[tone]}`} />
         <motion.img
           src={art}
           alt={label}
@@ -83,7 +83,7 @@ export default function DestinationDoor({
       {/* body */}
       <div className="flex flex-col gap-3 p-[18px] flex-1">
         <span
-          className={`self-start font-pixel text-[9px] leading-none px-2 py-[6px] bg-panel-2 border-[3px] ${badgeTone[tone]}`}
+          className={`self-start font-pixel text-[9px] leading-none px-2 py-[6px] bg-panel-2 border-[2px] ${badgeTone[tone]}`}
         >
           AREA {area}
         </span>

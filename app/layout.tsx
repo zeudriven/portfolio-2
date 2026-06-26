@@ -4,6 +4,7 @@ import "./globals.css";
 // NES.css imported AFTER globals/Tailwind so its pixel components survive preflight.
 // Accent colors are overridden to the V2 palette in globals.css.
 import "nes.css/css/nes.min.css";
+import PixelSun from "@/components/PixelSun";
 
 const press = Press_Start_2P({
   weight: "400",
@@ -32,7 +33,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${press.variable} ${vt.variable}`}>
-      <body className="font-body antialiased">{children}</body>
+      <head>
+        {/* set the saved theme before paint to avoid a flash */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{if(localStorage.getItem('theme')==='day'){document.documentElement.dataset.theme='day';}}catch(e){}`,
+          }}
+        />
+      </head>
+      <body className="font-body antialiased">
+        <PixelSun />
+        {children}
+      </body>
     </html>
   );
 }

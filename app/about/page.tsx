@@ -6,7 +6,7 @@ import Reveal from "@/components/Reveal";
 import ScrollReveal from "@/components/ScrollReveal";
 import Parallax from "@/components/Parallax";
 import RotatingCharacter from "@/components/RotatingCharacter";
-import SectionProgress from "@/components/SectionProgress";
+import AnimatedSprite from "@/components/AnimatedSprite";
 
 const journeyStats = [
   { v: "5+", l: "Major Projects", tone: "text-green" },
@@ -26,19 +26,14 @@ const enjoy = [
   { icon: "📊", t: "Data & Analytics", d: "PostgreSQL pipelines & KPI dashboards" },
 ];
 const values = [
-  { icon: "📚", t: "Keep Learning", d: "Always curious, always growing." },
-  { icon: "🎯", t: "Build with Purpose", d: "Create things that make an impact." },
-  { icon: "🔁", t: "Stay Consistent", d: "Small steps, big progress." },
+  { dir: "/assets/objects/anim/skills", frames: 9, t: "Keep Learning", d: "Always curious, always growing.", border: "border-green/60", text: "text-green", neon: "neon-green" },
+  { dir: "/assets/objects/anim/projects", frames: 9, t: "Build with Purpose", d: "Create things that make an impact.", border: "border-purple/60", text: "text-purple", neon: "neon-purple" },
+  { dir: "/assets/objects/anim/contact", frames: 9, t: "Stay Consistent", d: "Small steps, big progress.", border: "border-cyan/60", text: "text-cyan", neon: "neon-cyan" },
 ];
 
 export default function About() {
   return (
     <PageChrome>
-      <SectionProgress sections={[
-        { id: "about-intro", label: "Who I Am · Education" },
-        { id: "about-build", label: "Building · Journey" },
-        { id: "about-values", label: "Core Values" },
-      ]} />
       <Reveal className="text-center mt-6">
         <h1 className="font-pixel text-cyan text-[34px] md:text-[56px] leading-none text-shadow-blocky">
           <span className="text-gold">✦</span> ABOUT ME <span className="text-gold">✦</span>
@@ -85,7 +80,7 @@ export default function About() {
                     <div className="font-pixel text-[14px] text-text leading-snug">BSc (Honours), Computer Science</div>
                     <div className="font-body text-[19px] text-muted">York University — Lassonde School of Engineering</div>
                     <div className="font-body text-[18px] text-cyan">Sep 2023 – Sep 2027 · Toronto, ON</div>
-                    <div className="inline-block font-body text-[16px] text-green px-3 py-2 border-[3px] border-green/50 bg-[#0f0a22]">
+                    <div className="inline-block font-body text-[16px] text-green px-3 py-2 border-[2px] border-green/50 bg-inset">
                       DSA · OOP · Databases · Software Design · SDLC
                     </div>
                   </div>
@@ -99,8 +94,8 @@ export default function About() {
             <ScrollReveal>
               <PixelPanel title="WHAT I ENJOY BUILDING" accent="purple" icon={<span>{"</>"}</span>} bodyClassName="space-y-4">
                 {enjoy.map((e, i) => (
-                  <ScrollReveal key={e.t} delay={i * 0.1} className="flex items-start gap-4 bg-[#0f0a22] border-[3px] border-ink p-4 pixel-hoverable">
-                    <span className="text-[30px] leading-none">{e.icon}</span>
+                  <ScrollReveal key={e.t} delay={i * 0.1} className="flex items-start gap-4 py-3 border-b-[2px] border-line last:border-b-0">
+                    <span className="text-[34px] leading-none">{e.icon}</span>
                     <div>
                       <div className="font-pixel text-[13px] text-text">{e.t}</div>
                       <div className="font-body text-[18px] text-muted mt-1">{e.d}</div>
@@ -112,15 +107,15 @@ export default function About() {
 
             <ScrollReveal delay={0.1}>
               <PixelPanel title="JOURNEY SO FAR" accent="purple" icon={<span>📈</span>} glowing className="neon-purple border-purple/60" bodyClassName="">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-x-6 gap-y-5">
                   {journeyStats.map((s) => (
-                    <div key={s.l} className="bg-[#0f0a22] border-[3px] border-ink p-4 text-center pixel-hoverable">
-                      <div className={`font-pixel text-[26px] ${s.tone}`}>{s.v}</div>
+                    <div key={s.l} className="text-center">
+                      <div className={`font-pixel text-[30px] ${s.tone}`}>{s.v}</div>
                       <div className="font-body text-[16px] text-muted leading-tight mt-2">{s.l}</div>
                     </div>
                   ))}
                 </div>
-                <div className="mt-6 space-y-3 border-l-[3px] border-ink pl-4">
+                <div className="mt-6 space-y-3 border-l-[2px] border-ink pl-4">
                   {milestones.map((m) => (
                     <div key={m.t} className="flex items-start gap-3">
                       <span className={`mt-[6px] w-3 h-3 border-2 border-ink ${m.tone} shrink-0`} />
@@ -139,11 +134,11 @@ export default function About() {
           <div id="about-values" className="scroll-mt-24" />
           <ScrollReveal>
             <PixelPanel title="CORE VALUES" accent="gold" icon={<span>❤</span>} bodyClassName="">
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-2">
                 {values.map((v, i) => (
-                  <ScrollReveal key={v.t} delay={i * 0.1} className="flex flex-col items-center text-center gap-3 bg-[#0f0a22] border-[3px] border-ink p-6 pixel-hoverable">
-                    <span className="text-[40px]">{v.icon}</span>
-                    <div className="font-pixel text-[13px] text-gold">{v.t}</div>
+                  <ScrollReveal key={v.t} delay={i * 0.1} className="flex flex-col items-center text-center gap-3">
+                    <AnimatedSprite dir={v.dir} frames={v.frames} size={110} className="animate-soft-float" />
+                    <div className={`font-pixel text-[14px] ${v.text}`}>{v.t}</div>
                     <div className="font-body text-[18px] text-muted">{v.d}</div>
                   </ScrollReveal>
                 ))}

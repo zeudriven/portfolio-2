@@ -21,7 +21,7 @@ export default function PixelBadge({
 }) {
   return (
     <span
-      className={`inline-flex items-center font-pixel text-[9px] leading-none px-2 py-[6px] bg-panel-2 border-[3px] ${tones[tone]} ${className}`}
+      className={`inline-flex items-center font-pixel text-[9px] leading-none px-2 py-[6px] bg-panel-2 border-[2px] ${tones[tone]} ${className}`}
     >
       {children}
     </span>

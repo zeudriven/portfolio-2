@@ -46,9 +46,9 @@ export default function Skills() {
   return (
     <PageChrome footer="Press ESC to return home.">
       <SectionProgress sections={[
+        { id: "sk-tech", label: "Tech Stack" },
         { id: "sk-exp", label: "Experience" },
         { id: "sk-course", label: "Coursework" },
-        { id: "sk-tech", label: "Tech Stack" },
         { id: "sk-awards", label: "Awards" },
       ]} />
       <Reveal className="text-center mt-6">
@@ -68,12 +68,42 @@ export default function Skills() {
           <div className="w-full h-full" style={{ background: "radial-gradient(closest-side,rgba(184,60,255,.4),transparent)" }} />
         </Parallax>
 
+        {/* ===== TECH STACK (real logos) — clean continuous scroll, on top ===== */}
+        <div id="sk-tech" className="scroll-mt-24" />
+        <ScrollReveal className="mt-10">
+          <div className="font-pixel text-[14px] text-cyan text-center mb-6">⚙ TECH STACK</div>
+          <div
+            className="overflow-hidden"
+            style={{
+              maskImage: "linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent)",
+              WebkitMaskImage: "linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent)",
+            }}
+          >
+            <div className="flex w-max gap-16" style={{ animation: "techscroll 26s linear infinite" }}>
+              {[...techStack, ...techStack].map((t, idx) => (
+                <div key={idx} className="flex items-center gap-3 shrink-0">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={t.logo} alt={t.l} className="w-11 h-11 shrink-0" style={{ imageRendering: "auto" }} />
+                  <span className="font-body text-[24px] text-text leading-none">{t.l}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </ScrollReveal>
+
+        {/* section tag above Experience Highlights */}
+        <ScrollReveal className="mt-14">
+          <div className="inline-flex items-center gap-2 font-pixel text-[11px] text-green bg-inset px-3 py-2 border-[2px] border-green/50 shadow-blocky-sm">
+            <span className="text-gold">⚡</span> EXPERIENCE &amp; STACK
+          </div>
+        </ScrollReveal>
+
         {/* ===== EXPERIENCE (big, first) + skill bars on the right ===== */}
-        <div id="sk-exp" className="grid grid-cols-1 lg:grid-cols-5 gap-6 mt-14 items-start">
+        <div id="sk-exp" className="grid grid-cols-1 lg:grid-cols-5 gap-6 mt-4 items-start">
           <ScrollReveal className="lg:col-span-3">
             <PixelPanel title="EXPERIENCE HIGHLIGHTS" accent="green" icon={<span>💼</span>} glowing bodyClassName="space-y-5">
               {experience.map((e, i) => (
-                <ScrollReveal key={e.role} delay={i * 0.12} className="bg-[#0f0a22] border-[4px] border-ink p-5 flex items-start gap-4 pixel-hoverable">
+                <ScrollReveal key={e.role} delay={i * 0.12} className="bg-inset border-[2px] border-ink p-5 flex items-start gap-4 pixel-hoverable">
                   <span className="text-[34px] leading-none">{e.icon}</span>
                   <div>
                     <div className={`font-pixel text-[14px] ${e.tone}`}>{e.role}</div>
@@ -100,39 +130,16 @@ export default function Skills() {
           </div>
         </div>
 
-        {/* ===== COURSEWORK — right below experience ===== */}
+        {/* ===== COURSEWORK ===== */}
         <div id="sk-course" className="scroll-mt-24" />
-        <ScrollReveal className="mt-6">
+        <ScrollReveal className="mt-12">
           <PixelPanel title="COURSEWORK HIGHLIGHTS" accent="gold" bodyClassName="">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {coursework.map((c) => (
-                <div key={c} className="flex items-start gap-2 font-body text-[17px] text-text/90 bg-[#0f0a22] border-[3px] border-ink p-3"><span className="text-gold">★</span>{c}</div>
+                <div key={c} className="flex items-start gap-2 font-body text-[17px] text-text/90 bg-inset border-[2px] border-ink p-3"><span className="text-gold">★</span>{c}</div>
               ))}
             </div>
           </PixelPanel>
-        </ScrollReveal>
-
-        {/* ===== TECH STACK (real logos) — clean continuous right-to-left scroll ===== */}
-        <div id="sk-tech" className="scroll-mt-24" />
-        <ScrollReveal className="mt-14">
-          <div className="font-pixel text-[14px] text-cyan text-center mb-6">⚙ TECH STACK</div>
-          <div
-            className="overflow-hidden"
-            style={{
-              maskImage: "linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent)",
-              WebkitMaskImage: "linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent)",
-            }}
-          >
-            <div className="flex w-max gap-16 animate-marquee">
-              {[...techStack, ...techStack].map((t, idx) => (
-                <div key={idx} className="flex items-center gap-3 shrink-0">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={t.logo} alt={t.l} className="w-11 h-11 shrink-0" style={{ imageRendering: "auto" }} />
-                  <span className="font-body text-[24px] text-text leading-none">{t.l}</span>
-                </div>
-              ))}
-            </div>
-          </div>
         </ScrollReveal>
 
         {/* ===== status / high score ===== */}

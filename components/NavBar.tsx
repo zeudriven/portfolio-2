@@ -27,7 +27,7 @@ function Social({
       aria-label={label}
       title={label}
       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      className="grid place-items-center w-9 h-9 border-[3px] border-ink bg-[#0f0a22] text-muted hover:text-cyan hover:border-cyan/60 transition-colors font-pixel text-[11px]"
+      className="grid place-items-center w-9 h-9 border-[2px] border-ink bg-inset text-muted hover:text-cyan hover:border-cyan/60 transition-colors font-pixel text-[11px]"
     >
       {children}
     </a>
@@ -47,8 +47,8 @@ export default function NavBar() {
               href={it.href}
               className={`font-pixel text-[12px] px-3 py-2 ${
                 active
-                  ? "text-cyan border-b-[3px] border-cyan"
-                  : "text-muted hover:text-text border-b-[3px] border-transparent"
+                  ? "text-cyan border-b-[2px] border-cyan"
+                  : "text-muted hover:text-text border-b-[2px] border-transparent"
               }`}
             >
               {it.label}

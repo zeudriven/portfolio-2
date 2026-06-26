@@ -7,29 +7,127 @@
    ============================================================ */
 :root {
   color-scheme: dark;
-  --bg: #050816; /* deep navy base */
-  --bg2: #130b2d; /* midnight purple */
-  --surface: #160f33;
-  --surface2: #1f1545;
-  --border: #000000;
-  --line: #0a0820;
-  --green: #b7ff45; /* PRIMARY (neon green) */
-  --green-dim: #7fae2e;
-  --cyan: #4cc9ff; /* secondary (electric blue) */
+  /* ---- NIGHT theme (default) — rgb channel triplets drive Tailwind tokens ---- */
+  --c-night-deep: 5 8 22;
+  --c-night: 19 11 45;
+  --c-panel: 22 15 51;
+  --c-panel-2: 31 21 69;
+  --c-ink: 0 0 0;
+  --c-line: 10 8 32;
+  --c-inset: 15 10 34;
+  --c-cyan: 76 201 255;
+  --c-green: 183 255 69;
+  --c-green-dim: 127 174 46;
+  --c-purple: 184 60 255;
+  --c-gold: 255 215 106;
+  --c-rose: 255 107 139;
+  --c-text: 244 242 255;
+  --c-muted: 143 138 182;
+  /* semantic aliases (used by NES.css overrides) reference the channels */
+  --bg: rgb(var(--c-night-deep));
+  --bg2: rgb(var(--c-night));
+  --surface: rgb(var(--c-panel));
+  --surface2: rgb(var(--c-panel-2));
+  --border: rgb(var(--c-ink));
+  --line: rgb(var(--c-line));
+  --inset: rgb(var(--c-inset));
+  --green: rgb(var(--c-green));
+  --green-dim: rgb(var(--c-green-dim));
+  --cyan: rgb(var(--c-cyan));
   --cyan-dim: #1f6f99;
-  --violet: #b83cff; /* portal violet */
-  --gold: #ffd76a; /* lantern gold */
-  --orange: #ffd76a; /* kept name; maps to gold */
-  --text: #f4f2ff;
-  --muted: #8f8ab6;
+  --violet: rgb(var(--c-purple));
+  --gold: rgb(var(--c-gold));
+  --orange: rgb(var(--c-gold));
+  --text: rgb(var(--c-text));
+  --muted: rgb(var(--c-muted));
+  /* backgrounds */
+  --page-bg: radial-gradient(135% 95% at 50% -10%, #1a0f3a 0%, #0a0720 52%, rgb(var(--c-night-deep)) 100%);
+  --sky-grad: linear-gradient(180deg, #0a0720 0%, #160a34 28%, #27145a 56%, #3a2068 74%, #1a1038 100%);
+}
+
+/* ---- DAY theme (bright) ---- */
+:root[data-theme="day"] {
+  color-scheme: light;
+  --c-night-deep: 233 241 255;
+  --c-night: 221 233 252;
+  --c-panel: 244 247 254;
+  --c-panel-2: 230 235 248;
+  --c-ink: 92 98 130; /* softer slate borders/shadows in day (less bold than black) */
+  --c-line: 197 207 232;
+  --c-inset: 224 231 246;
+  --c-cyan: 20 120 190;
+  --c-green: 70 142 30;
+  --c-green-dim: 58 112 22;
+  --c-purple: 142 43 220;
+  --c-gold: 176 122 14;
+  --c-rose: 210 59 98;
+  --c-text: 23 19 43;
+  --c-muted: 89 84 119;
+  --page-bg: radial-gradient(135% 95% at 50% -10%, #eaf3ff 0%, #d7e8ff 55%, #cfe2ff 100%);
+  --sky-grad: linear-gradient(180deg, #bfe0ff 0%, #dcefff 45%, #eaf6ff 100%);
 }
 
 html,
 body {
-  background:
-    radial-gradient(135% 95% at 50% -10%, #1a0f3a 0%, #0a0720 52%, var(--bg) 100%);
+  background: var(--page-bg);
   color: var(--text);
   min-height: 100%;
+}
+
+/* full-page sky layer (home StarField) + day-only sun, night-only elements */
+.sky-layer {
+  background: var(--sky-grad);
+}
+:root[data-theme="day"] .sky-dot {
+  display: none;
+}
+:root[data-theme="day"] .night-only {
+  display: none !important;
+}
+/* day-only elements (e.g. the sun); hidden at night */
+.day-only {
+  display: none;
+}
+:root[data-theme="day"] .day-only {
+  display: block;
+}
+
+/* animated pixel sun — rotating blocky rays + pulsing octagon core (day mode, top-right) */
+.pixel-sun {
+  position: relative;
+  width: 104px;
+  height: 104px;
+  filter: drop-shadow(0 0 26px rgba(255, 209, 90, 0.55));
+}
+.pixel-sun::before {
+  content: "";
+  position: absolute;
+  inset: -20px;
+  background: repeating-conic-gradient(from 0deg, #ffd15a 0deg 10deg, transparent 10deg 45deg);
+  -webkit-mask: radial-gradient(circle, #000 52%, transparent 66%);
+  mask: radial-gradient(circle, #000 52%, transparent 66%);
+  animation: sun-spin 12s steps(12) infinite;
+}
+.pixel-sun::after {
+  content: "";
+  position: absolute;
+  inset: 16px;
+  background: radial-gradient(circle at 38% 34%, #fff2b0, #ffd45e 55%, #f0b53a 100%);
+  clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%);
+  animation: sun-pulse 3s ease-in-out infinite;
+}
+@keyframes sun-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes sun-pulse {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.16); }
+}
+
+/* continuous tech-stack scroll (explicit, theme-independent) */
+@keyframes techscroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 /* Square corners only — hard rule. Pixel art stays crisp. */
@@ -78,7 +176,7 @@ canvas {
 /* NES inputs/textarea → dark V2 surfaces */
 .nes-input,
 .nes-textarea {
-  background-color: #0f0a22;
+  background-color: var(--inset);
   color: var(--text);
   box-shadow: inset 4px 4px var(--border), inset -4px -4px var(--border);
   border-color: var(--border);
@@ -94,7 +192,7 @@ canvas {
 
 /* NES progress → V2 fills, chunky black frame */
 .nes-progress {
-  background-color: #0f0a22;
+  background-color: var(--inset);
   box-shadow: inset 2px 2px var(--border), inset -2px -2px var(--border);
   height: 22px;
 }
@@ -144,13 +242,13 @@ canvas {
 @layer components {
   /* chunky pixel panel */
   .pixel-panel {
-    @apply bg-panel border-[4px] border-ink shadow-blocky;
+    @apply bg-panel border-[2px] border-ink shadow-blocky;
   }
   .pixel-panel-2 {
-    @apply bg-[#150f2e]/85 border-[4px] border-ink shadow-blocky;
+    @apply bg-panel-2/90 border-[2px] border-ink shadow-blocky;
   }
   .pixel-titlebar {
-    @apply font-pixel text-cyan flex items-center gap-2 px-3 py-2 border-b-[4px] border-ink bg-[#0f0a22];
+    @apply font-pixel text-cyan flex items-center gap-2 px-3 py-2 border-b-[2px] border-ink bg-inset;
     font-size: 12px;
     letter-spacing: 0.5px;
   }

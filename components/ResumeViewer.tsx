@@ -38,7 +38,7 @@ export default function ResumeViewer() {
           <button
             key={r.label}
             onClick={() => setI(idx)}
-            className={`font-pixel text-[10px] px-3 py-2 border-[3px] border-ink transition-colors ${idx === i ? "bg-green text-[#0b1206]" : "bg-[#0f0a22] text-muted hover:text-text"}`}
+            className={`font-pixel text-[10px] px-3 py-2 border-[2px] border-ink transition-colors ${idx === i ? "bg-green text-[#0b1206]" : "bg-inset text-muted hover:text-text"}`}
           >
             {r.label}
           </button>
@@ -47,14 +47,14 @@ export default function ResumeViewer() {
 
       {/* viewer + hover glow */}
       <div className="relative transition-all duration-200 group-hover:-translate-y-1 group-hover:shadow-[0_0_26px_rgba(76,201,255,0.45)]">
-        <object data={view} type="application/pdf" className="w-full aspect-[8.5/11] min-h-[680px] bg-[#0f0a22] border-[4px] border-ink">
+        <object data={view} type="application/pdf" className="w-full aspect-[8.5/11] min-h-[680px] bg-inset border-[2px] border-ink">
           <iframe src={view} title={cur.label} className="w-full aspect-[8.5/11] min-h-[680px] border-0" />
           <div className="p-6 text-center font-body text-[17px] text-muted">
             Preview unavailable — <a className="text-cyan underline" href={cur.file} target="_blank" rel="noreferrer">open in a new tab</a>.
           </div>
         </object>
-        <button onClick={() => setI((p) => (p - 1 + n) % n)} aria-label="Previous resume" className="absolute left-2 top-1/2 -translate-y-1/2 w-11 h-11 grid place-items-center bg-panel/90 border-[3px] border-ink text-green font-pixel hover:bg-green hover:text-[#0b1206]">◄</button>
-        <button onClick={() => setI((p) => (p + 1) % n)} aria-label="Next resume" className="absolute right-2 top-1/2 -translate-y-1/2 w-11 h-11 grid place-items-center bg-panel/90 border-[3px] border-ink text-green font-pixel hover:bg-green hover:text-[#0b1206]">►</button>
+        <button onClick={() => setI((p) => (p - 1 + n) % n)} aria-label="Previous resume" className="absolute left-2 top-1/2 -translate-y-1/2 w-11 h-11 grid place-items-center bg-panel/90 border-[2px] border-ink text-green font-pixel hover:bg-green hover:text-[#0b1206]">◄</button>
+        <button onClick={() => setI((p) => (p + 1) % n)} aria-label="Next resume" className="absolute right-2 top-1/2 -translate-y-1/2 w-11 h-11 grid place-items-center bg-panel/90 border-[2px] border-ink text-green font-pixel hover:bg-green hover:text-[#0b1206]">►</button>
       </div>
 
       <div className="flex items-center justify-between mt-3 flex-wrap gap-2">

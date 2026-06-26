@@ -31,7 +31,7 @@ export default function PixelProgressBar({
 
       <div className="flex-1 flex items-center">
         {/* battery body — flat chunky pixel cells */}
-        <div className="relative flex-1 flex gap-[4px] p-[5px] h-[30px] bg-[#0a0f06] border-[3px] border-ink overflow-hidden" style={{ imageRendering: "pixelated" }}>
+        <div className="relative flex-1 flex gap-[4px] p-[5px] h-[30px] bg-[#0a0f06] border-[2px] border-ink overflow-hidden" style={{ imageRendering: "pixelated" }}>
           {Array.from({ length: segments }).map((_, i) => (
             <span
               key={i}

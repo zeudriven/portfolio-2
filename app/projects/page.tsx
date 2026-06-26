@@ -82,7 +82,7 @@ export default function Projects() {
               <article className="pixel-panel pixel-interactive group p-4 flex flex-col gap-3 h-full">
                 <Sparkles />
                 {/* project image / icon */}
-                <div className="relative h-32 bg-panel-2 border-[3px] border-ink overflow-hidden grid place-items-center">
+                <div className="relative h-32 bg-panel-2 border-[2px] border-ink overflow-hidden grid place-items-center">
                   {p.img ? (
                     <img src={p.img} alt={p.title} className="w-full h-full object-contain" style={{ imageRendering: "auto" }} />
                   ) : (
@@ -93,9 +93,9 @@ export default function Projects() {
                 <h3 className="font-pixel text-[13px] text-text leading-snug">{p.title}</h3>
                 <p className="font-body text-[18px] text-muted leading-snug flex-1">{p.desc}</p>
                 <div className="flex flex-wrap gap-2">
-                  {p.stack.map((s) => (<span key={s} className="font-body text-[14px] text-purple px-2 py-1 bg-[#0f0a22] border-2 border-purple/40">{s}</span>))}
+                  {p.stack.map((s) => (<span key={s} className="font-body text-[14px] text-purple px-2 py-1 bg-inset border-2 border-purple/40">{s}</span>))}
                 </div>
-                <div className="flex items-center justify-between pt-2 border-t-[3px] border-ink">
+                <div className="flex items-center justify-between pt-2 border-t-[2px] border-ink">
                   <a href={p.link} target="_blank" rel="noreferrer" className="font-pixel text-[11px] text-green hover:text-gold transition-colors">{p.linkLabel === "DEVPOST" ? "◆" : "⛓"} {p.linkLabel} →</a>
                   <span className="text-gold text-[18px]">★</span>
                 </div>
@@ -108,7 +108,7 @@ export default function Projects() {
           <div id="pr-featured" className="scroll-mt-24" />
           <ScrollReveal delay={0.1}>
             <PixelPanel title="FEATURED BUILD" accent="gold" icon={<span>✦</span>} glowing bodyClassName="space-y-3">
-              <div className="h-32 bg-panel-2 border-[3px] border-ink overflow-hidden grid place-items-center">
+              <div className="h-32 bg-panel-2 border-[2px] border-ink overflow-hidden grid place-items-center">
                 {featured.img ? <img src={featured.img} alt={featured.title} className="w-full h-full object-contain" /> : <span className="text-[44px]">{featured.icon}</span>}
               </div>
               <h3 className="font-pixel text-[13px] text-text leading-snug">{featured.title}</h3>
@@ -121,7 +121,7 @@ export default function Projects() {
           <ScrollReveal delay={0.18}>
             <PixelPanel title="ACHIEVEMENTS" accent="gold" icon={<span>🏅</span>} bodyClassName="space-y-3">
               {achievements.map((a) => (
-                <div key={a.t} className="flex items-start gap-3 bg-[#0f0a22] border-[3px] border-ink p-3">
+                <div key={a.t} className="flex items-start gap-3 bg-inset border-[2px] border-ink p-3">
                   <span className="text-[20px]">{a.icon}</span>
                   <div className="flex-1">
                     <div className="font-pixel text-[11px] text-text">{a.t}</div>

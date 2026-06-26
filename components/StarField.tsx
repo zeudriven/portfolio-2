@@ -9,18 +9,44 @@ const STARS = Array.from({ length: 140 }, (_, i) => ({
   delay: (i % 11) * 0.23,
 }));
 
+// bigger, colorful 4-point sparkles that twinkle on top of the stars
+const SPARK_COLORS = ["#ffd76a", "#4cc9ff", "#b7ff45", "#ffffff"];
+const SPARKLES = Array.from({ length: 22 }, (_, i) => ({
+  left: (i * 53 + 9) % 100,
+  top: (i * 89 + 7) % 100,
+  size: 9 + (i % 3) * 5,
+  color: SPARK_COLORS[i % SPARK_COLORS.length],
+  delay: (i % 7) * 0.4,
+  dur: 2.2 + (i % 4) * 0.6,
+}));
+const STAR_CLIP = "polygon(50% 0%, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0% 50%, 39% 39%)";
+
 export default function StarField() {
   return (
-    <div
-      aria-hidden
-      className="fixed inset-0 -z-10 overflow-hidden"
-      style={{ background: "linear-gradient(180deg,#0a0720 0%,#160a34 28%,#27145a 56%,#3a2068 74%,#1a1038 100%)" }}
-    >
+    <div aria-hidden className="sky-layer fixed inset-0 -z-10 overflow-hidden">
       {STARS.map((s, i) => (
         <span
           key={i}
-          className="absolute bg-[#e3e7ff] animate-twinkle"
+          className="sky-dot absolute bg-[#e3e7ff] animate-twinkle"
           style={{ left: `${s.left}%`, top: `${s.top}%`, width: s.big ? 6 : 4, height: s.big ? 6 : 4, animationDelay: `${s.delay}s` }}
+        />
+      ))}
+      {SPARKLES.map((s, i) => (
+        <span
+          key={`spark-${i}`}
+          className="sky-dot absolute animate-twinkle"
+          style={{
+            left: `${s.left}%`,
+            top: `${s.top}%`,
+            width: s.size,
+            height: s.size,
+            background: s.color,
+            clipPath: STAR_CLIP,
+            WebkitClipPath: STAR_CLIP,
+            filter: `drop-shadow(0 0 5px ${s.color})`,
+            animationDelay: `${s.delay}s`,
+            animationDuration: `${s.dur}s`,
+          }}
         />
       ))}
     </div>

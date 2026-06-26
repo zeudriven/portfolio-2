@@ -19,10 +19,10 @@ export default function ArtSlot({
     <div className={`relative inline-flex items-center justify-center ${className}`}>
       {corners && (
         <>
-          <span className="absolute top-1 left-1 w-3 h-3 border-t-[3px] border-l-[3px] border-green/70" />
-          <span className="absolute top-1 right-1 w-3 h-3 border-t-[3px] border-r-[3px] border-green/70" />
-          <span className="absolute bottom-1 left-1 w-3 h-3 border-b-[3px] border-l-[3px] border-green/70" />
-          <span className="absolute bottom-1 right-1 w-3 h-3 border-b-[3px] border-r-[3px] border-green/70" />
+          <span className="absolute top-1 left-1 w-3 h-3 border-t-[2px] border-l-[2px] border-green/70" />
+          <span className="absolute top-1 right-1 w-3 h-3 border-t-[2px] border-r-[2px] border-green/70" />
+          <span className="absolute bottom-1 left-1 w-3 h-3 border-b-[2px] border-l-[2px] border-green/70" />
+          <span className="absolute bottom-1 right-1 w-3 h-3 border-b-[2px] border-r-[2px] border-green/70" />
         </>
       )}
       <img

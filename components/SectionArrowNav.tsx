@@ -30,7 +30,7 @@ export default function SectionArrowNav() {
   }, [path, router]);
 
   return (
-    <div className="fixed bottom-3 right-3 z-40 hidden sm:flex items-center gap-2 font-pixel text-[8px] text-muted bg-panel/85 border-[3px] border-ink px-2 py-1">
+    <div className="fixed bottom-3 right-3 z-40 hidden sm:flex items-center gap-2 font-pixel text-[8px] text-muted bg-panel/85 border-[2px] border-ink px-2 py-1">
       <span className="text-gold">◄ ►</span> switch section
     </div>
   );

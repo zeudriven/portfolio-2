@@ -18,7 +18,7 @@ const items = [
 export default function GameNav() {
   const path = usePathname();
   return (
-    <nav className="bg-panel/90 border-[4px] border-ink shadow-blocky px-2 py-1">
+    <nav className="bg-panel/90 border-[2px] border-ink shadow-blocky px-2 py-1">
       <ul className="flex items-center gap-0.5 sm:gap-1">
         {items.map((it) => {
           const active = it.href === "/" ? path === "/" : path.startsWith(it.href);

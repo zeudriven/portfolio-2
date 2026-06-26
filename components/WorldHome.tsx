@@ -41,7 +41,7 @@ function AnimatedDoor({ d, active, onEnter, onLeave }: { d: Door; active: boolea
       className="group absolute bottom-[10%] -translate-x-1/2 flex flex-col items-center outline-none"
       style={{ left: `${d.left}%` }}
     >
-      <span className={`mb-2 font-pixel text-[9px] sm:text-[10px] px-2 py-1 bg-panel/90 border-[3px] ${d.chip} whitespace-nowrap transition-opacity ${active ? "opacity-100" : "opacity-80"}`}>
+      <span className={`mb-2 font-pixel text-[9px] sm:text-[10px] px-2 py-1 bg-panel/90 border-[2px] ${d.chip} whitespace-nowrap transition-opacity ${active ? "opacity-100" : "opacity-80"}`}>
         {d.sign}
       </span>
       <img
@@ -52,7 +52,7 @@ function AnimatedDoor({ d, active, onEnter, onLeave }: { d: Door; active: boolea
         className="w-[clamp(110px,15vw,190px)] aspect-square transition-transform duration-150 group-hover:-translate-y-1"
         style={{ imageRendering: "pixelated" }}
       />
-      <span className={`mt-1 font-pixel text-[8px] text-[#0b1206] bg-green px-2 py-1 border-[3px] border-ink transition-opacity ${active ? "opacity-100 animate-glow-pulse" : "opacity-0"}`}>
+      <span className={`mt-1 font-pixel text-[8px] text-[#0b1206] bg-green px-2 py-1 border-[2px] border-ink transition-opacity ${active ? "opacity-100 animate-glow-pulse" : "opacity-0"}`}>
         ▶ ENTER
       </span>
     </a>
@@ -185,7 +185,7 @@ export default function WorldHome() {
       />
 
       {/* hint */}
-      <div className="absolute left-1/2 -translate-x-1/2 bottom-3 bg-panel/85 border-[3px] border-ink px-4 py-2 text-center">
+      <div className="absolute left-1/2 -translate-x-1/2 bottom-3 bg-panel/85 border-[2px] border-ink px-4 py-2 text-center">
         <span className="font-pixel text-[9px] text-text">
           <span className="text-gold">WASD / Arrows</span> to walk · hover or reach a door · <span className="text-gold">ENTER</span> to open
         </span>
