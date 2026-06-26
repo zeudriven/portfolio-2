@@ -5,6 +5,7 @@ import "./globals.css";
 // Accent colors are overridden to the V2 palette in globals.css.
 import "nes.css/css/nes.min.css";
 import PixelSun from "@/components/PixelSun";
+import DayBeach from "@/components/DayBeach";
 
 const press = Press_Start_2P({
   weight: "400",
@@ -43,6 +44,7 @@ export default function RootLayout({
       </head>
       <body className="font-body antialiased">
         <PixelSun />
+        <DayBeach />
         {children}
       </body>
     </html>

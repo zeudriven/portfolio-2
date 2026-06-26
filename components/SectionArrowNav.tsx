@@ -12,13 +12,23 @@ export default function SectionArrowNav() {
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
+      // don't hijack keys while typing in a field (e.g. the contact form)
+      const t = document.activeElement as HTMLElement | null;
+      const tag = t?.tagName?.toLowerCase();
+      const typing = tag === "input" || tag === "textarea" || tag === "select" || t?.isContentEditable;
+
+      // ESC → back to the home world
+      if (e.key === "Escape") {
+        if (typing) return;
+        e.preventDefault();
+        router.push("/");
+        return;
+      }
+
       if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
       // stand down while hovering the resume viewer (it uses arrows to switch resumes)
       if (document.body.dataset.resumeHover === "1") return;
-      // don't hijack arrows while typing in a field (e.g. the contact form)
-      const t = document.activeElement as HTMLElement | null;
-      const tag = t?.tagName?.toLowerCase();
-      if (tag === "input" || tag === "textarea" || tag === "select" || t?.isContentEditable) return;
+      if (typing) return;
       e.preventDefault();
       let i = ORDER.indexOf(path);
       if (i < 0) i = 0;

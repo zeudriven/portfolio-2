@@ -14,7 +14,11 @@ export default function ThemeToggle() {
   const toggle = () => {
     const next = theme === "night" ? "day" : "night";
     setTheme(next);
-    document.documentElement.dataset.theme = next;
+    const root = document.documentElement;
+    // briefly enable color transitions so the switch fades smoothly
+    root.classList.add("theme-anim");
+    root.dataset.theme = next;
+    window.setTimeout(() => root.classList.remove("theme-anim"), 550);
     try {
       localStorage.setItem("theme", next);
     } catch {}

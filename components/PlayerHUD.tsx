@@ -13,7 +13,7 @@ export default function PlayerHUD() {
       <div className="leading-none">
         <div className="font-pixel text-[12px] text-text tracking-wide">VARUN PATEL</div>
         <div className="mt-2 flex items-center gap-2">
-          <span className="font-pixel text-[9px] text-green">Lv. 01</span>
+          <span className="font-pixel text-[9px] text-green">Lv. 03</span>
           {/* segmented XP bar */}
           <div className="relative w-[120px] h-[10px] bg-night-deep border-[2px] border-ink overflow-hidden">
             <div

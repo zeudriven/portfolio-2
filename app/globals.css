@@ -74,6 +74,13 @@ body {
   min-height: 100%;
 }
 
+/* smooth day <-> night fade — only active during a toggle (added/removed by ThemeToggle) */
+:root.theme-anim,
+:root.theme-anim * {
+  transition: background-color 0.45s ease, border-color 0.45s ease, color 0.45s ease,
+    fill 0.45s ease, box-shadow 0.45s ease !important;
+}
+
 /* full-page sky layer (home StarField) + day-only sun, night-only elements */
 .sky-layer {
   background: var(--sky-grad);
@@ -92,36 +99,22 @@ body {
   display: block;
 }
 
-/* animated pixel sun — rotating blocky rays + pulsing octagon core (day mode, top-right) */
-.pixel-sun {
-  position: relative;
-  width: 104px;
-  height: 104px;
-  filter: drop-shadow(0 0 26px rgba(255, 209, 90, 0.55));
+/* hand-built pixel sun (SVG) — pulsing glow + slowly rotating rays (day mode, top-right) */
+.pixel-sun-svg {
+  display: block;
+  animation: sun-pulse 3.4s ease-in-out infinite;
 }
-.pixel-sun::before {
-  content: "";
-  position: absolute;
-  inset: -20px;
-  background: repeating-conic-gradient(from 0deg, #ffd15a 0deg 10deg, transparent 10deg 45deg);
-  -webkit-mask: radial-gradient(circle, #000 52%, transparent 66%);
-  mask: radial-gradient(circle, #000 52%, transparent 66%);
-  animation: sun-spin 12s steps(12) infinite;
-}
-.pixel-sun::after {
-  content: "";
-  position: absolute;
-  inset: 16px;
-  background: radial-gradient(circle at 38% 34%, #fff2b0, #ffd45e 55%, #f0b53a 100%);
-  clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%);
-  animation: sun-pulse 3s ease-in-out infinite;
+.pixel-sun-svg .sun-rays {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: sun-spin 18s steps(8) infinite;
 }
 @keyframes sun-spin {
   to { transform: rotate(360deg); }
 }
 @keyframes sun-pulse {
-  0%, 100% { filter: brightness(1); }
-  50% { filter: brightness(1.16); }
+  0%, 100% { filter: drop-shadow(0 0 16px rgba(255, 209, 90, 0.5)) brightness(1); }
+  50% { filter: drop-shadow(0 0 26px rgba(255, 209, 90, 0.72)) brightness(1.12); }
 }
 
 /* continuous tech-stack scroll (explicit, theme-independent) */

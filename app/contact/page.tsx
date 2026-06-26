@@ -48,21 +48,24 @@ export default function Contact() {
             </ScrollReveal>
 
             <ScrollReveal delay={0.1}>
-              <PixelPanel title="GET IN TOUCH" accent="purple" icon={<span>📬</span>} glowing className="neon-purple border-purple/60" bodyClassName="space-y-3">
+              <PixelPanel title="GET IN TOUCH" accent="purple" icon={<span>📬</span>} glowing className="neon-purple border-purple/60" bodyClassName="">
                 {/* animated portal inside get in touch */}
-                <div className="flex justify-center -mt-1 mb-2">
+                <div className="flex justify-center mb-3">
                   <AnimatedSprite dir="/assets/objects/anim/contact" frames={9} size={120} className="animate-soft-float" />
                 </div>
-                {contacts.map((c) => (
-                  <a key={c.t} href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer"
-                     className="flex items-center gap-3 bg-inset border-[2px] border-ink p-3 pixel-hoverable">
-                    <span className="grid place-items-center w-10 h-10 bg-panel-2 border-[2px] border-ink font-pixel text-[11px] shrink-0">{c.icon}</span>
-                    <div className="min-w-0">
-                      <div className={`font-pixel text-[11px] ${c.tone}`}>{c.t}</div>
-                      <div className="font-body text-[16px] text-muted truncate">{c.d}</div>
-                    </div>
-                  </a>
-                ))}
+                <div className="divide-y-[2px] divide-line">
+                  {contacts.map((c) => (
+                    <a key={c.t} href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer"
+                       className="group flex items-center gap-4 py-3 first:pt-1">
+                      <span className={`grid place-items-center w-9 h-9 bg-inset font-pixel text-[11px] shrink-0 ${c.tone}`}>{c.icon}</span>
+                      <div className="min-w-0">
+                        <div className={`font-pixel text-[11px] ${c.tone}`}>{c.t}</div>
+                        <div className="font-body text-[16px] text-muted truncate group-hover:text-text transition-colors">{c.d}</div>
+                      </div>
+                      <span className="ml-auto text-muted group-hover:text-green group-hover:translate-x-1 transition-all">→</span>
+                    </a>
+                  ))}
+                </div>
               </PixelPanel>
             </ScrollReveal>
           </div>

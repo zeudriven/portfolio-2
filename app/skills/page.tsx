@@ -4,7 +4,6 @@ import PixelProgressBar from "@/components/pixel/PixelProgressBar";
 import Reveal from "@/components/Reveal";
 import ScrollReveal from "@/components/ScrollReveal";
 import Parallax from "@/components/Parallax";
-import SectionProgress from "@/components/SectionProgress";
 
 const languages = [
   { l: "Python", v: 95 }, { l: "JavaScript", v: 85 }, { l: "TypeScript", v: 80 },
@@ -17,10 +16,6 @@ const frameworks = [
 const tools = [
   { l: "Git & GitHub", v: 90 }, { l: "PostgreSQL", v: 85 }, { l: "MongoDB", v: 80 },
   { l: "Linux", v: 80 }, { l: "Docker", v: 70 },
-];
-const coursework = [
-  "Data Structures & Algorithms", "Object-Oriented Programming",
-  "Database Systems", "Software Design", "Systems Analysis & SDLC",
 ];
 const experience = [
   { icon: "🤖", role: "SOFTWARE DEVELOPER / AI DATA ENGINEER", org: "Ayvelis AI · Toronto · Jan 2026 – Present", tone: "text-cyan", d: "Architected a privacy-preserving analytics platform (Python / FastAPI / PostgreSQL) and agentic AI inference pipelines (LLM + N8N) — cutting processing latency by 40%." },
@@ -45,12 +40,6 @@ const techStack = [
 export default function Skills() {
   return (
     <PageChrome footer="Press ESC to return home.">
-      <SectionProgress sections={[
-        { id: "sk-tech", label: "Tech Stack" },
-        { id: "sk-exp", label: "Experience" },
-        { id: "sk-course", label: "Coursework" },
-        { id: "sk-awards", label: "Awards" },
-      ]} />
       <Reveal className="text-center mt-6">
         <h1 className="font-pixel text-cyan text-[30px] md:text-[48px] leading-none text-shadow-blocky">
           <span className="text-gold">✦</span> SKILLS &amp; EXPERIENCE <span className="text-gold">✦</span>
@@ -98,22 +87,44 @@ export default function Skills() {
           </div>
         </ScrollReveal>
 
-        {/* ===== EXPERIENCE (big, first) + skill bars on the right ===== */}
+        {/* ===== EXPERIENCE + AWARDS (left box) · skill bars (right) ===== */}
         <div id="sk-exp" className="grid grid-cols-1 lg:grid-cols-5 gap-6 mt-4 items-start">
-          <ScrollReveal className="lg:col-span-3">
-            <PixelPanel title="EXPERIENCE HIGHLIGHTS" accent="green" icon={<span>💼</span>} glowing bodyClassName="space-y-5">
-              {experience.map((e, i) => (
-                <ScrollReveal key={e.role} delay={i * 0.12} className="bg-inset border-[2px] border-ink p-5 flex items-start gap-4 pixel-hoverable">
-                  <span className="text-[34px] leading-none">{e.icon}</span>
-                  <div>
-                    <div className={`font-pixel text-[14px] ${e.tone}`}>{e.role}</div>
-                    <div className="font-body text-[18px] text-muted mt-1">{e.org}</div>
-                    <div className="font-body text-[19px] text-text/90 mt-2">{e.d}</div>
-                  </div>
-                </ScrollReveal>
-              ))}
-            </PixelPanel>
-          </ScrollReveal>
+          <div className="lg:col-span-3 space-y-6">
+            <ScrollReveal>
+              <PixelPanel title="EXPERIENCE HIGHLIGHTS" accent="green" icon={<span>💼</span>} glowing bodyClassName="space-y-5">
+                {experience.map((e, i) => (
+                  <ScrollReveal key={e.role} delay={i * 0.12} className="bg-inset border-[2px] border-ink p-5 flex items-start gap-4 pixel-hoverable">
+                    <span className="text-[34px] leading-none">{e.icon}</span>
+                    <div>
+                      <div className={`font-pixel text-[14px] ${e.tone}`}>{e.role}</div>
+                      <div className="font-body text-[18px] text-muted mt-1">{e.org}</div>
+                      <div className="font-body text-[19px] text-text/90 mt-2">{e.d}</div>
+                    </div>
+                  </ScrollReveal>
+                ))}
+              </PixelPanel>
+            </ScrollReveal>
+
+            {/* awards fit right below experience, in the same box area */}
+            <ScrollReveal delay={0.1}>
+              <PixelPanel title="AWARDS & HONORS" accent="gold" icon={<span>🏆</span>} glowing bodyClassName="">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-1">
+                  {awards.map((p) => (
+                    <div key={p.n} className="flex items-center justify-between gap-3 font-body text-[17px] text-text/90 border-b-2 border-line py-2"><span className="text-muted flex items-center gap-2"><span>{p.r}</span>{p.n}</span><span className="text-green shrink-0">{p.p}</span></div>
+                  ))}
+                </div>
+                <div className="grid grid-cols-3 gap-4 mt-6">
+                  {[["🏅", "HACKATHONS", "04"], ["👑", "LEADERSHIP", "02"], ["💰", "WON", "$6.8K"]].map(([i, t, v]) => (
+                    <div key={t} className="pixel-panel-2 p-4 text-center">
+                      <div className="text-[24px]">{i}</div>
+                      <div className="font-body text-[15px] text-muted leading-tight mt-1">{t}</div>
+                      <div className="font-pixel text-[15px] text-gold mt-1">{v}</div>
+                    </div>
+                  ))}
+                </div>
+              </PixelPanel>
+            </ScrollReveal>
+          </div>
 
           <div className="lg:col-span-2 space-y-6">
             {[
@@ -129,53 +140,6 @@ export default function Skills() {
             ))}
           </div>
         </div>
-
-        {/* ===== COURSEWORK ===== */}
-        <div id="sk-course" className="scroll-mt-24" />
-        <ScrollReveal className="mt-12">
-          <PixelPanel title="COURSEWORK HIGHLIGHTS" accent="gold" bodyClassName="">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-              {coursework.map((c) => (
-                <div key={c} className="flex items-start gap-2 font-body text-[17px] text-text/90 bg-inset border-[2px] border-ink p-3"><span className="text-gold">★</span>{c}</div>
-              ))}
-            </div>
-          </PixelPanel>
-        </ScrollReveal>
-
-        {/* ===== status / high score ===== */}
-        <ScrollReveal className="mt-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <PixelPanel title="STATUS" accent="purple" glowing bodyClassName="space-y-3">
-              <div className="flex items-center gap-3 font-pixel text-[13px]"><span>❤</span><span className="text-rose">100/100 HP</span></div>
-              <div className="flex items-center gap-3 font-pixel text-[13px]"><span>⭐</span><span className="text-gold">EXP 250/500</span></div>
-            </PixelPanel>
-            <PixelPanel title="HIGH SCORE" accent="gold" glowing bodyClassName="space-y-2">
-              <div className="flex items-center gap-3 font-pixel text-[16px] text-gold"><span>🏆</span>1250 PTS</div>
-              <div className="flex items-center justify-between font-pixel text-[12px] text-muted"><span>RANK</span><span className="text-green">#07</span></div>
-            </PixelPanel>
-          </div>
-        </ScrollReveal>
-
-        {/* ===== AWARDS & HONORS (full width) ===== */}
-        <div id="sk-awards" className="scroll-mt-24" />
-        <ScrollReveal className="mt-16 mb-2">
-          <PixelPanel title="AWARDS & HONORS" accent="gold" icon={<span>🏆</span>} glowing bodyClassName="">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-1">
-              {awards.map((p) => (
-                <div key={p.n} className="flex items-center justify-between gap-3 font-body text-[17px] text-text/90 border-b-2 border-ink/40 py-2"><span className="text-muted flex items-center gap-2"><span>{p.r}</span>{p.n}</span><span className="text-green shrink-0">{p.p}</span></div>
-              ))}
-            </div>
-            <div className="grid grid-cols-3 gap-4 mt-6">
-              {[["🏅", "HACKATHONS", "04"], ["👑", "LEADERSHIP", "02"], ["💰", "WON", "$6.8K"]].map(([i, t, v]) => (
-                <div key={t} className="pixel-panel-2 p-4 text-center">
-                  <div className="text-[24px]">{i}</div>
-                  <div className="font-body text-[15px] text-muted leading-tight mt-1">{t}</div>
-                  <div className="font-pixel text-[15px] text-gold mt-1">{v}</div>
-                </div>
-              ))}
-            </div>
-          </PixelPanel>
-        </ScrollReveal>
       </div>
     </PageChrome>
   );
