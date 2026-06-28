@@ -1,12 +1,12 @@
 /** Day-mode hand-built pixel-art sun (crisp blocks, rotating rays + pulse). Hidden at night via CSS. */
 export default function PixelSun() {
   return (
-    <div aria-hidden className="day-only pointer-events-none fixed top-2 right-4 z-0">
+    <div aria-hidden className="day-only pointer-events-none fixed top-1 right-3 z-0 opacity-85">
       <svg
         className="pixel-sun-svg"
         viewBox="0 0 18 18"
-        width="100"
-        height="100"
+        width="96"
+        height="96"
         shapeRendering="crispEdges"
         style={{ imageRendering: "pixelated" }}
       >

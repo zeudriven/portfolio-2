@@ -11,34 +11,39 @@ import SectionProgress from "@/components/SectionProgress";
 import { profile } from "@/lib/profile";
 
 type Tone = "cyan" | "purple" | "green" | "gold";
-type Project = { icon: string; title: string; year: string; tone: Tone; img?: string; link: string; linkLabel: string; desc: string; stack: string[] };
+type Project = { icon: string; title: string; year: string; tone: Tone; img?: string; link: string; linkLabel: string; desc: string; metrics?: string[]; stack: string[] };
 
 const projects: Project[] = [
   {
     icon: "💸", title: "Scotia FutureFlex — FinTech Platform", year: "2026", tone: "gold",
     img: "/assets/projects/scotia.png", link: "https://devpost.com/software/scotiabank-futureflex", linkLabel: "DEVPOST",
     desc: "A mobile-first investment platform with goal-based onboarding, a REST API backend and recommendation retrieval for Gen-Z financial engagement — shipped in a 24-hour build.",
+    metrics: ["24-hour hackathon build", "Gen-Z fintech UX", "REST API backend"],
     stack: ["Python", "FastAPI", "JavaScript", "REST API"],
   },
   {
     icon: "🔭", title: "ComparaVision", year: "2025", tone: "cyan",
     img: "/assets/projects/comparavision.png", link: "https://devpost.com/software/comparavision", linkLabel: "DEVPOST",
     desc: "A real-time model-comparison analytics dashboard with live system metrics and sustainability insights.",
+    metrics: ["Real-time analytics", "Sustainability insights"],
     stack: ["TypeScript", "React", "Analytics"],
   },
   {
     icon: "🤖", title: "AdminSync AI — LLM Workflow Engine", year: "2025", tone: "purple", link: profile.github, linkLabel: "GITHUB",
     desc: "An LLM-powered task-automation engine that parses natural language into structured execution plans, audit logs and checkpoint workflows — cutting coordination overhead by 60%.",
+    metrics: ["−60% coordination overhead", "LLM task automation"],
     stack: ["Python", "FastAPI", "SQLAlchemy", "OpenAI API", "N8N"],
   },
   {
     icon: "🧪", title: "Requirements Traceability & Test Validation Tool", year: "2025", tone: "green", link: profile.github, linkLabel: "GITHUB",
     desc: "An enterprise QA traceability platform (inspired by DOORS & Polarion) linking requirements, test cases and verification states with full revision history and SDLC audit trails.",
+    metrics: ["Full SDLC audit trails", "Coverage-gap detection"],
     stack: ["Python", "FastAPI", "SQLAlchemy", "OOP"],
   },
   {
     icon: "📈", title: "CivicFlow Analytics", year: "2025", tone: "purple", link: profile.github, linkLabel: "GITHUB",
     desc: "A full-stack analytics system with PostgreSQL pipelines, automated SQL validation and Power BI-style KPI dashboards — simulating production-scale government reporting.",
+    metrics: ["Production-scale pipelines", "Power BI-style KPIs"],
     stack: ["Python", "PostgreSQL", "SQL", "Power BI"],
   },
 ];
@@ -92,6 +97,13 @@ export default function Projects() {
                 </div>
                 <h3 className="font-pixel text-[13px] text-text leading-snug">{p.title}</h3>
                 <p className="font-body text-[18px] text-muted leading-snug flex-1">{p.desc}</p>
+                {p.metrics && (
+                  <div className="flex flex-wrap gap-2">
+                    {p.metrics.map((m) => (
+                      <span key={m} className="font-body text-[14px] text-green px-2 py-1 bg-green/10 border-2 border-green/40">✦ {m}</span>
+                    ))}
+                  </div>
+                )}
                 <div className="flex flex-wrap gap-2">
                   {p.stack.map((s) => (<span key={s} className="font-body text-[14px] text-purple px-2 py-1 bg-inset border-2 border-purple/40">{s}</span>))}
                 </div>

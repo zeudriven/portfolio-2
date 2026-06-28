@@ -18,9 +18,9 @@ const tools = [
   { l: "Linux", v: 80 }, { l: "Docker", v: 70 },
 ];
 const experience = [
-  { icon: "🤖", role: "SOFTWARE DEVELOPER / AI DATA ENGINEER", org: "Ayvelis AI · Toronto · Jan 2026 – Present", tone: "text-cyan", d: "Architected a privacy-preserving analytics platform (Python / FastAPI / PostgreSQL) and agentic AI inference pipelines (LLM + N8N) — cutting processing latency by 40%." },
-  { icon: "👑", role: "DIRECTOR OF STUDENT LIFE", org: "Enactus York · Toronto · Sep 2025 – Present", tone: "text-purple", d: "Grew the org from 5 to 8+ members and led teams to 3 regional award wins and $6,000 in funding." },
-  { icon: "🏆", role: "HACKATHONS & AWARDS", org: "2025 – 2026", tone: "text-gold", d: "3rd @ COIE Climathon ($500) · 3rd @ Hult Prize ($300) · Head Delegate @ CUSEC Canada 2025." },
+  { img: "/assets/objects/dev.png", role: "SOFTWARE DEVELOPER / AI DATA ENGINEER", org: "Ayvelis AI · Toronto · Jan 2026 – Present", tone: "text-cyan", d: "Architected a privacy-preserving analytics platform (Python / FastAPI / PostgreSQL) and agentic AI inference pipelines (LLM + N8N) — cutting processing latency by 40%." },
+  { img: "/assets/objects/leader.png", role: "DIRECTOR OF STUDENT LIFE", org: "Enactus York · Toronto · Sep 2025 – Present", tone: "text-purple", d: "Grew the org from 5 to 8+ members and led teams to 3 regional award wins and $6,000 in funding." },
+  { img: "/assets/objects/trophy.png", role: "HACKATHONS & AWARDS", org: "2025 – 2026", tone: "text-gold", d: "3rd @ COIE Climathon ($500) · 3rd @ Hult Prize ($300) · Head Delegate @ CUSEC Canada 2025." },
 ];
 const awards = [
   { r: "🥉", n: "COIE Climathon", p: "$500" },
@@ -93,10 +93,11 @@ export default function Skills() {
             <ScrollReveal>
               <PixelPanel title="EXPERIENCE HIGHLIGHTS" accent="green" icon={<span>💼</span>} glowing bodyClassName="space-y-5">
                 {experience.map((e, i) => (
-                  <ScrollReveal key={e.role} delay={i * 0.12} className="bg-inset border-[2px] border-ink p-5 flex items-start gap-4 pixel-hoverable">
-                    <span className="text-[34px] leading-none">{e.icon}</span>
+                  <ScrollReveal key={e.role} delay={i * 0.12} className="bg-inset border-[2px] border-ink p-5 flex items-start gap-5 pixel-hoverable">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={e.img} alt="" width={72} height={72} className="w-[72px] h-[72px] shrink-0 animate-soft-float" style={{ imageRendering: "pixelated", animationDelay: `${i * 0.5}s` }} />
                     <div>
-                      <div className={`font-pixel text-[14px] ${e.tone}`}>{e.role}</div>
+                      <div className={`font-pixel text-[15px] ${e.tone}`}>{e.role}</div>
                       <div className="font-body text-[18px] text-muted mt-1">{e.org}</div>
                       <div className="font-body text-[19px] text-text/90 mt-2">{e.d}</div>
                     </div>

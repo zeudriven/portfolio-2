@@ -16,11 +16,13 @@ export default function PageChrome({
   return (
     <div className="min-h-screen flex flex-col">
       <SectionArrowNav />
-      <SiteHeader />
+      <div className="relative z-20">
+        <SiteHeader />
+      </div>
 
-      <main className={`w-full ${max} mx-auto px-5 flex-1`}>{children}</main>
+      <main className={`relative z-10 w-full ${max} mx-auto px-5 flex-1`}>{children}</main>
 
-      <div className={`w-full ${max} mx-auto px-5`}>
+      <div className={`relative z-10 w-full ${max} mx-auto px-5`}>
         <FooterTicker text={footer} />
       </div>
     </div>

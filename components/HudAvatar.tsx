@@ -4,26 +4,17 @@ import { useEffect, useState } from "react";
 
 const DIRS = ["south", "west", "north", "east"];
 
-/** Top-left HUD avatar — spins through all 4 directions continuously while hovered. */
+/** Top-left HUD avatar — continuously spins through all 4 directions. */
 export default function HudAvatar() {
   const [i, setI] = useState(0);
-  const [hover, setHover] = useState(false);
 
   useEffect(() => {
-    if (!hover) {
-      setI(0);
-      return;
-    }
-    const id = setInterval(() => setI((p) => (p + 1) % DIRS.length), 170);
+    const id = setInterval(() => setI((p) => (p + 1) % DIRS.length), 600);
     return () => clearInterval(id);
-  }, [hover]);
+  }, []);
 
   return (
-    <div
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-      className="relative w-12 h-12 bg-night-deep border-[2px] border-ink overflow-hidden shrink-0 cursor-pointer"
-    >
+    <div className="relative w-12 h-12 bg-night-deep border-[2px] border-ink overflow-hidden shrink-0">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={`/assets/character/${DIRS[i]}.png`}
