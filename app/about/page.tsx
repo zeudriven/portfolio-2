@@ -21,9 +21,9 @@ const milestones = [
   { y: "2026", t: "AI Data Engineer @ Ayvelis AI", tone: "bg-purple" },
 ];
 const enjoy = [
-  { img: "/assets/objects/ai-engine.png", t: "AI Workflow Engines", d: "LLM + agentic pipelines (OpenAI, N8N, FastAPI)" },
-  { img: "/assets/objects/fullstack.png", t: "Full-Stack Platforms", d: "FastAPI + React / Next.js, REST APIs" },
-  { img: "/assets/objects/data.png", t: "Data & Analytics", d: "PostgreSQL pipelines & KPI dashboards" },
+  { dir: "/assets/objects/anim/ai-engine", t: "AI Workflow Engines", d: "LLM + agentic pipelines (OpenAI, N8N, FastAPI)" },
+  { dir: "/assets/objects/anim/fullstack", t: "Full-Stack Platforms", d: "FastAPI + React / Next.js, REST APIs" },
+  { dir: "/assets/objects/anim/data", t: "Data & Analytics", d: "PostgreSQL pipelines & KPI dashboards" },
 ];
 const values = [
   { dir: "/assets/objects/anim/skills", frames: 9, t: "Keep Learning", d: "Always curious, always growing.", border: "border-green/60", text: "text-green", neon: "neon-green" },
@@ -95,7 +95,7 @@ export default function About() {
               <PixelPanel title="WHAT I ENJOY BUILDING" accent="purple" icon={<span>{"</>"}</span>} bodyClassName="space-y-4">
                 {enjoy.map((e, i) => (
                   <ScrollReveal key={e.t} delay={i * 0.1} className="flex items-center gap-5 py-4 border-b-[2px] border-line last:border-b-0">
-                    <img src={e.img} alt="" width={72} height={72} className="w-[72px] h-[72px] shrink-0 animate-soft-float" style={{ imageRendering: "pixelated", animationDelay: `${i * 0.5}s` }} />
+                    <AnimatedSprite dir={e.dir} frames={4} size={78} fps={6} className="shrink-0" />
                     <div>
                       <div className="font-pixel text-[16px] text-text">{e.t}</div>
                       <div className="font-body text-[20px] text-muted mt-2">{e.d}</div>

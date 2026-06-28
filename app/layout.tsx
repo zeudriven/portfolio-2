@@ -6,6 +6,7 @@ import "./globals.css";
 import "nes.css/css/nes.min.css";
 import PixelSun from "@/components/PixelSun";
 import DayBeach from "@/components/DayBeach";
+import { Analytics } from "@vercel/analytics/next";
 
 const press = Press_Start_2P({
   weight: "400",
@@ -46,6 +47,7 @@ export default function RootLayout({
         <PixelSun />
         <DayBeach />
         {children}
+        <Analytics />
       </body>
     </html>
   );

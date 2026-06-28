@@ -4,6 +4,7 @@ import PixelProgressBar from "@/components/pixel/PixelProgressBar";
 import Reveal from "@/components/Reveal";
 import ScrollReveal from "@/components/ScrollReveal";
 import Parallax from "@/components/Parallax";
+import AnimatedSprite from "@/components/AnimatedSprite";
 
 const languages = [
   { l: "Python", v: 95 }, { l: "JavaScript", v: 85 }, { l: "TypeScript", v: 80 },
@@ -18,9 +19,9 @@ const tools = [
   { l: "Linux", v: 80 }, { l: "Docker", v: 70 },
 ];
 const experience = [
-  { img: "/assets/objects/dev.png", role: "SOFTWARE DEVELOPER / AI DATA ENGINEER", org: "Ayvelis AI · Toronto · Jan 2026 – Present", tone: "text-cyan", d: "Architected a privacy-preserving analytics platform (Python / FastAPI / PostgreSQL) and agentic AI inference pipelines (LLM + N8N) — cutting processing latency by 40%." },
-  { img: "/assets/objects/leader.png", role: "DIRECTOR OF STUDENT LIFE", org: "Enactus York · Toronto · Sep 2025 – Present", tone: "text-purple", d: "Grew the org from 5 to 8+ members and led teams to 3 regional award wins and $6,000 in funding." },
-  { img: "/assets/objects/trophy.png", role: "HACKATHONS & AWARDS", org: "2025 – 2026", tone: "text-gold", d: "3rd @ COIE Climathon ($500) · 3rd @ Hult Prize ($300) · Head Delegate @ CUSEC Canada 2025." },
+  { dir: "/assets/objects/anim/dev", role: "SOFTWARE DEVELOPER / AI DATA ENGINEER", org: "Ayvelis AI · Toronto · Jan 2026 – Present", tone: "text-cyan", d: "Architected a privacy-preserving analytics platform (Python / FastAPI / PostgreSQL) and agentic AI inference pipelines (LLM + N8N) — cutting processing latency by 40%." },
+  { dir: "/assets/objects/anim/leader", role: "DIRECTOR OF STUDENT LIFE", org: "Enactus York · Toronto · Sep 2025 – Present", tone: "text-purple", d: "Grew the org from 5 to 8+ members and led teams to 3 regional award wins and $6,000 in funding." },
+  { dir: "/assets/objects/anim/trophy", role: "HACKATHONS & AWARDS", org: "2025 – 2026", tone: "text-gold", d: "3rd @ COIE Climathon ($500) · 3rd @ Hult Prize ($300) · Head Delegate @ CUSEC Canada 2025." },
 ];
 const awards = [
   { r: "🥉", n: "COIE Climathon", p: "$500" },
@@ -94,8 +95,7 @@ export default function Skills() {
               <PixelPanel title="EXPERIENCE HIGHLIGHTS" accent="green" icon={<span>💼</span>} glowing bodyClassName="space-y-5">
                 {experience.map((e, i) => (
                   <ScrollReveal key={e.role} delay={i * 0.12} className="bg-inset border-[2px] border-ink p-5 flex items-start gap-5 pixel-hoverable">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={e.img} alt="" width={72} height={72} className="w-[72px] h-[72px] shrink-0 animate-soft-float" style={{ imageRendering: "pixelated", animationDelay: `${i * 0.5}s` }} />
+                    <AnimatedSprite dir={e.dir} frames={4} size={78} fps={6} className="shrink-0" />
                     <div>
                       <div className={`font-pixel text-[15px] ${e.tone}`}>{e.role}</div>
                       <div className="font-body text-[18px] text-muted mt-1">{e.org}</div>
