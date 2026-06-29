@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
 // Left/Right arrows cycle through the sections (wraps around).
-const ORDER = ["/about", "/projects", "/skills", "/contact"];
+const ORDER = ["/about", "/projects", "/skills", "/blog", "/contact"];
 
 export default function SectionArrowNav() {
   const router = useRouter();

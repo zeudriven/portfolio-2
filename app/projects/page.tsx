@@ -12,39 +12,55 @@ import AnimatedSprite from "@/components/AnimatedSprite";
 import { profile } from "@/lib/profile";
 
 type Tone = "cyan" | "purple" | "green" | "gold";
-type Project = { icon: string; title: string; year: string; tone: Tone; img?: string; anim?: string; link: string; linkLabel: string; desc: string; metrics?: string[]; stack: string[] };
+type Project = { icon: string; title: string; year: string; tone: Tone; img?: string; anim?: string; link: string; linkLabel: string; desc: string; highlight?: string[]; stack: string[] };
+
+/** Underline + green-glow key phrases inside a description paragraph. */
+function highlightDesc(desc: string, terms?: string[]) {
+  if (!terms || terms.length === 0) return desc;
+  const esc = terms.map((t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+  const re = new RegExp(`(${esc.join("|")})`, "g");
+  return desc.split(re).map((part, i) =>
+    terms.includes(part) ? (
+      <span key={i} className="text-text underline decoration-green decoration-2 underline-offset-2" style={{ textShadow: "0 0 9px rgba(183,255,69,.75)" }}>
+        {part}
+      </span>
+    ) : (
+      <span key={i}>{part}</span>
+    )
+  );
+}
 
 const projects: Project[] = [
   {
     icon: "💸", title: "Scotia FutureFlex — FinTech Platform", year: "2026", tone: "gold",
     img: "/assets/projects/scotia.png", link: "https://devpost.com/software/scotiabank-futureflex", linkLabel: "DEVPOST",
     desc: "A mobile-first investment platform with goal-based onboarding, a REST API backend and recommendation retrieval for Gen-Z financial engagement — shipped in a 24-hour build.",
-    metrics: ["24-hour hackathon build", "Gen-Z fintech UX", "REST API backend"],
+    highlight: ["REST API backend", "24-hour build", "Gen-Z financial engagement"],
     stack: ["Python", "FastAPI", "JavaScript", "REST API"],
   },
   {
     icon: "🔭", title: "ComparaVision", year: "2025", tone: "cyan",
     img: "/assets/projects/comparavision.png", link: "https://devpost.com/software/comparavision", linkLabel: "DEVPOST",
     desc: "A real-time model-comparison analytics dashboard with live system metrics and sustainability insights.",
-    metrics: ["Real-time analytics", "Sustainability insights"],
+    highlight: ["real-time", "sustainability insights"],
     stack: ["TypeScript", "React", "Analytics"],
   },
   {
     icon: "🤖", title: "AdminSync AI — LLM Workflow Engine", year: "2025", tone: "purple", anim: "/assets/objects/anim/ai-engine", link: profile.github, linkLabel: "GITHUB",
     desc: "An LLM-powered task-automation engine that parses natural language into structured execution plans, audit logs and checkpoint workflows — cutting coordination overhead by 60%.",
-    metrics: ["−60% coordination overhead", "LLM task automation"],
+    highlight: ["structured execution plans", "cutting coordination overhead by 60%"],
     stack: ["Python", "FastAPI", "SQLAlchemy", "OpenAI API", "N8N"],
   },
   {
     icon: "🧪", title: "Requirements Traceability & Test Validation Tool", year: "2025", tone: "green", anim: "/assets/objects/anim/beaker", link: profile.github, linkLabel: "GITHUB",
     desc: "An enterprise QA traceability platform (inspired by DOORS & Polarion) linking requirements, test cases and verification states with full revision history and SDLC audit trails.",
-    metrics: ["Full SDLC audit trails", "Coverage-gap detection"],
+    highlight: ["full revision history and SDLC audit trails"],
     stack: ["Python", "FastAPI", "SQLAlchemy", "OOP"],
   },
   {
     icon: "📈", title: "CivicFlow Analytics", year: "2025", tone: "purple", anim: "/assets/objects/anim/data", link: profile.github, linkLabel: "GITHUB",
     desc: "A full-stack analytics system with PostgreSQL pipelines, automated SQL validation and Power BI-style KPI dashboards — simulating production-scale government reporting.",
-    metrics: ["Production-scale pipelines", "Power BI-style KPIs"],
+    highlight: ["PostgreSQL pipelines", "Power BI-style KPI dashboards", "production-scale"],
     stack: ["Python", "PostgreSQL", "SQL", "Power BI"],
   },
 ];
@@ -99,14 +115,7 @@ export default function Projects() {
                   <span className="absolute top-1 right-1"><PixelBadge tone={p.tone}>{p.year}</PixelBadge></span>
                 </div>
                 <h3 className="font-pixel text-[15px] text-text leading-snug">{p.title}</h3>
-                <p className="font-body text-[19px] text-muted leading-snug flex-1">{p.desc}</p>
-                {p.metrics && (
-                  <div className="flex flex-wrap gap-2">
-                    {p.metrics.map((m) => (
-                      <span key={m} className="font-body text-[16px] text-green underline decoration-2 decoration-green/60 underline-offset-4 px-2 py-1 bg-green/10" style={{ textShadow: "0 0 8px rgba(183,255,69,.65)" }}>✦ {m}</span>
-                    ))}
-                  </div>
-                )}
+                <p className="font-body text-[19px] text-muted leading-snug flex-1">{highlightDesc(p.desc, p.highlight)}</p>
                 <div className="flex flex-wrap gap-2">
                   {p.stack.map((s) => (<span key={s} className="font-body text-[15px] text-purple px-2 py-1 bg-inset border-2 border-purple/40">{s}</span>))}
                 </div>

@@ -34,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${press.variable} ${vt.variable}`}>
+    <html lang="en" className={`${press.variable} ${vt.variable}`} suppressHydrationWarning>
       <head>
         {/* set the saved theme before paint to avoid a flash */}
         <script

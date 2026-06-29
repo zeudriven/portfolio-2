@@ -55,6 +55,7 @@ const config: Config = {
         "soft-float": { "0%,100%": { transform: "translateY(0)" }, "50%": { transform: "translateY(-4px)" } },
         "cell-pulse": { "0%,100%": { filter: "brightness(1)" }, "50%": { filter: "brightness(1.5)" } },
         marquee: { from: { transform: "translateX(0)" }, to: { transform: "translateX(-50%)" } },
+        flicker: { "0%,100%": { opacity: "1" }, "41%": { opacity: "1" }, "42%": { opacity: "0.35" }, "43%": { opacity: "1" }, "45%": { opacity: "0.5" }, "46%": { opacity: "1" }, "70%": { opacity: "1" }, "71%": { opacity: "0.6" }, "72%": { opacity: "1" } },
       },
       animation: {
         bob: "bob 1.4s steps(2,end) infinite",
@@ -66,6 +67,7 @@ const config: Config = {
         "soft-float": "soft-float 3s ease-in-out infinite",
         "cell-pulse": "cell-pulse 1.5s ease-in-out infinite",
         marquee: "marquee 22s linear infinite",
+        flicker: "flicker 5s linear infinite",
       },
     },
   },

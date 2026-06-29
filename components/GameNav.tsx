@@ -12,6 +12,7 @@ const items = [
   { href: "/about", label: "ABOUT", icon: "📖" },
   { href: "/projects", label: "PROJECTS", icon: "💻" },
   { href: "/skills", label: "SKILLS", icon: "⚡" },
+  { href: "/blog", label: "BLOG", icon: "📝" },
   { href: "/contact", label: "CONTACT", icon: "✉" },
 ];
 
