@@ -126,6 +126,7 @@ export default function WorldHome() {
       if (keys.current.has("s") || keys.current.has("arrowdown")) dy += SPD;
       const img = charRef.current;
       if ((dx || dy) && img) {
+        img.classList.remove("char-bop");                 // walking → no idle bop
         p.x = Math.min(Math.max(p.x + dx, 6), p.w - CW - 6);
         const minY = p.h * 0.12, maxY = p.h - CW - 30;
         p.y = Math.min(Math.max(p.y + dy, minY), maxY);
@@ -134,11 +135,15 @@ export default function WorldHome() {
         if (p.acc >= STEP_MS) { p.acc = 0; p.frame = (p.frame + 1) % 6; }
         img.src = `/assets/character/walk/${p.dir}/${p.frame}.png`;
       } else if (img) {
-        // standing still → play the head-nod idle loop for the current facing
+        // standing still → play the idle-bop loop for the current facing + visible bounce
         p.frame = 0;
         p.acc += dt;
         if (p.acc >= IDLE_MS) { p.acc = 0; p.idleFrame = (p.idleFrame + 1) % 4; }
-        img.src = `/assets/character/idle/${p.dir}/f0${p.idleFrame}.png`;
+        const hasIdle = p.dir === "south" || p.dir === "east" || p.dir === "west";
+        img.src = hasIdle
+          ? `/assets/character/idle/${p.dir}/f0${p.idleFrame}.png`
+          : `/assets/character/${p.dir}.png`;
+        if (hasIdle) img.classList.add("char-bop"); else img.classList.remove("char-bop");
       }
       if (img) { img.style.left = `${p.x}px`; img.style.top = `${p.y}px`; }
 
