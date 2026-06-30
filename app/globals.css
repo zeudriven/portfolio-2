@@ -123,6 +123,16 @@ body {
   to { transform: translateX(-50%); }
 }
 
+/* idle bop — clearly visible up/down bounce layered over the PixelLab idle frames
+   on the home character (class toggled imperatively in WorldHome, idle only) */
+@keyframes char-bop {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.char-bop {
+  animation: char-bop 0.7s ease-in-out infinite;
+}
+
 /* Square corners only — hard rule. Pixel art stays crisp. */
 * {
   border-radius: 0 !important;

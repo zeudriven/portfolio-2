@@ -21,7 +21,7 @@ const SAND = `data:image/svg+xml,${encodeURIComponent(sandSvg)}`;
 
 export default function DayBeach() {
   return (
-    <div aria-hidden className="day-only pointer-events-none fixed inset-x-0 bottom-0 z-0 h-[112px]">
+    <div aria-hidden className="day-only pointer-events-none fixed inset-x-0 bottom-0 z-[2] h-[112px]">
       <div
         className="absolute inset-x-0 bottom-[58px] h-[40px]"
         style={{ backgroundImage: `url("${SEA}")`, backgroundRepeat: "repeat-x", backgroundSize: "64px 40px", imageRendering: "pixelated" }}

@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import SiteHeader from "./SiteHeader";
 import FooterTicker from "./FooterTicker";
 import SectionArrowNav from "./SectionArrowNav";
+import StarField from "./StarField";
 
 /** Shared shell: unified top bar (HUD + nav + social) — identical to the home — content, footer. */
 export default function PageChrome({
@@ -15,6 +16,8 @@ export default function PageChrome({
 }) {
   return (
     <div className="min-h-screen flex flex-col">
+      {/* page-wide night sky + stars behind everything (same as home) */}
+      <StarField />
       <SectionArrowNav />
       <div className="relative z-20">
         <SiteHeader />
