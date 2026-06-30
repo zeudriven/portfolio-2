@@ -1,7 +1,6 @@
 import PageChrome from "@/components/PageChrome";
 import Reveal from "@/components/Reveal";
 import PixelButton from "@/components/pixel/PixelButton";
-import AnimatedSprite from "@/components/AnimatedSprite";
 
 const SPARKS = Array.from({ length: 14 }, (_, i) => ({
   left: (i * 53 + 7) % 100,
@@ -43,9 +42,6 @@ export default function Blog() {
             <span className="font-pixel text-[18px] md:text-[26px] text-gold tracking-widest">COMING SOON</span>
             <span aria-hidden className="absolute inset-y-0 -left-1/3 w-1/3 bg-white/35 blur-md animate-xp-shine" />
           </div>
-
-          {/* mascot tinkering away */}
-          <AnimatedSprite dir="/assets/objects/anim/ai-engine" frames={4} size={150} className="mt-2" />
 
           <p className="font-body text-[22px] text-muted max-w-[640px] leading-snug">
             Dev logs, build breakdowns, and hackathon war-stories — currently in the workshop.

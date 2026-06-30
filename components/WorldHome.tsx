@@ -65,7 +65,7 @@ export default function WorldHome() {
   const charRef = useRef<HTMLImageElement>(null);
   const keys = useRef(new Set<string>());
   const hover = useRef<string | null>(null);
-  const pos = useRef({ x: 0, y: 0, dir: "south", frame: 0, acc: 0, w: 0, h: 0 });
+  const pos = useRef({ x: 0, y: 0, dir: "south", frame: 0, idleFrame: 0, acc: 0, w: 0, h: 0 });
   const [active, setActive] = useState<string | null>(null);
   const activeRef = useRef<string | null>(null);
   activeRef.current = active;
@@ -79,6 +79,7 @@ export default function WorldHome() {
     ["south", "north", "east", "west"].forEach((dir) => {
       new Image().src = `/assets/character/${dir}.png`;
       for (let i = 0; i < 6; i++) new Image().src = `/assets/character/walk/${dir}/${i}.png`;
+      for (let i = 0; i < 4; i++) new Image().src = `/assets/character/idle/${dir}/f0${i}.png`;
     });
     DOORS.forEach((d) => { for (let i = 0; i < d.frames; i++) new Image().src = `/assets/objects/anim/${d.name}/f${String(i).padStart(2, "0")}.png`; });
 
@@ -113,6 +114,7 @@ export default function WorldHome() {
     // --- TUNE ME ---
     const SPD = 8.5;          // movement speed (px/frame). Higher = walks faster across the screen.
     const STEP_MS = 70;       // leg-animation cadence (ms per walk frame). Lower = legs move faster.
+    const IDLE_MS = 220;      // idle head-nod cadence (ms per idle frame).
     // ---------------
     const loop = (t: number) => {
       const dt = t - last; last = t;
@@ -132,7 +134,11 @@ export default function WorldHome() {
         if (p.acc >= STEP_MS) { p.acc = 0; p.frame = (p.frame + 1) % 6; }
         img.src = `/assets/character/walk/${p.dir}/${p.frame}.png`;
       } else if (img) {
-        if (p.frame !== 0) { p.frame = 0; img.src = `/assets/character/${p.dir}.png`; }
+        // standing still → play the head-nod idle loop for the current facing
+        p.frame = 0;
+        p.acc += dt;
+        if (p.acc >= IDLE_MS) { p.acc = 0; p.idleFrame = (p.idleFrame + 1) % 4; }
+        img.src = `/assets/character/idle/${p.dir}/f0${p.idleFrame}.png`;
       }
       if (img) { img.style.left = `${p.x}px`; img.style.top = `${p.y}px`; }
 
@@ -176,7 +182,7 @@ export default function WorldHome() {
       {/* walking character */}
       <img
         ref={charRef}
-        src="/assets/character/south.png"
+        src="/assets/character/idle/south/f00.png"
         alt="Varun character"
         width={CW}
         height={CW}
