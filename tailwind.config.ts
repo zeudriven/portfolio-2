@@ -56,6 +56,8 @@ const config: Config = {
         "cell-pulse": { "0%,100%": { filter: "brightness(1)" }, "50%": { filter: "brightness(1.5)" } },
         marquee: { from: { transform: "translateX(0)" }, to: { transform: "translateX(-50%)" } },
         flicker: { "0%,100%": { opacity: "1" }, "41%": { opacity: "1" }, "42%": { opacity: "0.35" }, "43%": { opacity: "1" }, "45%": { opacity: "0.5" }, "46%": { opacity: "1" }, "70%": { opacity: "1" }, "71%": { opacity: "0.6" }, "72%": { opacity: "1" } },
+        // smooth section-to-section fade (used by app/template.tsx)
+        "page-in": { from: { opacity: "0" }, to: { opacity: "1" } },
       },
       animation: {
         bob: "bob 1.4s steps(2,end) infinite",
@@ -68,6 +70,7 @@ const config: Config = {
         "cell-pulse": "cell-pulse 1.5s ease-in-out infinite",
         marquee: "marquee 22s linear infinite",
         flicker: "flicker 5s linear infinite",
+        "page-in": "page-in 0.3s ease-out both",
       },
     },
   },

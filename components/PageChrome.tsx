@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import SiteHeader from "./SiteHeader";
 import FooterTicker from "./FooterTicker";
 import SectionArrowNav from "./SectionArrowNav";
-import StarField from "./StarField";
+import StarField from "@/components/ambient/StarField";
 
 /** Shared shell: unified top bar (HUD + nav + social) — identical to the home — content, footer. */
 export default function PageChrome({

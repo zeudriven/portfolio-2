@@ -1,6 +1,6 @@
 "use client";
 
-import Typewriter from "./Typewriter";
+import Typewriter from "@/components/Typewriter";
 
 /** Compact hero: small eyebrow, neon title, typewriter role line. (No CTA — the world is right below.) */
 export default function HeroBanner() {

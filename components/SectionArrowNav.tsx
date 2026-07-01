@@ -12,6 +12,8 @@ export default function SectionArrowNav() {
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
+      // ignore held-key auto-repeat so one press = one section (prevents janky rapid-fire nav)
+      if (e.repeat) return;
       // don't hijack keys while typing in a field (e.g. the contact form)
       const t = document.activeElement as HTMLElement | null;
       const tag = t?.tagName?.toLowerCase();

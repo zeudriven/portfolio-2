@@ -2,9 +2,10 @@
 
 import { motion } from "framer-motion";
 import SiteHeader from "@/components/SiteHeader";
-import HeroBanner from "@/components/HeroBanner";
-import WorldHome from "@/components/WorldHome";
-import StarField from "@/components/StarField";
+import HeroBanner from "@/components/home/HeroBanner";
+import WorldHome from "@/components/home/WorldHome";
+import HomeLoader from "@/components/home/HomeLoader";
+import StarField from "@/components/ambient/StarField";
 
 const rise = (delay: number) => ({
   initial: { opacity: 0, y: 22 },
@@ -15,6 +16,9 @@ const rise = (delay: number) => ({
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
+      {/* pixel loading screen — plays once per fresh load of the home page, then reveals the world */}
+      <HomeLoader />
+
       {/* page-wide night sky + stars behind everything (no seam under the dashboard) */}
       <StarField />
 
