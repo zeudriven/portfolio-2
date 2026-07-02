@@ -16,7 +16,7 @@ const journeyStats = [
 ];
 const milestones = [
   { y: "2023", t: "Started BSc Computer Science at York (Lassonde)", tone: "bg-green" },
-  { y: "2025", t: "Director of Student Life @ Enactus York", tone: "bg-cyan" },
+  { y: "2025", t: "Vice President of Student Life @ Enactus York", tone: "bg-cyan" },
   { y: "2026", t: "Won Best UI/UX @ Scotiabank CaseHacks", tone: "bg-gold" },
   { y: "2026", t: "AI Data Engineer @ Ayvelis AI", tone: "bg-purple" },
 ];
@@ -80,7 +80,7 @@ export default function About() {
                 </p>
                 <p className="font-body text-[22px] text-muted leading-snug">
                   I love shipping real things — from LLM workflow engines to award-winning hackathon builds — and leading teams
-                  as Director of Student Life at Enactus York.
+                  as Vice President of Student Life at Enactus York.
                 </p>
               </div>
             </div>

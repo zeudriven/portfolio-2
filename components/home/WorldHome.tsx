@@ -14,23 +14,25 @@ const DOORS: Door[] = [
 ];
 
 /** A door that plays its PixelLab open-animation frames while `active`, else shows the closed sprite.
- *  On compact screens (`isCompact`, phones/tablets) it flows inside a grid instead of being absolutely positioned. */
-function AnimatedDoor({ d, active, onEnter, onLeave, isCompact = false }: { d: Door; active: boolean; onEnter: () => void; onLeave: () => void; isCompact?: boolean }) {
+ *  On compact screens (`isCompact`, phones/tablets) it flows inside a grid instead of being absolutely
+ *  positioned, and with `autoPlay` it loops its animation continuously (no hover/keyboard on touch). */
+function AnimatedDoor({ d, active, onEnter, onLeave, isCompact = false, autoPlay = false }: { d: Door; active: boolean; onEnter: () => void; onLeave: () => void; isCompact?: boolean; autoPlay?: boolean }) {
   const [idx, setIdx] = useState(-1); // -1 = closed/static
 
   useEffect(() => {
-    if (!active) { setIdx(-1); return; }
+    const playing = active || autoPlay;
+    if (!playing) { setIdx(-1); return; }
     let i = 0;
     setIdx(0);
     const t = setInterval(() => {
       i += 1;
       if (i >= d.frames - 1) {
-        if (d.loop) { i = 0; setIdx(0); }              // loop forever while active
+        if (d.loop || autoPlay) { i = 0; setIdx(0); }  // loop forever (all doors loop while auto-playing)
         else { setIdx(d.frames - 1); clearInterval(t); } // play once, hold open
       } else setIdx(i);
-    }, d.loop ? 95 : 55);
+    }, d.loop ? 95 : (autoPlay ? 110 : 55));
     return () => clearInterval(t);
-  }, [active, d.frames, d.loop]);
+  }, [active, autoPlay, d.frames, d.loop]);
 
   const src = idx < 0 ? `/assets/objects/${d.name}.png` : `/assets/objects/anim/${d.name}/f${String(idx).padStart(2, "0")}.png`;
 
@@ -207,7 +209,7 @@ export default function WorldHome() {
         <div className="absolute inset-0 flex flex-col items-center justify-end gap-7 px-5 pb-16 sm:justify-center sm:gap-12 sm:pb-0">
           <div className="grid grid-cols-2 place-items-center gap-x-4 gap-y-7 w-full max-w-[360px] sm:max-w-[600px] sm:gap-x-10 sm:gap-y-14">
             {DOORS.map((d) => (
-              <AnimatedDoor key={d.name} d={d} isCompact active={active === d.name} onEnter={() => setHover(d.name)} onLeave={() => setHover(null)} />
+              <AnimatedDoor key={d.name} d={d} isCompact autoPlay active={active === d.name} onEnter={() => setHover(d.name)} onLeave={() => setHover(null)} />
             ))}
           </div>
           <div className="bg-panel/85 border-[2px] border-ink px-4 py-2 text-center">

@@ -6,7 +6,7 @@ type Card = { icon: string; title: string; tone: string; l1: string; l2: string 
 
 const cards: Card[] = [
   { icon: "🎓", title: "CS STUDENT", tone: "text-green", l1: "York University · Lassonde", l2: "BSc Computer Science '27" },
-  { icon: "💼", title: "EXPERIENCE", tone: "text-cyan", l1: "AI Data Engineer @ Ayvelis AI", l2: "Director @ Enactus York" },
+  { icon: "💼", title: "EXPERIENCE", tone: "text-cyan", l1: "AI Data Engineer @ Ayvelis AI", l2: "VP of Student Life @ Enactus York" },
   { icon: "💻", title: "PROJECTS", tone: "text-purple", l1: "AI workflow engines · FinTech", l2: "FastAPI · React · LLMs" },
   { icon: "🏆", title: "ACHIEVEMENTS", tone: "text-gold", l1: "5+ awards · $6.8K+ won", l2: "Climathon · Hult · Enactus" },
 ];
