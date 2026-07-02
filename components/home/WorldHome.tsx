@@ -13,8 +13,9 @@ const DOORS: Door[] = [
   { name: "contact", href: "/contact", sign: "CONTACT / RESUME", left: 86, frames: 9, chip: "text-purple border-purple/60", loop: true },
 ];
 
-/** A door that plays its PixelLab open-animation frames while `active`, else shows the closed sprite. */
-function AnimatedDoor({ d, active, onEnter, onLeave }: { d: Door; active: boolean; onEnter: () => void; onLeave: () => void }) {
+/** A door that plays its PixelLab open-animation frames while `active`, else shows the closed sprite.
+ *  On compact screens (`isCompact`, phones/tablets) it flows inside a grid instead of being absolutely positioned. */
+function AnimatedDoor({ d, active, onEnter, onLeave, isCompact = false }: { d: Door; active: boolean; onEnter: () => void; onLeave: () => void; isCompact?: boolean }) {
   const [idx, setIdx] = useState(-1); // -1 = closed/static
 
   useEffect(() => {
@@ -38,10 +39,14 @@ function AnimatedDoor({ d, active, onEnter, onLeave }: { d: Door; active: boolea
       href={d.href}
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
-      className="group absolute bottom-[10%] -translate-x-1/2 flex flex-col items-center outline-none"
-      style={{ left: `${d.left}%` }}
+      className={
+        isCompact
+          ? "group flex flex-col items-center outline-none"
+          : "group absolute bottom-[10%] -translate-x-1/2 flex flex-col items-center outline-none"
+      }
+      style={isCompact ? undefined : { left: `${d.left}%` }}
     >
-      <span className={`mb-2 font-pixel text-[9px] sm:text-[10px] px-2 py-1 bg-panel/90 border-[2px] ${d.chip} whitespace-nowrap transition-opacity ${active ? "opacity-100" : "opacity-80"}`}>
+      <span className={`mb-2 font-pixel px-2 py-1 bg-panel/90 border-[2px] ${d.chip} transition-opacity ${active ? "opacity-100" : "opacity-80"} ${isCompact ? "text-[8px] sm:text-[11px] text-center whitespace-normal leading-tight" : "text-[9px] sm:text-[10px] whitespace-nowrap"}`}>
         {d.sign}
       </span>
       <img
@@ -49,12 +54,14 @@ function AnimatedDoor({ d, active, onEnter, onLeave }: { d: Door; active: boolea
         alt={d.sign}
         width={128}
         height={128}
-        className="w-[clamp(110px,15vw,190px)] aspect-square transition-transform duration-150 group-hover:-translate-y-1"
+        className={`aspect-square transition-transform duration-150 group-hover:-translate-y-1 ${isCompact ? "w-[clamp(92px,30vw,130px)] sm:w-[clamp(150px,22vw,210px)]" : "w-[clamp(110px,15vw,190px)]"}`}
         style={{ imageRendering: "pixelated" }}
       />
-      <span className={`mt-1 font-pixel text-[8px] text-[#0b1206] bg-green px-2 py-1 border-[2px] border-ink transition-opacity ${active ? "opacity-100 animate-glow-pulse" : "opacity-0"}`}>
-        ▶ ENTER
-      </span>
+      {!isCompact && (
+        <span className={`mt-1 font-pixel text-[8px] text-[#0b1206] bg-green px-2 py-1 border-[2px] border-ink transition-opacity ${active ? "opacity-100 animate-glow-pulse" : "opacity-0"}`}>
+          ▶ ENTER
+        </span>
+      )}
     </a>
   );
 }
@@ -70,18 +77,32 @@ export default function WorldHome() {
   const activeRef = useRef<string | null>(null);
   activeRef.current = active;
 
-  // deterministic stars
+  // phones + tablets/iPads (<= 1024px): drop the walkable character + keyboard controls and
+  // lay the doors out in a tidy grid instead, so the home page isn't cluttered on touch screens.
+  const [isCompact, setIsCompact] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 1024px)");
+    const update = () => setIsCompact(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
   const CW = 140; // character display size
 
   useEffect(() => {
-    // preload frames
+    // preload the door open-animation frames (used on hover in both layouts)
+    DOORS.forEach((d) => { for (let i = 0; i < d.frames; i++) new Image().src = `/assets/objects/anim/${d.name}/f${String(i).padStart(2, "0")}.png`; });
+
+    // touch screens (phones/tablets) have no walking character / keyboard controls — skip all that
+    if (isCompact) return;
+
+    // preload character frames
     ["south", "north", "east", "west"].forEach((dir) => {
       new Image().src = `/assets/character/${dir}.png`;
       for (let i = 0; i < 6; i++) new Image().src = `/assets/character/walk/${dir}/${i}.png`;
       for (let i = 0; i < 4; i++) new Image().src = `/assets/character/idle/${dir}/f0${i}.png`;
     });
-    DOORS.forEach((d) => { for (let i = 0; i < d.frames; i++) new Image().src = `/assets/objects/anim/${d.name}/f${String(i).padStart(2, "0")}.png`; });
 
     const measure = () => {
       const s = sceneRef.current; if (!s) return;
@@ -167,7 +188,7 @@ export default function WorldHome() {
       window.removeEventListener("keydown", kd);
       window.removeEventListener("keyup", ku);
     };
-  }, [router]);
+  }, [router, isCompact]);
 
   const setHover = useCallback((name: string | null) => { hover.current = name; }, []);
 
@@ -179,28 +200,48 @@ export default function WorldHome() {
     >
       {/* transparent — the page-wide StarField sits behind (no seam with the dashboard) */}
 
-      {/* doors */}
-      {DOORS.map((d) => (
-        <AnimatedDoor key={d.name} d={d} active={active === d.name} onEnter={() => setHover(d.name)} onLeave={() => setHover(null)} />
-      ))}
+      {isCompact ? (
+        /* ---- PHONE / TABLET: tidy 2×2 grid of doors, no walking character.
+               Phones: compact, anchored low. Tablets/iPads: scaled up + vertically
+               centered so the larger screen doesn't leave a big empty band. ---- */
+        <div className="absolute inset-0 flex flex-col items-center justify-end gap-7 px-5 pb-16 sm:justify-center sm:gap-12 sm:pb-0">
+          <div className="grid grid-cols-2 place-items-center gap-x-4 gap-y-7 w-full max-w-[360px] sm:max-w-[600px] sm:gap-x-10 sm:gap-y-14">
+            {DOORS.map((d) => (
+              <AnimatedDoor key={d.name} d={d} isCompact active={active === d.name} onEnter={() => setHover(d.name)} onLeave={() => setHover(null)} />
+            ))}
+          </div>
+          <div className="bg-panel/85 border-[2px] border-ink px-4 py-2 text-center">
+            <span className="font-pixel text-[9px] text-text">
+              <span className="text-gold">Tap</span> a world to enter
+            </span>
+          </div>
+        </div>
+      ) : (
+        /* ---- DESKTOP: walkable scene with the character + keyboard controls ---- */
+        <>
+          {DOORS.map((d) => (
+            <AnimatedDoor key={d.name} d={d} active={active === d.name} onEnter={() => setHover(d.name)} onLeave={() => setHover(null)} />
+          ))}
 
-      {/* walking character */}
-      <img
-        ref={charRef}
-        src="/assets/character/idle/south/f00.png"
-        alt="Varun character"
-        width={CW}
-        height={CW}
-        className="absolute z-10"
-        style={{ width: CW, height: CW, imageRendering: "pixelated", left: 0, top: 0 }}
-      />
+          {/* walking character */}
+          <img
+            ref={charRef}
+            src="/assets/character/idle/south/f00.png"
+            alt="Varun character"
+            width={CW}
+            height={CW}
+            className="absolute z-10"
+            style={{ width: CW, height: CW, imageRendering: "pixelated", left: 0, top: 0 }}
+          />
 
-      {/* hint */}
-      <div className="absolute left-1/2 -translate-x-1/2 bottom-3 bg-panel/85 border-[2px] border-ink px-4 py-2 text-center">
-        <span className="font-pixel text-[9px] text-text">
-          <span className="text-gold">WASD / Arrows</span> to walk · hover or reach a door · <span className="text-gold">ENTER</span> to open
-        </span>
-      </div>
+          {/* hint */}
+          <div className="absolute left-1/2 -translate-x-1/2 bottom-3 bg-panel/85 border-[2px] border-ink px-4 py-2 text-center">
+            <span className="font-pixel text-[9px] text-text">
+              <span className="text-gold">WASD / Arrows</span> to walk · hover or reach a door · <span className="text-gold">ENTER</span> to open
+            </span>
+          </div>
+        </>
+      )}
     </section>
   );
 }
