@@ -112,7 +112,7 @@ export default function WorldHome() {
 
     let raf = 0; let last = performance.now();
     // --- TUNE ME ---
-    const SPD = 8.5;          // movement speed (px/frame). Higher = walks faster across the screen.
+    const SPD = 10.2;         // movement speed (px/frame). Higher = walks faster across the screen.
     const STEP_MS = 70;       // leg-animation cadence (ms per walk frame). Lower = legs move faster.
     const IDLE_MS = 220;      // idle head-nod cadence (ms per idle frame).
     // ---------------

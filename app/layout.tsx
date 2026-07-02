@@ -4,8 +4,6 @@ import "./globals.css";
 // NES.css imported AFTER globals/Tailwind so its pixel components survive preflight.
 // Accent colors are overridden to the V2 palette in globals.css.
 import "nes.css/css/nes.min.css";
-import PixelSun from "@/components/ambient/PixelSun";
-import DayBeach from "@/components/ambient/DayBeach";
 import { Analytics } from "@vercel/analytics/next";
 
 const press = Press_Start_2P({
@@ -44,8 +42,6 @@ export default function RootLayout({
         />
       </head>
       <body className="font-body antialiased">
-        <PixelSun />
-        <DayBeach />
         {children}
         <Analytics />
       </body>

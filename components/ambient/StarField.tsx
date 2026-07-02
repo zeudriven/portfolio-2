@@ -1,7 +1,11 @@
 "use client";
 
+import PixelSun from "./PixelSun";
+import DayBeach from "./DayBeach";
+
 // Full-viewport night-sky + twinkling stars behind ALL page content (no seam between
-// the dashboard and the world scene).
+// the dashboard and the world scene). The day-mode sun + beach live inside this same
+// z-0 layer, so they are always the bottom-most layer — behind the dashboard and content.
 const STARS = Array.from({ length: 38 }, (_, i) => ({
   left: (i * 47 + 3) % 100,
   top: (i * 71 + 11) % 100,
@@ -49,6 +53,9 @@ export default function StarField() {
           }}
         />
       ))}
+      {/* day-mode ambient decor — part of this background layer, so always the bottom layer */}
+      <PixelSun />
+      <DayBeach />
     </div>
   );
 }
