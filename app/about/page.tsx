@@ -19,6 +19,7 @@ const milestones = [
   { y: "2025", t: "Vice President of Student Life @ Enactus York", tone: "bg-cyan" },
   { y: "2026", t: "Won Best UI/UX @ Scotiabank CaseHacks", tone: "bg-gold" },
   { y: "2026", t: "AI Data Engineer @ Ayvelis AI", tone: "bg-purple" },
+  { y: "2026", t: "Project Coordinator Co-op @ Government of Ontario (incoming)", tone: "bg-gold" },
 ];
 const enjoy = [
   { dir: "/assets/objects/anim/ai-engine", t: "AI Workflow Engines", d: "LLM + agentic pipelines (OpenAI, N8N, FastAPI)" },

@@ -18,7 +18,24 @@ const tools = [
   { l: "Git & GitHub", v: 90 }, { l: "PostgreSQL", v: 85 }, { l: "MongoDB", v: 80 },
   { l: "Linux", v: 80 }, { l: "Docker", v: 70 },
 ];
-const experience = [
+type Job = {
+  dir: string; role: string; org: string; tone: string;
+  d: string; incoming?: boolean; bullets?: string[];
+};
+const experience: Job[] = [
+  {
+    dir: "/assets/objects/anim/data",
+    role: "PROJECT COORDINATOR CO-OP",
+    org: "Government of Ontario — GovTechON, CYSSC · North York · Sep 2026 – Jan 2027",
+    tone: "text-gold",
+    incoming: true,
+    d: "",
+    bullets: [
+      "Coordinated I&IT project delivery across CYSSC — managing competing priorities, tracking deliverables, and maintaining stakeholder alignment between the OCCIO, Minister's Office, Deputy Minister offices, and Cluster CIOs.",
+      "Prepared briefing materials, status reports, and action item summaries for the Executive Advisor to the CIO/ADM — maintaining a bring-forward system and organized filing structure for rapid information retrieval.",
+      "Supported expense reporting under the Travel, Meal and Hospitality Expenses Directive, plus invoice tracking, procurement coordination, and calendar management across concurrent office workstreams.",
+    ],
+  },
   { dir: "/assets/objects/anim/dev", role: "SOFTWARE DEVELOPER / AI DATA ENGINEER", org: "Ayvelis AI · Toronto · Jan 2026 – Present", tone: "text-cyan", d: "Architected a privacy-preserving analytics platform (Python / FastAPI / PostgreSQL) and agentic AI inference pipelines (LLM + N8N) — cutting processing latency by 40%." },
   { dir: "/assets/objects/anim/leader", role: "VICE PRESIDENT OF STUDENT LIFE", org: "Enactus York · Toronto · Sep 2025 – Present", tone: "text-purple", d: "Grew the org from 5 to 8+ members and led teams to 3 regional award wins and $6,000 in funding." },
   { dir: "/assets/objects/anim/trophy", role: "HACKATHONS & AWARDS", org: "2025 – 2026", tone: "text-gold", d: "3rd @ COIE Climathon ($500) · 3rd @ Hult Prize ($300) · Head Delegate @ CUSEC Canada 2025." },
@@ -94,12 +111,32 @@ export default function Skills() {
             <ScrollReveal>
               <PixelPanel title="EXPERIENCE HIGHLIGHTS" accent="green" icon={<span>💼</span>} glowing bodyClassName="space-y-5">
                 {experience.map((e, i) => (
-                  <ScrollReveal key={e.role} delay={i * 0.12} className="bg-inset border-[2px] border-ink p-5 flex items-start gap-5 pixel-hoverable">
+                  <ScrollReveal
+                    key={e.role}
+                    delay={i * 0.12}
+                    className={`bg-inset border-[2px] border-ink p-5 flex items-start gap-5 pixel-hoverable ${e.incoming ? "incoming-card" : ""}`}
+                  >
                     <AnimatedSprite dir={e.dir} frames={4} size={78} fps={6} className="shrink-0" />
-                    <div>
+                    <div className="relative">
+                      {e.incoming && (
+                        <div className="incoming-badge inline-flex items-center gap-2 font-pixel text-[10px] text-gold bg-panel border-[2px] border-gold/70 px-2 py-1 mb-2">
+                          <span className="incoming-dot inline-block w-[6px] h-[6px] bg-gold" />
+                          INCOMING · FALL 2026
+                        </div>
+                      )}
                       <div className={`font-pixel text-[15px] ${e.tone}`}>{e.role}</div>
                       <div className="font-body text-[18px] text-muted mt-1">{e.org}</div>
-                      <div className="font-body text-[19px] text-text/90 mt-2">{e.d}</div>
+                      {e.d && <div className="font-body text-[19px] text-text/90 mt-2">{e.d}</div>}
+                      {e.bullets && (
+                        <ul className="mt-2 space-y-2">
+                          {e.bullets.map((b) => (
+                            <li key={b} className="font-body text-[19px] text-text/90 flex gap-2">
+                              <span className="text-gold shrink-0">▸</span>
+                              <span>{b}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
                     </div>
                   </ScrollReveal>
                 ))}
