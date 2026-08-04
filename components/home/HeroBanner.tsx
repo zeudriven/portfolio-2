@@ -10,9 +10,12 @@ export default function HeroBanner() {
         ✦ WELCOME TO MY WORLD ✦
       </div>
 
-      <h1 className="mt-3 font-pixel text-green leading-[1.05] tracking-wider text-[clamp(30px,6vw,68px)]"
-          style={{ textShadow: "0 0 18px rgba(183,255,69,0.45), 5px 5px 0 #000" }}>
-        VARUN PATEL
+      <h1 className="mt-3 font-pixel leading-[1.05] tracking-wider text-[clamp(30px,6vw,68px)]">
+        <span className="pixel-shine hero-name" data-text="VARUN PATEL">
+          VARUN PATEL
+          <i className="shine-pip" style={{ left: -14, top: 6 }} />
+          <i className="shine-pip" style={{ right: -14, bottom: 10 }} />
+        </span>
       </h1>
 
       <div className="mt-3 font-pixel text-[12px] sm:text-[14px] text-cyan min-h-[1.4em]">

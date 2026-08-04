@@ -27,9 +27,9 @@ const enjoy = [
   { dir: "/assets/objects/anim/data", t: "Data & Analytics", d: "PostgreSQL pipelines & KPI dashboards" },
 ];
 const values = [
-  { dir: "/assets/objects/anim/skills", frames: 9, t: "Keep Learning", d: "Always curious, always growing.", border: "border-green/60", text: "text-green", neon: "neon-green" },
-  { dir: "/assets/objects/anim/projects", frames: 9, t: "Build with Purpose", d: "Create things that make an impact.", border: "border-purple/60", text: "text-purple", neon: "neon-purple" },
-  { dir: "/assets/objects/anim/contact", frames: 9, t: "Stay Consistent", d: "Small steps, big progress.", border: "border-cyan/60", text: "text-cyan", neon: "neon-cyan" },
+  { dir: "/assets/objects/anim/beaker", frames: 4, t: "Curiosity Over Comfort", d: "Pick the problem I don't know how to solve yet.", text: "text-green", glow: "var(--glow-green)" },
+  { dir: "/assets/objects/anim/leader", frames: 4, t: "Lift the Team", d: "A win only counts if it travels with people.", text: "text-purple", glow: "var(--glow-purple)" },
+  { dir: "/assets/objects/anim/trophy", frames: 4, t: "Finish What I Start", d: "Shipped and imperfect beats perfect and unbuilt.", text: "text-gold", glow: "var(--glow-gold)" },
 ];
 
 export default function About() {
@@ -37,7 +37,13 @@ export default function About() {
     <PageChrome>
       <Reveal className="text-center mt-6">
         <h1 className="font-pixel text-cyan text-[34px] md:text-[56px] leading-none text-shadow-blocky">
-          <span className="text-gold">✦</span> ABOUT ME <span className="text-gold">✦</span>
+          <span className="text-gold">✦</span>{" "}
+          <span className="pixel-shine title-glow" data-text="ABOUT ME">
+            ABOUT ME
+            <i className="shine-pip" style={{ left: -16, top: 4 }} />
+            <i className="shine-pip" style={{ right: -16, bottom: 8 }} />
+          </span>{" "}
+          <span className="text-gold">✦</span>
         </h1>
         <p className="font-body text-[21px] text-muted mt-4">Get to know the player behind the code.</p>
         <div className="mt-5"><PixelButton href="/" variant="outline">↔ BACK TO WORLD</PixelButton></div>
@@ -58,10 +64,15 @@ export default function About() {
               <div className="font-pixel text-[16px] text-gold flex items-center justify-center gap-2"><span>❤</span> CORE VALUES</div>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-8">
                 {values.map((v, i) => (
-                  <ScrollReveal key={v.t} delay={i * 0.1} className="flex flex-col items-center text-center gap-3">
-                    <AnimatedSprite dir={v.dir} frames={v.frames} size={120} className="animate-soft-float" />
-                    <div className={`font-pixel text-[15px] ${v.text}`}>{v.t}</div>
-                    <div className="font-body text-[18px] text-muted">{v.d}</div>
+                  <ScrollReveal key={v.t} delay={i * 0.1}>
+                    <div
+                      className="value-card flex flex-col items-center text-center gap-3 px-4 py-5"
+                      style={{ "--card-glow": v.glow } as React.CSSProperties}
+                    >
+                      <AnimatedSprite dir={v.dir} frames={v.frames} size={120} className="animate-soft-float value-sprite" />
+                      <div className={`font-pixel text-[15px] ${v.text} value-title`}>{v.t}</div>
+                      <div className="font-body text-[18px] text-muted">{v.d}</div>
+                    </div>
                   </ScrollReveal>
                 ))}
               </div>

@@ -40,6 +40,14 @@
   --orange: rgb(var(--c-gold));
   --text: rgb(var(--c-text));
   --muted: rgb(var(--c-muted));
+  /* glows + hard pixel shadow — theme-aware so day mode isn't blasted with neon/black */
+  --shadow-ink: #000;
+  --glow-green: rgba(183, 255, 69, 0.45);
+  --glow-cyan: rgba(76, 201, 255, 0.4);
+  --glow-purple: rgba(184, 60, 255, 0.45);
+  --glow-gold: rgba(255, 215, 106, 0.45);
+  --hero-glow: rgba(183, 255, 69, 0.45);
+  --shine: rgba(255, 255, 255, 0.92);
   /* backgrounds */
   --page-bg: radial-gradient(135% 95% at 50% -10%, #1a0f3a 0%, #0a0720 52%, rgb(var(--c-night-deep)) 100%);
   --sky-grad: linear-gradient(180deg, #0a0720 0%, #160a34 28%, #27145a 56%, #3a2068 74%, #1a1038 100%);
@@ -48,23 +56,33 @@
 /* ---- DAY theme (bright) ---- */
 :root[data-theme="day"] {
   color-scheme: light;
-  --c-night-deep: 233 241 255;
-  --c-night: 221 233 252;
-  --c-panel: 244 247 254;
-  --c-panel-2: 230 235 248;
-  --c-ink: 92 98 130; /* softer slate borders/shadows in day (less bold than black) */
-  --c-line: 197 207 232;
-  --c-inset: 224 231 246;
-  --c-cyan: 20 120 190;
-  --c-green: 70 142 30;
-  --c-green-dim: 58 112 22;
-  --c-purple: 142 43 220;
-  --c-gold: 176 122 14;
-  --c-rose: 210 59 98;
-  --c-text: 23 19 43;
-  --c-muted: 89 84 119;
-  --page-bg: radial-gradient(135% 95% at 50% -10%, #eaf3ff 0%, #d7e8ff 55%, #cfe2ff 100%);
-  --sky-grad: linear-gradient(180deg, #bfe0ff 0%, #dcefff 45%, #eaf6ff 100%);
+  /* every surface is tinted from the same sky blue as the page background,
+     so panels sit *in* the scene instead of floating as white rectangles */
+  --c-night-deep: 226 238 255;
+  --c-night: 210 229 251;
+  --c-panel: 237 245 255;
+  --c-panel-2: 223 236 252;
+  --c-ink: 76 104 150; /* blue-slate borders/shadows in day (never pure black) */
+  --c-line: 183 205 236;
+  --c-inset: 230 240 253;
+  --c-cyan: 13 106 176;
+  --c-green: 58 124 32;
+  --c-green-dim: 47 100 25;
+  --c-purple: 122 44 198;
+  --c-gold: 165 113 12;
+  --c-rose: 198 52 92;
+  --c-text: 20 30 56; /* blue-ink text, not neutral black */
+  --c-muted: 84 100 135;
+  --shadow-ink: rgba(50, 74, 116, 0.55); /* soft slate drop shadow, no harsh black */
+  --glow-green: rgba(88, 168, 46, 0.35);
+  --glow-cyan: rgba(24, 130, 205, 0.32);
+  --glow-purple: rgba(140, 60, 220, 0.3);
+  --glow-gold: rgba(214, 158, 40, 0.4);
+  --hero-glow: rgba(255, 214, 130, 0.75); /* warm sunlight halo instead of neon */
+  --shine: rgba(255, 255, 255, 0.85);
+  --page-bg: radial-gradient(135% 95% at 50% -10%, #eaf4ff 0%, #dbebff 55%, #cee3ff 100%);
+  /* sky bottom == page top so the world scene blends into the page with no seam */
+  --sky-grad: linear-gradient(180deg, #c3ddfb 0%, #d9ebff 48%, #eaf4ff 100%);
 }
 
 html,
@@ -131,6 +149,120 @@ body {
 }
 .char-bop {
   animation: char-bop 0.7s ease-in-out infinite;
+}
+
+/* ============================================================
+   .pixel-shine — hover shine + glow for big pixel titles.
+   Usage: <span class="pixel-shine" data-text="VARUN PATEL">VARUN PATEL</span>
+   The ::after clone sits exactly on top of the real text and is
+   painted with a moving light band clipped to the glyphs, so the
+   shine travels through the letters on hover.
+   ============================================================ */
+.pixel-shine {
+  position: relative;
+  display: inline-block;
+  cursor: default;
+  transition: transform 0.25s ease, filter 0.25s ease, text-shadow 0.25s ease;
+}
+.pixel-shine::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  pointer-events: none;
+  background-image: linear-gradient(
+    100deg,
+    transparent 38%,
+    var(--shine) 50%,
+    transparent 62%
+  );
+  background-size: 260% 100%;
+  background-position: 180% 0;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+  opacity: 0;
+}
+.pixel-shine:hover {
+  transform: translateY(-3px);
+}
+.pixel-shine:hover::after {
+  opacity: 1;
+  animation: pixel-shine-sweep 0.95s ease-in-out;
+}
+@keyframes pixel-shine-sweep {
+  from { background-position: 180% 0; }
+  to { background-position: -80% 0; }
+}
+/* sparkle pips that pop in at the corners of a shined title */
+.pixel-shine .shine-pip {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: rgb(var(--c-gold));
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+.pixel-shine:hover .shine-pip {
+  opacity: 1;
+  animation: pip-twinkle 0.9s steps(2, end) infinite;
+}
+@keyframes pip-twinkle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.2; transform: scale(1.7); }
+}
+
+/* ===== Core Values cards — lift + tinted halo + sprite pop on hover ===== */
+.value-card {
+  position: relative;
+  border: 2px solid transparent;
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease,
+    background-color 0.22s ease;
+}
+.value-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--card-glow);
+  background-color: rgb(var(--c-inset) / 0.55);
+  box-shadow: 0 0 26px var(--card-glow);
+}
+.value-sprite {
+  transition: transform 0.22s ease, filter 0.22s ease;
+}
+.value-card:hover .value-sprite {
+  transform: scale(1.12);
+  filter: drop-shadow(0 0 14px var(--card-glow));
+}
+.value-title {
+  transition: text-shadow 0.22s ease, letter-spacing 0.22s ease;
+}
+.value-card:hover .value-title {
+  letter-spacing: 1px;
+  text-shadow: 0 0 16px var(--card-glow);
+}
+
+/* interior page titles (ABOUT ME, etc.) — cyan halo blooms on hover */
+.title-glow {
+  transition: transform 0.25s ease, text-shadow 0.25s ease, letter-spacing 0.25s ease;
+}
+.title-glow:hover {
+  letter-spacing: 2px;
+  text-shadow: 0 0 22px var(--glow-cyan), 0 0 48px var(--glow-cyan),
+    4px 4px 0 var(--shadow-ink);
+}
+
+/* hero name — theme-aware halo, intensifies on hover */
+.hero-name {
+  color: rgb(var(--c-green));
+  text-shadow: 0 0 18px var(--hero-glow), 5px 5px 0 var(--shadow-ink);
+}
+.hero-name:hover {
+  text-shadow: 0 0 30px var(--hero-glow), 0 0 60px var(--hero-glow),
+    5px 5px 0 var(--shadow-ink);
 }
 
 /* ===== "INCOMING" role card — pulsing gold frame + shine sweep + blinking tag ===== */
@@ -307,12 +439,12 @@ canvas {
   }
   .pixel-interactive:hover {
     transform: translate(-2px, -3px);
-    border-color: #b7ff45;
-    box-shadow: 9px 11px 0 0 #000, 0 0 22px rgba(183, 255, 69, 0.4);
+    border-color: rgb(var(--c-green));
+    box-shadow: 9px 11px 0 0 var(--shadow-ink), 0 0 22px var(--glow-green);
   }
   .pixel-interactive .sparkle {
     @apply pointer-events-none absolute text-green opacity-0;
-    text-shadow: 0 0 6px rgba(183, 255, 69, 0.9);
+    text-shadow: 0 0 6px var(--glow-green);
   }
   .pixel-interactive:hover .sparkle {
     @apply opacity-100 animate-twinkle;
@@ -324,28 +456,28 @@ canvas {
   }
   .pixel-hoverable:hover {
     transform: translate(-2px, -2px);
-    border-color: #b7ff45;
-    box-shadow: 6px 8px 0 0 #000, 0 0 16px rgba(183, 255, 69, 0.35);
+    border-color: rgb(var(--c-green));
+    box-shadow: 6px 8px 0 0 var(--shadow-ink), 0 0 16px var(--glow-green);
   }
 
   /* glowing neon outlines used on highlighted panels */
   .neon-cyan {
-    box-shadow: 0 0 0 0 #000, 6px 6px 0 0 #000, 0 0 14px rgba(76, 201, 255, 0.4);
+    box-shadow: 6px 6px 0 0 var(--shadow-ink), 0 0 14px var(--glow-cyan);
   }
   .neon-green {
-    box-shadow: 0 0 0 0 #000, 6px 6px 0 0 #000, 0 0 16px rgba(183, 255, 69, 0.45);
+    box-shadow: 6px 6px 0 0 var(--shadow-ink), 0 0 16px var(--glow-green);
   }
   .neon-purple {
-    box-shadow: 6px 6px 0 0 #000, 0 0 14px rgba(184, 60, 255, 0.45);
+    box-shadow: 6px 6px 0 0 var(--shadow-ink), 0 0 14px var(--glow-purple);
   }
 }
 
 @layer utilities {
   .text-shadow-blocky {
-    text-shadow: 4px 4px 0 #000;
+    text-shadow: 4px 4px 0 var(--shadow-ink);
   }
   .text-shadow-blocky-sm {
-    text-shadow: 3px 3px 0 #000;
+    text-shadow: 3px 3px 0 var(--shadow-ink);
   }
   .scanlines::after {
     content: "";
