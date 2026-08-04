@@ -19,6 +19,15 @@ const glow: Record<Accent, string> = {
   none: "",
 };
 
+// drives the hover shine/halo on the panel's titlebar (see .panel-title in globals.css)
+const glowVar: Record<Accent, string> = {
+  green: "var(--glow-green)",
+  purple: "var(--glow-purple)",
+  cyan: "var(--glow-cyan)",
+  gold: "var(--glow-gold)",
+  none: "var(--glow-cyan)",
+};
+
 export default function PixelPanel({
   title,
   icon,
@@ -48,10 +57,15 @@ export default function PixelPanel({
     >
       {interactive && <Sparkles />}
       {title && (
-        <header className="pixel-titlebar justify-between">
+        <header
+          className="pixel-titlebar justify-between"
+          style={{ "--card-glow": glowVar[accent] } as React.CSSProperties}
+        >
           <span className={`flex items-center gap-2 ${titleColor[accent]}`}>
             {icon}
-            {title}
+            <span className="pixel-shine panel-title" data-text={title}>
+              {title}
+            </span>
           </span>
           {right}
         </header>

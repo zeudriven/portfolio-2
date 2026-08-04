@@ -1,5 +1,25 @@
 # PixelLab-ready prompts — scene art & character
 
+## QUEUED: Core Values "tiny floating diorama" icons (blocked on credits)
+
+Chosen direction: each value is a **miniature floating island scene**, not a single
+stock object — deliberately not a generic icon set. The existing `animate-soft-float`
+class makes them read as hovering worlds.
+
+Pipeline: generate 64×64 with `no_background: true`, then `animate-with-text` at 64×64
+with `image_guidance_scale: 9` (lower values reinterpret abstract art into mush).
+2 generations per icon, 6 total. Script: scratchpad `pixellab.js`.
+
+| Value | Target dir | Description prompt | Action prompt |
+|---|---|---|---|
+| Curiosity Over Comfort | `anim/val-curiosity` | 16-bit pixel art tiny floating island, a single lit lantern on a jagged drifting rock with one small tree, green flame, dark void below, crisp pixel edges, transparent background, no text | lantern flame flickers and the island drifts gently, staying as a floating island |
+| Lift the Team | `anim/val-team` | 16-bit pixel art tiny floating island split in two halves with a half-built rope bridge joining them, small violet lanterns on posts, crisp pixel edges, transparent background, no text | lanterns pulse and the bridge planks sway slightly, staying as a floating island |
+| Finish What I Start | `anim/val-finish` | 16-bit pixel art tiny floating island shaped as a small summit with a gold flag planted at the peak and a winding path up it, crisp pixel edges, transparent background, no text | flag waves in the wind and the island drifts gently, staying as a floating island |
+
+After generating, point `values[]` in `app/about/page.tsx` at the new dirs (currently
+using `beaker` / `leader` / `trophy` as stand-ins).
+
+
 PixelLab wasn't available while building, so the app currently uses the small object
 PNGs from `portfolio_content/` (door, vault, arcade, portal, desk, mailbox) plus CSS
 placeholders. Generate the assets below in PixelLab, then drop them into

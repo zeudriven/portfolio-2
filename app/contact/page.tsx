@@ -20,7 +20,13 @@ export default function Contact() {
   return (
     <PageChrome>
       <Reveal className="text-center mt-6">
-        <h1 className="font-pixel text-cyan text-[30px] md:text-[48px] leading-none text-shadow-blocky">CONTACT / RESUME</h1>
+        <h1 className="font-pixel text-cyan text-[30px] md:text-[48px] leading-none text-shadow-blocky">
+          <span className="pixel-shine title-glow" data-text="CONTACT / RESUME">
+            CONTACT / RESUME
+            <i className="shine-pip" style={{ left: -16, top: 4 }} />
+            <i className="shine-pip" style={{ right: -16, bottom: 8 }} />
+          </span>
+        </h1>
         <p className="font-body text-[20px] text-muted mt-4">
           <span className="text-gold">❖</span> Let&apos;s Connect &amp; Build Something Amazing! <span className="text-gold">❖</span>
         </p>

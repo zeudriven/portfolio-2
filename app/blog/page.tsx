@@ -32,9 +32,13 @@ export default function Blog() {
           {/* giant glowing, flickering title */}
           <h1
             className="font-pixel text-green leading-none animate-flicker"
-            style={{ fontSize: "clamp(56px,14vw,128px)", textShadow: "0 0 22px rgba(183,255,69,.75), 7px 7px 0 #000" }}
+            style={{ fontSize: "clamp(56px,14vw,128px)", textShadow: "0 0 22px var(--hero-glow), 7px 7px 0 var(--shadow-ink)" }}
           >
-            BLOG
+            <span className="pixel-shine" data-text="BLOG">
+              BLOG
+              <i className="shine-pip" style={{ left: -20, top: 8 }} />
+              <i className="shine-pip" style={{ right: -20, bottom: 14 }} />
+            </span>
           </h1>
 
           {/* coming soon badge with a shine sweep + glow pulse */}

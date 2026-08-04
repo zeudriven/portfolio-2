@@ -84,7 +84,13 @@ export default function Projects() {
       <Reveal className="text-center mt-6">
         <p className="font-pixel text-[11px] text-muted mb-3"><span className="text-cyan">HOME</span> &gt; PROJECTS</p>
         <h1 className="font-pixel text-cyan text-[34px] md:text-[52px] leading-none text-shadow-blocky">
-          <span className="text-gold">❖</span> PROJECTS <span className="text-gold">❖</span>
+          <span className="text-gold">❖</span>{" "}
+          <span className="pixel-shine title-glow" data-text="PROJECTS">
+            PROJECTS
+            <i className="shine-pip" style={{ left: -16, top: 4 }} />
+            <i className="shine-pip" style={{ right: -16, bottom: 8 }} />
+          </span>{" "}
+          <span className="text-gold">❖</span>
         </h1>
         <p className="font-body text-[20px] text-muted mt-4">AI workflow engines, FinTech platforms, and real-world tooling.</p>
         <div className="flex flex-wrap justify-center gap-3 mt-4">

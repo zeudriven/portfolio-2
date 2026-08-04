@@ -5,6 +5,7 @@ import Reveal from "@/components/Reveal";
 import ScrollReveal from "@/components/ScrollReveal";
 import Parallax from "@/components/Parallax";
 import AnimatedSprite from "@/components/AnimatedSprite";
+import PhotoStrip, { type Photo } from "@/components/PhotoStrip";
 
 const languages = [
   { l: "Python", v: 95 }, { l: "JavaScript", v: 85 }, { l: "TypeScript", v: 80 },
@@ -19,10 +20,12 @@ const tools = [
   { l: "Linux", v: 80 }, { l: "Docker", v: 70 },
 ];
 type Job = {
-  dir: string; role: string; org: string; tone: string;
-  d: string; incoming?: boolean; bullets?: string[];
+  dir: string; role: string; org: string; tone: string; frames?: number;
+  d: string; incoming?: boolean; bullets?: string[]; photos?: Photo[]; photoLabel?: string;
 };
-const experience: Job[] = [
+
+/* ---- track 1: paid / professional roles ---- */
+const professional: Job[] = [
   {
     dir: "/assets/objects/anim/data",
     role: "PROJECT COORDINATOR CO-OP",
@@ -36,9 +39,77 @@ const experience: Job[] = [
       "Supported expense reporting under the Travel, Meal and Hospitality Expenses Directive, plus invoice tracking, procurement coordination, and calendar management across concurrent office workstreams.",
     ],
   },
-  { dir: "/assets/objects/anim/dev", role: "SOFTWARE DEVELOPER / AI DATA ENGINEER", org: "Ayvelis AI · Toronto · Jan 2026 – Present", tone: "text-cyan", d: "Architected a privacy-preserving analytics platform (Python / FastAPI / PostgreSQL) and agentic AI inference pipelines (LLM + N8N) — cutting processing latency by 40%." },
-  { dir: "/assets/objects/anim/leader", role: "VICE PRESIDENT OF STUDENT LIFE", org: "Enactus York · Toronto · Sep 2025 – Present", tone: "text-purple", d: "Grew the org from 5 to 8+ members and led teams to 3 regional award wins and $6,000 in funding." },
-  { dir: "/assets/objects/anim/trophy", role: "HACKATHONS & AWARDS", org: "2025 – 2026", tone: "text-gold", d: "3rd @ COIE Climathon ($500) · 3rd @ Hult Prize ($300) · Head Delegate @ CUSEC Canada 2025." },
+  {
+    dir: "/assets/objects/anim/dev",
+    role: "SOFTWARE DEVELOPER / AI DATA ENGINEER",
+    org: "Ayvelis AI · Toronto · Jan 2026 – Present",
+    tone: "text-cyan",
+    d: "",
+    bullets: [
+      "Architected a privacy-preserving analytics platform (Python / FastAPI / PostgreSQL) serving production workloads.",
+      "Built agentic AI inference pipelines (LLM + N8N) that cut processing latency by 40%.",
+    ],
+  },
+];
+
+/* ---- track 2: campus leadership + student roles ---- */
+const campus: Job[] = [
+  {
+    dir: "/assets/objects/anim/leader",
+    role: "VICE PRESIDENT OF STUDENT LIFE",
+    org: "Enactus York · Toronto · Sep 2025 – Present",
+    tone: "text-purple",
+    d: "",
+    bullets: [
+      "Grew the organization from 5 to 8+ core members and led teams to 3 regional award wins totalling $6,000 in funding.",
+      "Took the York team to the Desjardins Community Empowerment Challenge at Enactus Canada Regionals.",
+      "Run student life programming — recruitment, socials, and team culture across concurrent project teams.",
+    ],
+    photoLabel: "Enactus Canada Regionals",
+    photos: [
+      { src: "/assets/experience/enactus/enactus-1.jpg", caption: "Enactus York on the Regionals stage with the Desjardins Community Empowerment Challenge award." },
+      { src: "/assets/experience/enactus/enactus-2.jpg", caption: "The team after the win at Enactus Canada Regionals, Toronto." },
+    ],
+  },
+  {
+    dir: "/assets/objects/anim/trophy",
+    role: "RESEARCH & DEVELOPMENT LEAD",
+    org: "Lassonde School of Engineering — Concrete Canoe · Sep 2025 – Apr 2026",
+    tone: "text-green",
+    d: "",
+    bullets: [
+      "Secured $20,000+ in sponsorship funding for the national concrete canoe competition in Moncton — covering 4 days of hotel accommodation and transportation for 20+ team members.",
+      "Coordinated sponsorship outreach, travel logistics, and competition-day operations end to end.",
+    ],
+    photoLabel: "CNCCC Nationals, Moncton",
+    photos: [
+      { src: "/assets/experience/canoe/holding-canoe-water.jpg", caption: "Float test — carrying the CA-NEWS canoe into the water at Nationals." },
+      { src: "/assets/experience/canoe/canoe-race.jpg", caption: "Race day on the water in Moncton, NB." },
+      { src: "/assets/experience/canoe/canoe-boat.jpg", caption: "The finished CA-NEWS canoe and CCYU news stand display at CNCCC." },
+      { src: "/assets/experience/canoe/team-dinner-moncton-comp.jpg", caption: "The York team between events at the national competition." },
+      { src: "/assets/experience/canoe/flight-moncton.jpg", caption: "Flying the team out to Moncton — part of the travel logistics I coordinated." },
+      { src: "/assets/experience/canoe/canoe-id.jpg", caption: "CSCE credentials — Canadian National Concrete Canoe Competition." },
+    ],
+  },
+  {
+    dir: "/assets/objects/anim/about",
+    frames: 9,
+    role: "FROSH LEADER",
+    org: "Lassonde School of Engineering · North York · Aug 2025 – Present",
+    tone: "text-cyan",
+    d: "",
+    bullets: [
+      "Lead incoming-student orientation groups — schedule and logistics management across a multi-day program.",
+      "Trained in crisis and conflict de-escalation; first point of contact for student issues during frosh week.",
+    ],
+  },
+  {
+    dir: "/assets/objects/anim/beaker",
+    role: "HACKATHONS & COMPETITIONS",
+    org: "2025 – 2026",
+    tone: "text-gold",
+    d: "3rd @ COIE Climathon ($500) · 3rd @ Hult Prize ($300) · Head Delegate @ CUSEC Canada 2025.",
+  },
 ];
 const awards = [
   { r: "🥉", n: "COIE Climathon", p: "$500" },
@@ -55,12 +126,52 @@ const techStack = [
   { l: "MySQL", logo: "/assets/logos/sql.svg" },
 ];
 
+/** One role card: animated sprite, title/org, bullets, and an optional photo strip. */
+function JobCard({ e, i }: { e: Job; i: number }) {
+  return (
+    <ScrollReveal
+      delay={i * 0.1}
+      className={`bg-inset border-[2px] border-ink p-5 flex items-start gap-5 pixel-hoverable ${e.incoming ? "incoming-card" : ""}`}
+    >
+      <AnimatedSprite dir={e.dir} frames={e.frames ?? 4} size={78} fps={6} className="shrink-0" />
+      <div className="relative min-w-0">
+        {e.incoming && (
+          <div className="incoming-badge inline-flex items-center gap-2 font-pixel text-[10px] text-gold bg-panel border-[2px] border-gold/70 px-2 py-1 mb-2">
+            <span className="incoming-dot inline-block w-[6px] h-[6px] bg-gold" />
+            INCOMING · FALL 2026
+          </div>
+        )}
+        <div className={`font-pixel text-[15px] ${e.tone}`}>{e.role}</div>
+        <div className="font-body text-[18px] text-muted mt-1">{e.org}</div>
+        {e.d && <div className="font-body text-[19px] text-text/90 mt-2">{e.d}</div>}
+        {e.bullets && (
+          <ul className="mt-2 space-y-2">
+            {e.bullets.map((b) => (
+              <li key={b} className="font-body text-[19px] text-text/90 flex gap-2">
+                <span className="text-gold shrink-0">▸</span>
+                <span>{b}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+        {e.photos && <PhotoStrip photos={e.photos} label={e.photoLabel ?? ""} />}
+      </div>
+    </ScrollReveal>
+  );
+}
+
 export default function Skills() {
   return (
     <PageChrome footer="Press ESC to return home.">
       <Reveal className="text-center mt-6">
         <h1 className="font-pixel text-cyan text-[30px] md:text-[48px] leading-none text-shadow-blocky">
-          <span className="text-gold">✦</span> SKILLS &amp; EXPERIENCE <span className="text-gold">✦</span>
+          <span className="text-gold">✦</span>{" "}
+          <span className="pixel-shine title-glow" data-text="SKILLS & EXPERIENCE">
+            SKILLS &amp; EXPERIENCE
+            <i className="shine-pip" style={{ left: -16, top: 4 }} />
+            <i className="shine-pip" style={{ right: -16, bottom: 8 }} />
+          </span>{" "}
+          <span className="text-gold">✦</span>
         </h1>
         <p className="font-body text-[20px] text-muted mt-4">
           <span className="text-gold">❖</span> LEVEL UP. BUILD. IMPACT. <span className="text-gold">❖</span>
@@ -78,7 +189,9 @@ export default function Skills() {
         {/* ===== TECH STACK (real logos) — clean continuous scroll, on top ===== */}
         <div id="sk-tech" className="scroll-mt-24" />
         <ScrollReveal className="mt-10">
-          <div className="font-pixel text-[14px] text-cyan text-center mb-6">⚙ TECH STACK</div>
+          <div className="font-pixel text-[14px] text-cyan text-center mb-6">
+            ⚙ <span className="pixel-shine section-head" data-text="TECH STACK" style={{ "--card-glow": "var(--glow-cyan)" } as React.CSSProperties}>TECH STACK</span>
+          </div>
           <div
             className="overflow-hidden"
             style={{
@@ -109,37 +222,14 @@ export default function Skills() {
         <div id="sk-exp" className="grid grid-cols-1 lg:grid-cols-5 gap-6 mt-4 items-start">
           <div className="lg:col-span-3 space-y-6">
             <ScrollReveal>
-              <PixelPanel title="EXPERIENCE HIGHLIGHTS" accent="green" icon={<span>💼</span>} glowing bodyClassName="space-y-5">
-                {experience.map((e, i) => (
-                  <ScrollReveal
-                    key={e.role}
-                    delay={i * 0.12}
-                    className={`bg-inset border-[2px] border-ink p-5 flex items-start gap-5 pixel-hoverable ${e.incoming ? "incoming-card" : ""}`}
-                  >
-                    <AnimatedSprite dir={e.dir} frames={4} size={78} fps={6} className="shrink-0" />
-                    <div className="relative">
-                      {e.incoming && (
-                        <div className="incoming-badge inline-flex items-center gap-2 font-pixel text-[10px] text-gold bg-panel border-[2px] border-gold/70 px-2 py-1 mb-2">
-                          <span className="incoming-dot inline-block w-[6px] h-[6px] bg-gold" />
-                          INCOMING · FALL 2026
-                        </div>
-                      )}
-                      <div className={`font-pixel text-[15px] ${e.tone}`}>{e.role}</div>
-                      <div className="font-body text-[18px] text-muted mt-1">{e.org}</div>
-                      {e.d && <div className="font-body text-[19px] text-text/90 mt-2">{e.d}</div>}
-                      {e.bullets && (
-                        <ul className="mt-2 space-y-2">
-                          {e.bullets.map((b) => (
-                            <li key={b} className="font-body text-[19px] text-text/90 flex gap-2">
-                              <span className="text-gold shrink-0">▸</span>
-                              <span>{b}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-                  </ScrollReveal>
-                ))}
+              <PixelPanel title="PROFESSIONAL EXPERIENCE" accent="green" icon={<span>💼</span>} glowing bodyClassName="space-y-5">
+                {professional.map((e, i) => <JobCard key={e.role} e={e} i={i} />)}
+              </PixelPanel>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.05}>
+              <PixelPanel title="CAMPUS & LEADERSHIP" accent="purple" icon={<span>👥</span>} glowing bodyClassName="space-y-5">
+                {campus.map((e, i) => <JobCard key={e.role} e={e} i={i} />)}
               </PixelPanel>
             </ScrollReveal>
 

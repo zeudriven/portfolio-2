@@ -6,17 +6,19 @@ import Reveal from "@/components/Reveal";
 import ScrollReveal from "@/components/ScrollReveal";
 import Parallax from "@/components/Parallax";
 import RotatingCharacter from "@/components/RotatingCharacter";
+import ProfilePhoto from "@/components/ProfilePhoto";
 import AnimatedSprite from "@/components/AnimatedSprite";
 
 const journeyStats = [
   { v: "5+", l: "Major Projects", tone: "text-green" },
   { v: "5+", l: "Awards Won", tone: "text-cyan" },
-  { v: "2", l: "Active Roles", tone: "text-purple" },
+  { v: "4", l: "Active Roles", tone: "text-purple" },
   { v: "2027", l: "Grad Year", tone: "text-gold" },
 ];
 const milestones = [
   { y: "2023", t: "Started BSc Computer Science at York (Lassonde)", tone: "bg-green" },
   { y: "2025", t: "Vice President of Student Life @ Enactus York", tone: "bg-cyan" },
+  { y: "2025", t: "R&D Lead @ Lassonde Concrete Canoe — $20K+ raised for Nationals", tone: "bg-green" },
   { y: "2026", t: "Won Best UI/UX @ Scotiabank CaseHacks", tone: "bg-gold" },
   { y: "2026", t: "AI Data Engineer @ Ayvelis AI", tone: "bg-purple" },
   { y: "2026", t: "Project Coordinator Co-op @ Government of Ontario (incoming)", tone: "bg-gold" },
@@ -61,7 +63,10 @@ export default function About() {
           {/* Core Values — on top, no box / outline */}
           <ScrollReveal>
             <div className="text-center">
-              <div className="font-pixel text-[16px] text-gold flex items-center justify-center gap-2"><span>❤</span> CORE VALUES</div>
+              <div className="font-pixel text-[16px] text-gold flex items-center justify-center gap-2">
+                <span>❤</span>
+                <span className="pixel-shine section-head" data-text="CORE VALUES" style={{ "--card-glow": "var(--glow-gold)" } as React.CSSProperties}>CORE VALUES</span>
+              </div>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-8">
                 {values.map((v, i) => (
                   <ScrollReveal key={v.t} delay={i * 0.1}>
@@ -82,9 +87,12 @@ export default function About() {
           {/* Who I Am — full width, no box, bigger */}
           <ScrollReveal>
             <div id="about-intro" className="flex flex-col md:flex-row items-center gap-10 border-t-[2px] border-line pt-14">
-              <div className="shrink-0"><RotatingCharacter size={220} /></div>
+              <div className="shrink-0"><ProfilePhoto size={220} /></div>
               <div className="space-y-5">
-                <div className="font-pixel text-[18px] text-green flex items-center gap-2"><span>👤</span> WHO I AM</div>
+                <div className="font-pixel text-[18px] text-green flex items-center gap-2">
+                  <span>👤</span>
+                  <span className="pixel-shine section-head" data-text="WHO I AM" style={{ "--card-glow": "var(--glow-green)" } as React.CSSProperties}>WHO I AM</span>
+                </div>
                 <p className="font-body text-[25px] text-text/90 leading-snug">
                   Hi! I&apos;m <span className="text-purple">Varun</span> — a Computer Science student at York University
                   (Lassonde) and an <span className="text-cyan">AI Data Engineer at Ayvelis AI</span>. I build
