@@ -23,7 +23,7 @@ const vt = VT323({
 export const metadata: Metadata = {
   title: "Varun Patel — Interactive Developer Portfolio",
   description:
-    "A game-inspired developer portfolio you can explore — projects, skills, experience and more.",
+    "Scroll through a pixel night world — Varun Patel's overview, skills, experience and project showcase.",
 };
 
 export default function RootLayout({
@@ -32,15 +32,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${press.variable} ${vt.variable}`} suppressHydrationWarning>
-      <head>
-        {/* set the saved theme before paint to avoid a flash */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `try{if(localStorage.getItem('theme')==='day'){document.documentElement.dataset.theme='day';}}catch(e){}`,
-          }}
-        />
-      </head>
+    // night-only site. data-scroll-behavior lets Next keep smooth anchor scrolling.
+    <html lang="en" className={`${press.variable} ${vt.variable}`} data-scroll-behavior="smooth" suppressHydrationWarning>
       <body className="font-body antialiased">
         {children}
         <Analytics />

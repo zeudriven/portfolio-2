@@ -90,6 +90,83 @@ body {
   background: var(--page-bg);
   color: var(--text);
   min-height: 100%;
+  /* parallax layers drift past the edges — clip (unlike hidden) keeps position: sticky working */
+  overflow-x: clip;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ============================================================
+   Single-page parallax world
+   ============================================================ */
+
+/* giant outlined numbers behind chapter titles */
+.outline-num {
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(184, 160, 255, 0.12);
+}
+
+/* faint pixel grid that drifts behind project scenes */
+.pixel-grid {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.045) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 2px, transparent 2px);
+  background-size: 40px 40px;
+}
+
+/* ground strip the character walks on (its x scrolls with the page, see ScrollWalker) */
+.pixel-ground {
+  border-top: 3px solid #000;
+  background-color: #1d1238;
+  background-image:
+    linear-gradient(180deg, #7bd23f 0 4px, #3f8a2c 4px 9px, #2a5e22 9px 12px, transparent 12px),
+    repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.28) 0 8px, transparent 8px 24px),
+    repeating-linear-gradient(90deg, #2a1a4a 0 16px, #22153e 16px 32px);
+  background-size: 100% 100%, 48px 100%, 32px 100%;
+  background-repeat: no-repeat, repeat, repeat;
+}
+
+/* the walking character's speech bubble */
+.walker-bubble {
+  position: absolute;
+  bottom: calc(100% - 4px);
+  white-space: nowrap;
+  font-family: var(--font-press), monospace;
+  font-size: 8px;
+  line-height: 1.4;
+  color: rgb(var(--c-text));
+  background: rgb(var(--c-panel));
+  border: 2px solid #000;
+  box-shadow: 3px 3px 0 0 #000;
+  padding: 7px 9px;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.walker-bubble::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 12px;
+  width: 8px;
+  height: 8px;
+  background: rgb(var(--c-panel));
+  border-right: 2px solid #000;
+  border-bottom: 2px solid #000;
+  transform: translateY(-4px) rotate(45deg);
+}
+.walker-bubble.right-\[40\%\]::after {
+  left: auto;
+  right: 12px;
+}
+@media (min-width: 640px) {
+  .walker-bubble {
+    font-size: 9px;
+  }
 }
 
 /* smooth day <-> night fade — only active during a toggle (added/removed by ThemeToggle) */

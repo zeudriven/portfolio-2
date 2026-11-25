@@ -23,6 +23,7 @@ export default function PixelButton({
   variant = "green",
   className = "",
   href,
+  external = false,
   onClick,
   type = "button",
 }: {
@@ -30,6 +31,8 @@ export default function PixelButton({
   variant?: Variant;
   className?: string;
   href?: string;
+  /** open href in a new tab */
+  external?: boolean;
   onClick?: () => void;
   type?: "button" | "submit";
 }) {
@@ -39,7 +42,7 @@ export default function PixelButton({
 
   if (href) {
     return (
-      <a href={href} className={cls}>
+      <a href={href} className={cls} {...(external ? { target: "_blank", rel: "noreferrer" } : {})}>
         {children}
       </a>
     );

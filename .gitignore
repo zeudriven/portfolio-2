@@ -11,3 +11,6 @@ next-env.d.ts
 tmp/
 .DS_Store
 *.code-workspace
+
+# local Claude Code permissions
+.claude/settings.local.json
