@@ -23,7 +23,7 @@ export default function AboutSection() {
             </Parallax>
           </Parallax>
           <Parallax speed={-0.35}>
-            <ScrollReveal className="pixel-panel bg-panel/90 p-6 sm:p-8 space-y-5">
+            <ScrollReveal className="p-6 sm:p-8 space-y-5">
               <div className="font-pixel text-[14px] sm:text-[18px] text-green flex items-center gap-2">
                 <span>👤</span>
                 <span className="pixel-shine section-head" data-text="WHO I AM" style={{ "--card-glow": "var(--glow-green)" } as React.CSSProperties}>
@@ -48,7 +48,7 @@ export default function AboutSection() {
           {journeyStats.map((s, i) => (
             <Parallax key={s.l} speed={0.2 + i * 0.35}>
               <ScrollReveal delay={i * 0.08}>
-                <div className="pixel-panel-2 pixel-hoverable text-center py-6 sm:py-8">
+                <div className="text-center py-6 sm:py-8">
                   <div className={`font-pixel text-[26px] sm:text-[34px] ${s.tone}`}>{s.v}</div>
                   <div className="font-body text-[17px] sm:text-[19px] text-muted mt-2">{s.l}</div>
                 </div>
@@ -61,7 +61,7 @@ export default function AboutSection() {
         <div className="grid lg:grid-cols-2 gap-6 items-start">
           <Parallax speed={0.3}>
             <ScrollReveal>
-              <PixelPanel title="EDUCATION" accent="cyan" icon={<span>🎓</span>} glowing>
+              <PixelPanel title="EDUCATION" accent="cyan" icon={<span>🎓</span>} transparent interactive={false}>
                 <div className="flex flex-col sm:flex-row items-center gap-6">
                   <img
                     src="/assets/book.png"
@@ -75,7 +75,7 @@ export default function AboutSection() {
                     <div className="font-pixel text-[14px] text-text leading-snug">BSc (Honours), Computer Science</div>
                     <div className="font-body text-[20px] text-muted">York University — Lassonde School of Engineering</div>
                     <div className="font-body text-[19px] text-cyan">Sep 2023 – Sep 2027 · Toronto, ON</div>
-                    <div className="inline-block font-body text-[16px] text-green px-3 py-2 border-[2px] border-green/50 bg-inset">
+                    <div className="font-body text-[16px] text-green">
                       DSA · OOP · Databases · Software Design · SDLC
                     </div>
                   </div>
@@ -86,7 +86,7 @@ export default function AboutSection() {
 
           <Parallax speed={-0.3}>
             <ScrollReveal delay={0.1}>
-              <PixelPanel title="JOURNEY SO FAR" accent="purple" icon={<span>📈</span>} glowing className="neon-purple border-purple/60">
+              <PixelPanel title="JOURNEY SO FAR" accent="purple" icon={<span>📈</span>} transparent interactive={false}>
                 <div className="space-y-3 border-l-[2px] border-ink pl-4">
                   {milestones.map((m, i) => (
                     <ScrollReveal key={m.t} delay={i * 0.07} y={14} className="flex items-start gap-3">

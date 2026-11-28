@@ -1,7 +1,7 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import RotatingCharacter from "@/components/RotatingCharacter";
 
 /**
@@ -18,12 +18,19 @@ export default function ProfilePhoto({
   size?: number;
 }) {
   const [failed, setFailed] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  // the server-rendered <img> can 404 before React hydrates, so its onError never fires — check after mount too
+  useEffect(() => {
+    const img = imgRef.current;
+    if (img && img.complete && img.naturalWidth === 0) setFailed(true);
+  }, []);
 
   if (failed) return <RotatingCharacter size={size} />;
 
   return (
     <figure className="profile-photo" style={{ width: size }}>
-      <img src={src} alt="Varun Patel" width={size} height={size} onError={() => setFailed(true)} />
+      <img ref={imgRef} src={src} alt="Varun Patel" width={size} height={size} onError={() => setFailed(true)} />
       <figcaption className="font-pixel text-[9px] text-muted text-center mt-2">
         ▸ PLAYER 1
       </figcaption>

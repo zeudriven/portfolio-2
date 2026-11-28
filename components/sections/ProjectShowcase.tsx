@@ -1,7 +1,7 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import {
   motion,
   useMotionValue,
@@ -351,7 +351,11 @@ function StaticShowcase() {
   );
 }
 
+const noopSubscribe = () => () => {};
+
 export default function ProjectShowcase() {
   const reduce = useReducedMotion();
-  return reduce ? <StaticShowcase /> : <PinnedShowcase />;
+  // the server can't know the reduced-motion setting, so hydrate as the pinned version first
+  const mounted = useSyncExternalStore(noopSubscribe, () => true, () => false);
+  return mounted && reduce ? <StaticShowcase /> : <PinnedShowcase />;
 }

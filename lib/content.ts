@@ -29,8 +29,7 @@ export const navItems = [
 
 /** Signposts on the ground strip + what the walking character says at each. */
 export const walkerStops = [
-  { id: "top", label: "START", say: "Welcome! Scroll to explore ↓" },
-  { id: "about", label: "ABOUT", say: "This is me — nice to meet you!" },
+  { id: "about", label: "ABOUT", say: "Welcome! This is me — scroll to explore ↓" },
   { id: "skills", label: "SKILLS", say: "My toolkit of choice." },
   { id: "experience", label: "EXPERIENCE", say: "Where I've levelled up." },
   { id: "projects", label: "PROJECTS", say: "Chapter 2 — things I've built!" },

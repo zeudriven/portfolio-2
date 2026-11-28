@@ -12,7 +12,7 @@ import { awards, campus, professional, type Job } from "@/lib/content";
 /** One role card: animated sprite, title/org, bullets, optional photo strip. */
 function JobCard({ e }: { e: Job }) {
   return (
-    <div className={`bg-panel/95 border-[2px] border-ink shadow-blocky p-5 flex items-start gap-4 sm:gap-5 pixel-hoverable ${e.incoming ? "incoming-card" : ""}`}>
+    <div className={`p-5 flex items-start gap-4 sm:gap-5`}>
       <AnimatedSprite dir={e.dir} frames={e.frames ?? 4} size={64} fps={6} className="shrink-0 hidden sm:block" />
       <div className="relative min-w-0">
         {e.incoming && (
@@ -101,7 +101,7 @@ export default function ExperienceSection() {
             {awards.map((a, i) => (
               <Parallax key={a.n} speed={0.2 + i * 0.35}>
                 <ScrollReveal delay={i * 0.08}>
-                  <div className="pixel-panel-2 pixel-hoverable p-5 text-center h-full">
+                  <div className="p-5 text-center h-full">
                     <div className="text-[30px]">{a.r}</div>
                     <div className="font-body text-[19px] text-text mt-2 leading-snug">{a.n}</div>
                     <div className="font-pixel text-[12px] text-gold mt-2">{a.p}</div>

@@ -13,7 +13,7 @@ import { navItems } from "@/lib/content";
  */
 export default function ScrollHeader() {
   const { scrollYProgress } = useScroll();
-  const [active, setActive] = useState("top");
+  const [active, setActive] = useState("about");
   const [solid, setSolid] = useState(false);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export default function ScrollHeader() {
       (entries) => entries.forEach((e) => e.isIntersecting && setActive(e.target.id)),
       { rootMargin: "-45% 0px -50% 0px" }
     );
-    ["top", ...navItems.map((n) => n.id)].forEach((id) => {
+    navItems.forEach(({ id }) => {
       const el = document.getElementById(id);
       if (el) io.observe(el);
     });
@@ -49,7 +49,7 @@ export default function ScrollHeader() {
           <PlayerHUD />
         </div>
         <a
-          href="#top"
+          href="#about"
           className="xl:hidden font-pixel text-[11px] text-green px-2 py-2 bg-panel/90 border-[2px] border-ink shadow-blocky-sm"
           aria-label="Back to top"
         >

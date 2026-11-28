@@ -1,7 +1,7 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from "react";
 import { Cormorant_Garamond, Montserrat } from "next/font/google";
 import s from "./LeapIntro.module.css";
 
@@ -14,7 +14,7 @@ const sans = Montserrat({ subsets: ["latin"], weight: ["300", "500"], variable: 
  *  1. intro   the film (public/leap/intro.mp4) plays by itself with clean titles timed to it; scroll is locked
  *  2. paused  it holds on "Take the leap" mid-fall and asks you to scroll
  *  3. scroll  scrolling the spacer pixelates the paused frame; the title turns into pixel type
- *  4. dive    ~1.2s: pixel city rushes up, words fly past, everything blooms to white
+ *  4. dive    ~1.2s: the pixel scene zooms in, light streaks and words fly past, everything blooms to white
  *  5. type    "LEVEL 01" types itself out on a still white screen
  *  6. done    the white fades away to reveal the portfolio underneath; the spacer is removed
  */
@@ -38,11 +38,18 @@ type Phase = "intro" | "paused" | "scroll" | "dive" | "type" | "fading" | "done"
 const clamp = (v: number, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 const ease = (x: number) => x * x * (3 - 2 * x);
 const hash = (n: number) => { const v = Math.sin(n * 127.1 + 311.7) * 43758.5453; return v - Math.floor(v); };
+const noopSubscribe = () => () => {};
+
+/** false during SSR and hydration, true afterwards. */
+const useMounted = () => useSyncExternalStore(noopSubscribe, () => true, () => false);
 
 export default function LeapIntro() {
   const [done, setDone] = useState(() => hasPlayed);
   const [fading, setFading] = useState(false);
   const [needPlay, setNeedPlay] = useState(false);
+  // The <video> is client-only: video-speed browser extensions inject controls next to any
+  // <video> in the server HTML before React hydrates, which breaks hydration.
+  const mounted = useMounted();
   const overlayRef = useRef<HTMLDivElement>(null);
   const vidRef = useRef<HTMLVideoElement>(null);
   const hiRef = useRef<HTMLCanvasElement>(null);
@@ -66,7 +73,7 @@ export default function LeapIntro() {
   }, [done]);
 
   useEffect(() => {
-    if (hasPlayed) return;
+    if (hasPlayed || !mounted) return;
     const vid = vidRef.current!, hi = hiRef.current!, lo = loRef.current!;
     const h = hi.getContext("2d")!, g = lo.getContext("2d", { willReadFrequently: true })!;
     hi.width = VW; hi.height = VH; lo.width = LW; lo.height = LH;
@@ -134,27 +141,11 @@ export default function LeapIntro() {
     };
 
     /* ---------- pixel dive scene ---------- */
-    const cityLayer = (off: number, speed: number, gap: number, wid: number, col: string, win: [string, string], seed: number, side: number) => {
-      const o = off * speed;
-      for (let i = Math.floor(o / gap) - 1; i < (o + LH) / gap + 2; i++) {
-        const y = LH - (i * gap - o) - gap, w = wid * (0.6 + hash(i * 3 + seed) * 0.8);
-        const x = side < 0 ? -2 + hash(i + seed) * 6 : LW - w + 2 - hash(i + seed) * 6;
-        R(x, y, w, gap - 3, col);
-        for (let yy = 3; yy < gap - 6; yy += 4) for (let xx = 2; xx < w - 2; xx += 3) {
-          const id = i * 91 + yy * 7 + xx + seed;
-          if (hash(id) < 0.45) R(x + xx, y + yy, 1, 2, hash(id * 2) > 0.5 ? win[0] : win[1]);
-        }
-      }
-    };
     const streaks = Array.from({ length: 40 }, (_, i) => ({ x: hash(i) * LW, y: hash(i * 3) * LH, v: 2 + hash(i * 7) * 5, l: 5 + hash(i * 5) * 14 }));
     const fallScene = (p: number, off: number) => {
       const z = 1 + p * 0.7;
       g.imageSmoothingEnabled = true; g.drawImage(bgImg, (LW - LW * z) / 2, (LH - LH * z) * 0.62, LW * z, LH * z); g.imageSmoothingEnabled = false;
       g.globalAlpha = 0.3 + p * 0.3; R(0, 0, LW, LH, "#070a18"); g.globalAlpha = 1;
-      cityLayer(off, 0.25, 46, 34, "#141a33", ["#3b4a80", "#6f5a3a"], 1, -1);
-      cityLayer(off, 0.25, 52, 30, "#141a33", ["#3b4a80", "#6f5a3a"], 2, 1);
-      cityLayer(off, 0.6, 60, 46, "#0d1124", ["#ffc861", "#7fc6ff"], 3, -1);
-      cityLayer(off, 0.6, 66, 42, "#0d1124", ["#ffc861", "#7fc6ff"], 4, 1);
       for (const st of streaks) { const y = ((st.y - off * 0.02 * st.v) % (LH + 40) + LH + 40) % (LH + 40) - 20; g.globalAlpha = 0.6; R(st.x, y, 1, st.l, hash(st.x) > 0.5 ? "#ffe2a0" : "#bfe4ff"); }
       g.globalAlpha = 1;
       const gr = g.createRadialGradient(LW / 2, LH * 1.05, 4, LW / 2, LH * 1.05, 40 + p * 200);
@@ -185,8 +176,9 @@ export default function LeapIntro() {
     vid.addEventListener("error", endIntro);
     const onKey = (e: KeyboardEvent) => { if (phase === "intro" && (e.key === "Escape" || e.key === "Enter")) endIntro(); };
     addEventListener("keydown", onKey);
-    if (reduce) endIntro();
-    else vid.play().catch(() => setNeedPlay(true));
+    // The film plays even with reduced motion on (Windows turns this on when "Animation effects" is off);
+    // the Skip button and Esc/Enter are always available, and `reduce` still removes the scroll easing.
+    vid.play().catch(() => setNeedPlay(true));
 
     /* ---------- main loop ---------- */
     let sy = 0, t0 = 0;
@@ -265,14 +257,14 @@ export default function LeapIntro() {
       vid.removeEventListener("error", endIntro);
       root.classList.remove("leap-locked", "leap-portrait");
     };
-  }, []);
+  }, [mounted]);
 
   if (done) return null;
 
   return (
     <div className={`${serif.variable} ${sans.variable}`}>
       <div ref={overlayRef} className={`${s.overlay} ${fading ? s.fading : ""}`} aria-label="Intro film">
-        <video ref={vidRef} className={`${s.stage} ${s.video}`} src="/leap/intro.mp4" muted playsInline preload="auto" aria-label="Varun leaps from a rooftop above a night city" />
+        {mounted && <video ref={vidRef} className={`${s.stage} ${s.video}`} src="/leap/intro.mp4" muted playsInline preload="auto" aria-label="Varun leaps from a rooftop above a night city" />}
         <canvas ref={hiRef} className={s.stage} style={{ display: "none" }} aria-hidden="true" />
         <canvas ref={loRef} className={`${s.stage} ${s.lo}`} style={{ display: "none" }} aria-hidden="true" />
 

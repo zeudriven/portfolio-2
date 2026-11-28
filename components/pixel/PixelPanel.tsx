@@ -33,6 +33,7 @@ export default function PixelPanel({
   icon,
   accent = "green",
   glowing = false,
+  transparent = false,
   interactive = true,
   right,
   className = "",
@@ -43,6 +44,8 @@ export default function PixelPanel({
   icon?: ReactNode;
   accent?: Accent;
   glowing?: boolean;
+  /** frameless, see-through panel: no background, border or shadow; content sits on the world behind */
+  transparent?: boolean;
   interactive?: boolean;
   right?: ReactNode;
   className?: string;
@@ -53,12 +56,12 @@ export default function PixelPanel({
     <section
       className={`pixel-panel ${interactive ? "pixel-interactive group" : ""} ${
         glowing ? glow[accent] : ""
-      } ${className}`}
+      } ${transparent ? "bg-transparent border-0 shadow-none" : ""} ${className}`}
     >
       {interactive && <Sparkles />}
       {title && (
         <header
-          className="pixel-titlebar justify-between"
+          className={`pixel-titlebar justify-between ${transparent ? "bg-transparent border-b-0" : ""}`}
           style={{ "--card-glow": glowVar[accent] } as React.CSSProperties}
         >
           <span className={`flex items-center gap-2 ${titleColor[accent]}`}>
