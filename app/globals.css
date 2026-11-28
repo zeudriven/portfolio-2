@@ -413,6 +413,13 @@ html {
   animation: pixel-shine-sweep 0.95s ease-in-out;
 }
 
+/* ===== Very wide screens (1440p / 4K): scale whole content sections up so they fill the width.
+   Tailwind sizes top out around 1700px of content; past ~2200px of viewport we zoom in steps. ===== */
+@media (min-width: 2200px) { .wide-zoom { zoom: 1.15; } }
+@media (min-width: 2500px) { .wide-zoom { zoom: 1.3; } }
+@media (min-width: 2900px) { .wide-zoom { zoom: 1.5; } }
+@media (min-width: 3400px) { .wide-zoom { zoom: 1.75; } }
+
 /* ===== Core Values cards — lift + tinted halo + sprite pop on hover ===== */
 /* NO box on hover — the art and text lift and glow on their own, nothing boxes them in */
 .value-card {

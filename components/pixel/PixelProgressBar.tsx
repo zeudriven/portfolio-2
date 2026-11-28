@@ -26,12 +26,12 @@ export default function PixelProgressBar({
   const filled = Math.round((value / 100) * segments);
 
   return (
-    <div className="flex items-center gap-3">
-      <span className="w-28 shrink-0 text-text/90 text-[19px] leading-tight">{label}</span>
+    <div className="flex items-center gap-3 lg:gap-4">
+      <span className="w-28 lg:w-36 xl:w-40 shrink-0 text-text/90 text-[19px] lg:text-[23px] xl:text-[25px] leading-tight">{label}</span>
 
       <div className="flex-1 flex items-center">
         {/* battery body — flat chunky pixel cells */}
-        <div className="relative flex-1 flex gap-[4px] p-[5px] h-[30px] bg-[#0a0f06] border-[2px] border-ink overflow-hidden" style={{ imageRendering: "pixelated" }}>
+        <div className="relative flex-1 flex gap-[4px] p-[5px] h-[30px] lg:h-[38px] bg-[#0a0f06] border-[2px] border-ink overflow-hidden" style={{ imageRendering: "pixelated" }}>
           {Array.from({ length: segments }).map((_, i) => (
             <span
               key={i}
@@ -47,10 +47,10 @@ export default function PixelProgressBar({
           <span className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-white/35 blur-[2px] animate-xp-shine" />
         </div>
         {/* battery terminal nub */}
-        <span className="block w-[6px] h-[15px] bg-ink ml-[2px]" />
+        <span className="block w-[6px] h-[15px] lg:h-[19px] bg-ink ml-[2px]" />
       </div>
 
-      <span className="w-10 text-right font-pixel text-[11px]" style={{ color: hex }}>{value}</span>
+      <span className="w-10 lg:w-14 text-right font-pixel text-[11px] lg:text-[15px]" style={{ color: hex }}>{value}</span>
     </div>
   );
 }

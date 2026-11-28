@@ -13,7 +13,7 @@ import { awards, campus, professional, type Job } from "@/lib/content";
 function JobCard({ e }: { e: Job }) {
   return (
     <div className={`p-5 flex items-start gap-4 sm:gap-5`}>
-      <AnimatedSprite dir={e.dir} frames={e.frames ?? 4} size={64} fps={6} className="shrink-0 hidden sm:block" />
+      <AnimatedSprite dir={e.dir} frames={e.frames ?? 4} size={64} fps={6} className="shrink-0 hidden sm:block lg:!w-32 lg:!h-32" />
       <div className="relative min-w-0">
         {e.incoming && (
           <div className="incoming-badge inline-flex items-center gap-2 font-pixel text-[9px] text-gold bg-inset border-[2px] border-gold/70 px-2 py-1 mb-2">
@@ -21,13 +21,13 @@ function JobCard({ e }: { e: Job }) {
             INCOMING · FALL 2026
           </div>
         )}
-        <div className={`font-pixel text-[12px] sm:text-[14px] leading-snug ${e.tone}`}>{e.role}</div>
-        <div className="font-body text-[17px] sm:text-[18px] text-muted mt-1">{e.org}</div>
-        {e.d && <div className="font-body text-[18px] sm:text-[19px] text-text/90 mt-2">{e.d}</div>}
+        <div className={`font-pixel text-[12px] sm:text-[14px] lg:text-[18px] leading-snug ${e.tone}`}>{e.role}</div>
+        <div className="font-body text-[17px] sm:text-[18px] lg:text-[24px] text-muted mt-1 lg:mt-2">{e.org}</div>
+        {e.d && <div className="font-body text-[18px] sm:text-[19px] lg:text-[24px] text-text/90 mt-2">{e.d}</div>}
         {e.bullets && (
-          <ul className="mt-2 space-y-2">
+          <ul className="mt-2 lg:mt-3 space-y-2 lg:space-y-3">
             {e.bullets.map((b) => (
-              <li key={b} className="font-body text-[18px] sm:text-[19px] text-text/90 flex gap-2 leading-snug">
+              <li key={b} className="font-body text-[18px] sm:text-[19px] lg:text-[24px] text-text/90 flex gap-2 leading-snug">
                 <span className="text-gold shrink-0">▸</span>
                 <span>{b}</span>
               </li>
@@ -61,7 +61,7 @@ function TimelineItem({ e, side }: { e: Job; side: "left" | "right" }) {
 function TrackLabel({ label, tone }: { label: string; tone: string }) {
   return (
     <div className="relative flex lg:justify-center py-6">
-      <span className={`relative z-10 ml-0 lg:ml-0 font-pixel text-[9px] sm:text-[11px] px-3 py-2 bg-inset border-[2px] border-ink shadow-blocky-sm ${tone}`}>
+      <span className={`relative z-10 ml-0 lg:ml-0 font-pixel text-[9px] sm:text-[11px] lg:text-[15px] px-3 py-2 lg:px-4 lg:py-3 bg-inset border-[2px] border-ink shadow-blocky-sm ${tone}`}>
         {label}
       </span>
     </div>
@@ -75,8 +75,8 @@ export default function ExperienceSection() {
   const line = useSpring(scrollYProgress, { stiffness: 120, damping: 30, mass: 0.4 });
 
   return (
-    <section id="experience" className="relative scroll-mt-16 py-16 sm:py-24">
-      <div className="max-w-[1150px] mx-auto px-5">
+    <section id="experience" className="wide-zoom relative scroll-mt-16 py-16 sm:py-24">
+      <div className="max-w-[1150px] lg:max-w-[1500px] 2xl:max-w-[1700px] mx-auto px-5 lg:px-10">
         <SectionHeading icon="💼" title="EXPERIENCE & LEADERSHIP" sub="Where I've levelled up — at work and on campus." tone="green" />
 
         <div ref={trackRef} className="relative">
@@ -102,9 +102,9 @@ export default function ExperienceSection() {
               <Parallax key={a.n} speed={0.2 + i * 0.35}>
                 <ScrollReveal delay={i * 0.08}>
                   <div className="p-5 text-center h-full">
-                    <div className="text-[30px]">{a.r}</div>
-                    <div className="font-body text-[19px] text-text mt-2 leading-snug">{a.n}</div>
-                    <div className="font-pixel text-[12px] text-gold mt-2">{a.p}</div>
+                    <div className="text-[30px] lg:text-[48px]">{a.r}</div>
+                    <div className="font-body text-[19px] lg:text-[25px] text-text mt-2 lg:mt-3 leading-snug">{a.n}</div>
+                    <div className="font-pixel text-[12px] lg:text-[16px] text-gold mt-2 lg:mt-3">{a.p}</div>
                   </div>
                 </ScrollReveal>
               </Parallax>

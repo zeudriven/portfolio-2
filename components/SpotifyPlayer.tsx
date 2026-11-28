@@ -10,7 +10,8 @@ function toEmbedUrl(link: string): string | null {
 }
 
 /**
- * Floating pixel music button (bottom-right). Clicking it opens Spotify's embedded player so
+ * Floating pixel music button (bottom-left, above the walking character and its speech bubble).
+ * Clicking it opens Spotify's embedded player so
  * visitors can play the music while they browse. The player is only loaded on the first open,
  * and stays loaded when collapsed so the music keeps playing.
  */
@@ -26,7 +27,7 @@ export default function SpotifyPlayer() {
   };
 
   return (
-    <div className="fixed right-3 bottom-[96px] sm:bottom-[110px] z-40 flex flex-col items-end gap-2">
+    <div className="wide-zoom fixed left-3 sm:left-4 bottom-[190px] sm:bottom-[200px] z-40 flex flex-col items-start gap-2">
       {loaded && (
         <div
           className={`w-[min(340px,calc(100vw-24px))] bg-panel/90 border-[2px] border-ink shadow-blocky transition-[opacity,transform] duration-200 ${

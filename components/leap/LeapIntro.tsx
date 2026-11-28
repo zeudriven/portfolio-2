@@ -4,6 +4,7 @@
 import { useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from "react";
 import { Cormorant_Garamond, Montserrat } from "next/font/google";
 import s from "./LeapIntro.module.css";
+import { createLeapAudio, type LeapAudio } from "./leapAudio";
 
 const serif = Cormorant_Garamond({ subsets: ["latin"], weight: ["300", "500"], style: ["normal", "italic"], variable: "--font-leap-serif", display: "swap" });
 const sans = Montserrat({ subsets: ["latin"], weight: ["300", "500"], variable: "--font-leap-sans", display: "swap" });
@@ -17,6 +18,10 @@ const sans = Montserrat({ subsets: ["latin"], weight: ["300", "500"], variable: 
  *  4. dive    ~1.2s: the pixel scene zooms in, light streaks and words fly past, everything blooms to white
  *  5. type    "LEVEL 01" types itself out on a still white screen
  *  6. done    the white fades away to reveal the portfolio underneath; the spacer is removed
+ *
+ * Sound (leapAudio.ts) is synthesised live and cued from the same loop, so it stays in sync with
+ * every phase. Browsers need a click/key press before audio can start: the "Sound" toggle, or any
+ * click/key press during the intro, turns it on.
  */
 
 const VW = 1920, VH = 1098;          // film frame size
@@ -47,6 +52,9 @@ export default function LeapIntro() {
   const [done, setDone] = useState(() => hasPlayed);
   const [fading, setFading] = useState(false);
   const [needPlay, setNeedPlay] = useState(false);
+  const [soundOn, setSoundOn] = useState(false);
+  const audioRef = useRef<LeapAudio | null>(null);
+  const soundRef = useRef({ on: false, chosen: false }); // chosen = the visitor used the toggle themselves
   // The <video> is client-only: video-speed browser extensions inject controls next to any
   // <video> in the server HTML before React hydrates, which breaks hydration.
   const mounted = useMounted();
@@ -63,7 +71,7 @@ export default function LeapIntro() {
   const typedRef = useRef<HTMLSpanElement>(null);
   const hintRef = useRef<HTMLDivElement>(null);
   const skipRef = useRef<HTMLButtonElement>(null);
-  const api = useRef<{ endIntro: () => void; play: () => void }>({ endIntro: () => {}, play: () => {} });
+  const api = useRef<{ endIntro: () => void; play: () => void; sound: (on: boolean) => void }>({ endIntro: () => {}, play: () => {}, sound: () => {} });
 
   // when finished, drop the spacer and put the reader at the top of the portfolio in the same frame
   useLayoutEffect(() => {
@@ -158,11 +166,31 @@ export default function LeapIntro() {
       g.drawImage(chImg, Math.round(cx - cw / 2), Math.round(cy - ch / 2), Math.round(cw), Math.round(ch));
     };
 
+    /* ---------- sound ---------- */
+    const sfx = () => (soundRef.current.on ? audioRef.current : null);
+    const sound = (on: boolean) => {
+      if (!audioRef.current) audioRef.current = createLeapAudio();
+      audioRef.current.setOn(on);
+      soundRef.current.on = on;
+      setSoundOn(on);
+    };
+    // the first click / key press anywhere in the intro turns sound on (unless they used the toggle)
+    const onGesture = (e: Event) => {
+      if ((e.target as Element | null)?.closest?.("[data-sound-toggle]")) return;
+      if (!soundRef.current.chosen && !soundRef.current.on && phase !== "fading" && phase !== "done") sound(true);
+    };
+    addEventListener("pointerdown", onGesture);
+    addEventListener("keydown", onGesture);
+    const fired = TITLES.map(() => false); // which title cards have rung their cue
+    let bloomed = false, typedN = 0;
+
     /* ---------- intro control ---------- */
     const showPause = () => { if (pauseImg.complete && pauseImg.naturalWidth) h.drawImage(pauseImg, 0, 0, VW, VH); hi.style.display = ""; vid.style.display = "none"; };
     const endIntro = () => {
       if (phase !== "intro") return;
       phase = "paused";
+      if (!fired[TITLES.length - 1]) sfx()?.leap(); // skipped straight to "Take the leap"
+      fired.fill(true);
       vid.pause();
       showPause();
       filmTitles(99);
@@ -171,7 +199,7 @@ export default function LeapIntro() {
       if (skipRef.current) { skipRef.current.style.opacity = "0"; skipRef.current.style.pointerEvents = "none"; }
     };
     const play = () => { setNeedPlay(false); vid.play().catch(endIntro); };
-    api.current = { endIntro, play };
+    api.current = { endIntro, play, sound };
     vid.addEventListener("ended", endIntro);
     vid.addEventListener("error", endIntro);
     const onKey = (e: KeyboardEvent) => { if (phase === "intro" && (e.key === "Escape" || e.key === "Enter")) endIntro(); };
@@ -185,7 +213,13 @@ export default function LeapIntro() {
     const spacer = spacerRef.current!;
     const loop = (now: number) => {
       if (phase === "intro") {
-        filmTitles(vid.currentTime || 0);
+        const ct = vid.currentTime || 0;
+        filmTitles(ct);
+        TITLES.forEach((tt, i) => {
+          if (fired[i] || ct < tt.a) return;
+          fired[i] = true;
+          if (tt.last) sfx()?.leap(); else sfx()?.title(i);
+        });
         raf = requestAnimationFrame(loop); return;
       }
       if (phase === "done") return;
@@ -196,6 +230,7 @@ export default function LeapIntro() {
       if (phase === "paused" && scrollY > 4) phase = "scroll";
       if ((phase === "paused" || phase === "scroll") && pb >= 0.98) {
         phase = "dive"; t0 = now; lock(true);
+        sfx()?.dive();
         // park the page with the portfolio exactly at the top, so the white reveals it cleanly
         window.scrollTo(0, spacer.offsetTop + spacer.offsetHeight);
       }
@@ -213,12 +248,21 @@ export default function LeapIntro() {
         px.style.transform = `translateY(${(-30 - k * 200).toFixed(0)}px) scale(${(1 + k * 2.5).toFixed(2)})`;
         lastFilm().style.opacity = "0";
         white = ease(clamp((k - 0.45) / 0.55));
-        if (k >= 1) { phase = "type"; t0 = now; }
+        if (!bloomed && k > 0.45) { bloomed = true; sfx()?.bloom(); }
+        if (k >= 1) { phase = "type"; t0 = now; sfx()?.level(); }
       } else if (phase === "type") {
         white = 1; flyText(0, false); px.style.opacity = "0";
         const n = Math.max(0, Math.floor((now - t0 - 500) / 45));
         typedRef.current!.textContent = LINE.slice(0, n);
-        if (n > LINE.length + 22) { phase = "fading"; setFading(true); setTimeout(() => { phase = "done"; hasPlayed = true; setDone(true); }, 950); }
+        if (n > typedN) { if (n <= LINE.length && LINE[n - 1] !== " ") sfx()?.type(); typedN = n; }
+        if (n > LINE.length + 22) {
+          phase = "fading"; setFading(true);
+          audioRef.current?.fadeOut(0.9);
+          setTimeout(() => {
+            phase = "done"; hasPlayed = true; setDone(true);
+            audioRef.current?.dispose(); audioRef.current = null; soundRef.current.on = false;
+          }, 950);
+        }
       } else if (phase === "fading") {
         white = 1;
       } else {
@@ -239,6 +283,7 @@ export default function LeapIntro() {
         px.style.clipPath = `inset(0 ${((Math.round((1 - r) * 12) / 12) * 100).toFixed(0)}% 0 0)`;
         px.style.transform = `translateY(${(-pb * 30).toFixed(0)}px)`;
         flyText(0, false);
+        sfx()?.scroll(pb);
       }
       if (hintRef.current) hintRef.current.style.opacity = phase === "paused" && sy < 40 ? "1" : "0";
       whiteRef.current!.style.opacity = String(white);
@@ -253,6 +298,9 @@ export default function LeapIntro() {
       removeEventListener("touchmove", block);
       removeEventListener("wheel", block);
       removeEventListener("keydown", onKey);
+      removeEventListener("pointerdown", onGesture);
+      removeEventListener("keydown", onGesture);
+      audioRef.current?.dispose(); audioRef.current = null; soundRef.current.on = false;
       vid.removeEventListener("ended", endIntro);
       vid.removeEventListener("error", endIntro);
       root.classList.remove("leap-locked", "leap-portrait");
@@ -286,6 +334,14 @@ export default function LeapIntro() {
 
         <div ref={hintRef} className={s.hint}><span>Scroll</span><i /></div>
         <button ref={skipRef} className={`${s.btn} ${s.skip}`} onClick={() => api.current.endIntro()}>Skip intro ›</button>
+        <button
+          data-sound-toggle
+          className={`${s.btn} ${s.sound}`}
+          aria-pressed={soundOn}
+          onClick={() => { soundRef.current.chosen = true; api.current.sound(!soundRef.current.on); }}
+        >
+          {soundOn ? "♪ Sound on" : "♪ Sound off"}
+        </button>
         {needPlay && <button className={`${s.btn} ${s.play}`} onClick={() => api.current.play()}>▶ Play intro</button>}
       </div>
       <div ref={spacerRef} className={s.spacer} aria-hidden="true" />

@@ -61,7 +61,7 @@ export default function PixelPanel({
       {interactive && <Sparkles />}
       {title && (
         <header
-          className={`pixel-titlebar justify-between ${transparent ? "bg-transparent border-b-0" : ""}`}
+          className={`pixel-titlebar justify-between lg:text-[16px] ${transparent ? "bg-transparent border-b-0" : ""}`}
           style={{ "--card-glow": glowVar[accent] } as React.CSSProperties}
         >
           <span className={`flex items-center gap-2 ${titleColor[accent]}`}>
@@ -73,7 +73,7 @@ export default function PixelPanel({
           {right}
         </header>
       )}
-      <div className={`p-4 ${bodyClassName}`}>{children}</div>
+      <div className={`p-4 lg:p-6 ${bodyClassName}`}>{children}</div>
     </section>
   );
 }
