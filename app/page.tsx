@@ -1,4 +1,4 @@
-import HomeLoader from "@/components/home/HomeLoader";
+import LeapIntro from "@/components/leap/LeapIntro";
 import ScrollHeader from "@/components/ScrollHeader";
 import WorldBackdrop from "@/components/world/WorldBackdrop";
 import ScrollWalker from "@/components/world/ScrollWalker";
@@ -10,7 +10,8 @@ import ProjectShowcase from "@/components/sections/ProjectShowcase";
 import ContactSection from "@/components/sections/ContactSection";
 
 /**
- * The whole portfolio is one continuous parallax scroll through a pixel night world:
+ * Opens with LeapIntro (the film → pixel dive → "LEVEL 01"), then the whole portfolio is one
+ * continuous parallax scroll through a pixel night world:
  *
  *   Hero
  *   CHAPTER 01 · OVERVIEW        About → Skills → Experience
@@ -23,9 +24,9 @@ import ContactSection from "@/components/sections/ContactSection";
 export default function Home() {
   return (
     <>
-      <HomeLoader />
       <WorldBackdrop />
       <ScrollHeader />
+      <LeapIntro />
       <main className="relative z-10">
         <Hero />
         <AboutSection />
