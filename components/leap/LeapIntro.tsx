@@ -71,6 +71,8 @@ export default function LeapIntro() {
   const typedRef = useRef<HTMLSpanElement>(null);
   const hintRef = useRef<HTMLDivElement>(null);
   const skipRef = useRef<HTMLButtonElement>(null);
+  const loadRef = useRef<HTMLDivElement>(null);
+  const barRef = useRef<HTMLElement>(null);
   const api = useRef<{ endIntro: () => void; play: () => void; sound: (on: boolean) => void }>({ endIntro: () => {}, play: () => {}, sound: () => {} });
 
   // when finished, drop the spacer and put the reader at the top of the portfolio in the same frame
@@ -204,9 +206,33 @@ export default function LeapIntro() {
     vid.addEventListener("error", endIntro);
     const onKey = (e: KeyboardEvent) => { if (phase === "intro" && (e.key === "Escape" || e.key === "Enter")) endIntro(); };
     addEventListener("keydown", onKey);
-    // The film plays even with reduced motion on (Windows turns this on when "Animation effects" is off);
-    // the Skip button and Esc/Enter are always available, and `reduce` still removes the scroll easing.
-    vid.play().catch(() => setNeedPlay(true));
+    // download the whole film in the background first, so it plays without buffering
+    const small = innerWidth < 900 || (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData;
+    const src = small ? "/leap/intro-720.mp4" : "/leap/intro.mp4";
+    let blobUrl = "";
+    const ctrl = new AbortController();
+    const start = () => {
+      if (loadRef.current) loadRef.current.style.opacity = "0";
+      // The film plays even with reduced motion on (Windows turns this on when "Animation effects" is off);
+      // the Skip button and Esc/Enter are always available, and `reduce` still removes the scroll easing.
+      vid.play().catch(() => setNeedPlay(true));
+    };
+    const setPct = (p: number) => { if (barRef.current) barRef.current.style.width = Math.round(p * 100) + "%"; };
+    (async () => {
+      try {
+        const res = await fetch(src, { signal: ctrl.signal });
+        const total = Number(res.headers.get("content-length")) || 0;
+        if (!res.body || !total) throw new Error("no stream");
+        const reader = res.body.getReader(); const chunks: Uint8Array[] = []; let got = 0;
+        for (;;) { const { done, value } = await reader.read(); if (done) break; chunks.push(value); got += value.length; setPct(got / total); }
+        blobUrl = URL.createObjectURL(new Blob(chunks as BlobPart[], { type: "video/mp4" }));
+        vid.src = blobUrl;
+      } catch {
+        if (ctrl.signal.aborted) return;
+        vid.src = src;                      // fall back to normal streaming
+      }
+      if (vid.readyState >= 3) start(); else vid.addEventListener("canplaythrough", start, { once: true });
+    })();
 
     /* ---------- main loop ---------- */
     let sy = 0, t0 = 0;
@@ -293,6 +319,8 @@ export default function LeapIntro() {
     raf = requestAnimationFrame(loop);
 
     return () => {
+      ctrl.abort();
+      if (blobUrl) URL.revokeObjectURL(blobUrl);
       cancelAnimationFrame(raf);
       removeEventListener("resize", fit);
       removeEventListener("touchmove", block);
@@ -312,7 +340,8 @@ export default function LeapIntro() {
   return (
     <div className={`${serif.variable} ${sans.variable}`}>
       <div ref={overlayRef} className={`${s.overlay} ${fading ? s.fading : ""}`} aria-label="Intro film">
-        {mounted && <video ref={vidRef} className={`${s.stage} ${s.video}`} src="/leap/intro.mp4" muted playsInline preload="auto" aria-label="Varun leaps from a rooftop above a night city" />}
+        {/* src is set by the preloader in the effect above */}
+        {mounted && <video ref={vidRef} className={`${s.stage} ${s.video}`} muted playsInline preload="auto" aria-label="Varun leaps from a rooftop above a night city" />}
         <canvas ref={hiRef} className={s.stage} style={{ display: "none" }} aria-hidden="true" />
         <canvas ref={loRef} className={`${s.stage} ${s.lo}`} style={{ display: "none" }} aria-hidden="true" />
 
@@ -332,6 +361,7 @@ export default function LeapIntro() {
           <div className={s.ty}><span ref={typedRef} /><span className={s.cur} /></div>
         </div>
 
+        <div ref={loadRef} className={s.loader} role="status"><span>Loading</span><b><i ref={barRef} /></b></div>
         <div ref={hintRef} className={s.hint}><span>Scroll</span><i /></div>
         <button ref={skipRef} className={`${s.btn} ${s.skip}`} onClick={() => api.current.endIntro()}>Skip intro ›</button>
         <button

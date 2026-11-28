@@ -35,6 +35,11 @@
 .sound[aria-pressed="true"] { color: #ffc861; border-color: rgba(255, 200, 97, .6); }
 .play { left: 50%; top: 50%; transform: translate(-50%, -50%); }
 
+/* background download progress */
+.loader { position: fixed; z-index: 10; left: 50%; top: 50%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; gap: 14px; font-family: var(--font-leap-sans), sans-serif; font-weight: 300; font-size: 11px; letter-spacing: .45em; text-transform: uppercase; color: #d9e6ff; transition: opacity .6s; pointer-events: none; }
+.loader b { display: block; width: min(220px, 50vw); height: 2px; background: rgba(217, 230, 255, .2); }
+.loader i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #9fd8ff, #ffc861); transition: width .2s; }
+
 /* the scroll distance used to pixelate the paused frame */
 .spacer { height: 180vh; }
 

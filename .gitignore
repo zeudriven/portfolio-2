@@ -14,3 +14,6 @@ tmp/
 
 # local Claude Code permissions
 .claude/settings.local.json
+
+# nested clone used by another session — not part of this repo
+/portfolio-2-leap/
